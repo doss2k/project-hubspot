@@ -1,1 +1,9 @@
 // VARIABLES GO HERE
+$primary-color: #4b336e;
+$secondary-color: #218179;
+// $tertiary-color: ;
+
+//mixins
+@mixin fastEaseOut {
+  transition: all 0.1s ease-out;
+}

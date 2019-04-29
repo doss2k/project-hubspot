@@ -1,2 +1,18 @@
 @import "abstracts/variables";
-@import "base/base";
+@import "partitions/navbar";
+
+* {
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: "Muli", sans-serif;
+  box-sizing: border-box;
+  color: red;
+}
+
+a {
+  color: #fff;
+  text-decoration: none;
+}
