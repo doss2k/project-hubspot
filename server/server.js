@@ -11,9 +11,9 @@ module.exports = {
     if (pool) return pool;
     pool = mysql.createPool({
       host     : 'localhost',
-      user     : '', // MySQL username
-      password : '!', // MySQL password
-      database : '' // MySQL database name 
+      user     : 'kbrand', // MySQL username
+      password : 'mysql123!', // MySQL password
+      database : 'projechubspot' // MySQL database name 
     });
     return pool;
   }
