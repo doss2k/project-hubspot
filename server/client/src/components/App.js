@@ -1,11 +1,12 @@
-import React from 'react';
+import React from "react";
+import Navbar from "./Navbar";
 
 function App() {
   // We will figure out how we should set up our containers and components
   return (
-    <div>
-      <h>Components or containers go here</h>
-    </div>
+    <React.Fragment>
+      <Navbar />
+    </React.Fragment>
   );
 }
 
