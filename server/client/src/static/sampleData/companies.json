@@ -1,0 +1,92 @@
+[
+  {
+    "companyId": 1,
+    "companyName": "IBM",
+    "logoUrl": "https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/ibm.png",
+    "city": "Armonk",
+    "state": "New York",
+    "createdDate": 1546562110,
+    "updatedDate": 1556580910
+  },
+  {
+    "companyId": 2,
+    "companyName": "Cisco",
+    "logoUrl": "https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/cisco.png",
+    "city": "San Francisco",
+    "state": "California",
+    "createdDate": 1486168510,
+    "updatedDate": 1526945710
+  },
+  {
+    "companyId": 3,
+    "companyName": "United Health",
+    "logoUrl": "https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/unitedhealth.png",
+    "city": "Minnetonka",
+    "state": "Minnesota",
+    "createdDate": 1426376110,
+    "updatedDate": 1503704110
+  },
+  {
+    "companyId": 4,
+    "companyName": "Verizon",
+    "logoUrl": "https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/verizon.png",
+    "city": "New York City",
+    "state": "New York",
+    "createdDate": 1541464510,
+    "updatedDate": 1551832510
+  },
+  {
+    "companyId": 5,
+    "companyName": "Costco",
+    "logoUrl": "https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/costco.png",
+    "city": "Seattle ",
+    "state": "Washington",
+    "createdDate": 1285544110,
+    "updatedDate": 1350776110
+  },
+  {
+    "companyId": 6,
+    "companyName": "Exxon Mobil",
+    "logoUrl": "https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/exxonmobil.png",
+    "city": "Irving ",
+    "state": "Texas",
+    "createdDate": 1478216110,
+    "updatedDate": 1512434110
+  },
+  {
+    "companyId": 7,
+    "companyName": "Lowes",
+    "logoUrl": "https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/lowes.png",
+    "city": "Charlotte",
+    "state": "North Carolina",
+    "createdDate": 1437176110,
+    "updatedDate": 1524008110
+  },
+  {
+    "companyId": 8,
+    "companyName": "Boeing",
+    "logoUrl": "https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/boeing.png",
+    "city": "Chicago",
+    "state": "Illinois",
+    "createdDate": 1528846510,
+    "updatedDate": 1545784510
+  },
+  {
+    "companyId": 9,
+    "companyName": "Home Depot",
+    "logoUrl": "https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/homedepot.png",
+    "city": "Atlanta",
+    "state": "Georgia",
+    "createdDate": 1404776110,
+    "updatedDate": 1471476910
+  },
+  {
+    "companyId": 10,
+    "companyName": "State Farm Insurance",
+    "logoUrl": "https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/statefarm.png",
+    "city": "Bloomington",
+    "state": "Indiana",
+    "createdDate": 1494891310,
+    "updatedDate": 1525563310
+  }
+ ]
