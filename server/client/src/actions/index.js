@@ -1,4 +1,8 @@
 // Bundle all exports
 export {
   getAllCompanies
-} from './companiesActions'
+} from './companiesActions';
+
+export {
+  getAllDeals
+} from './dealsActions';
