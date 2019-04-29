@@ -12,7 +12,7 @@ module.exports = {
     pool = mysql.createPool({
       host     : 'localhost',
       user     : '', // MySQL username
-      password : '', // MySQL password
+      password : '!', // MySQL password
       database : '' // MySQL database name 
     });
     return pool;
