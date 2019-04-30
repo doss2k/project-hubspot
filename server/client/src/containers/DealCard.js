@@ -13,21 +13,23 @@ export class DealCard extends Component {
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            {this.props.deal.dealName}
-          </Container>)}
+            <p>${this.props.deal.amount}</p>
+            <p>{this.props.deal.dealName}</p>
+            <p>Close date: {this.props.deal.closeDate}</p>
+          </Container>
+        )}
       </Draggable>
     )
   }
 }
 
 const Container = styled.div`
-  background-color: ${props => props.isDragging ? '#eee' : 'white'};
-  transition: background-color .2s ease;
-  border: 1px solid lightgray;
+  background-color: ${props => (props.isDragging ? '#eee' : 'white')};
+  transition: background-color 0.2s ease;
+  border: 1px solid #5cff7a;
   border-radius: 4px;
   padding: 8px;
   margin-bottom: 8px;
+`
 
-`;
-
-export default DealCard;
+export default DealCard
