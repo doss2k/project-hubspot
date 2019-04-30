@@ -8,6 +8,18 @@ export const companiesReducer = (state = {}, action) => {
         companies: action.payload.data
       }
 
+    case actionTypes.CREATE_COMPANY:
+      return {
+        ...state,
+        companyCreated: action.payload.data
+      }
+
+    case actionTypes.GET_COMPANY_BY_ID:
+      return {
+        ...state,
+        company: action.payload.data
+      }
+
     default:
       return state;
   }

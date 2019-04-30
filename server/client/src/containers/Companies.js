@@ -1,6 +1,8 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import { orderBy } from "lodash";
+import Button from "./Button";
+
 
 import * as actionTypes from "../actions";
 
@@ -47,6 +49,7 @@ class Companies extends Component {
       <React.Fragment>
         <div className="header-div">
           <h2>Companies</h2>
+          <Button title={"Create Company"} route={"/"} />
         </div>
         <div className="grid-title-bar">
           <div className="grid-title-items" onClick={this.onSort} id="companyName">

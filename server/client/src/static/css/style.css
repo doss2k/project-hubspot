@@ -38,17 +38,12 @@
     cursor: pointer;
     transition: all 0.1s ease-out; }
 
-.header-div {
-  height: 70px;
-  margin-top: 70px;
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: left;
-  border-bottom: 1px solid #acacac; }
-  .header-div h2 {
-    color: #2c2c2c;
-    font-weight: 300; }
+.chart-card {
+  margin-top: 15px;
+  background: #f4f8fa;
+  border-radius: 3px;
+  padding: 20px;
+  box-shadow: 0 0 5px 1px #d8d8d8; }
 
 .company-grid-container {
   display: flex;
@@ -87,6 +82,14 @@
     color: #2c2c2c;
     font-weight: 300; }
 
+.info-card {
+  margin-top: 15px;
+  background: #f4f8fa;
+  border-radius: 3px;
+  padding: 20px;
+  box-shadow: 0 0 5px 1px #d8d8d8; }
+
+
 .header-div {
   height: 70px;
   margin-top: 70px;
@@ -106,9 +109,34 @@
 body {
   font-family: "Muli", sans-serif;
   box-sizing: border-box;
-  color: red;
+  color: #2c2c2c;
   margin: 0 55px 0 55px; }
 
 a {
   color: #fff;
   text-decoration: none; }
+
+.btn {
+  position: absolute;
+  right: 0;
+  background: #2eb347;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 12px 24px 12px 24px;
+  border-radius: 3px; }
+  .btn:hover {
+    background: #33c74f;
+    transition: all 0.1s ease-out; }
+
+.header-div {
+  position: relative;
+  height: 70px;
+  margin-top: 70px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: left;
+  border-bottom: 1px solid #acacac; }
+  .header-div h2 {
+    color: #2c2c2c;
+    font-weight: 300; }
