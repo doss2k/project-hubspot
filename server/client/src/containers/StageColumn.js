@@ -38,7 +38,7 @@ const Title = styled.h3`
 `;
 const DealList = styled.div`
   padding: 8px;
-  background-color: ${props => props.isDraggingOver ? 'lightblue' : 'white'};
+  background-color: ${props => props.isDraggingOver ? '#e2eaf2' : '#f4f8fa'};
   transition: background-color .2s ease;
   flex-grow: 1;
   min-height: 100px;

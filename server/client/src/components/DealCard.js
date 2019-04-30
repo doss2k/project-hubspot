@@ -23,7 +23,7 @@ export class DealCard extends Component {
 const Container = styled.div`
   background-color: ${props => props.isDragging ? '#eee' : 'white'};
   transition: background-color .2s ease;
-  border: 1px solid lightgray;
+  border: 1px solid #5cff7a;
   border-radius: 4px;
   padding: 8px;
   margin-bottom: 8px;
