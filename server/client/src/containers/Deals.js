@@ -14,27 +14,27 @@ const Container = styled.div`
 class Deals extends Component {
   state = dnddata
 
-  onDragStart = (start, provided) => {
-    provided.announce(
-      `You have lifted the deal in position ${start.source.index + 1}`
-    )
-  }
+  // onDragStart = (start, provided) => {
+  //   provided.announce(
+  //     `You have lifted the deal in position ${start.source.index + 1}`
+  //   )
+  // }
 
-  onDragUpdate = (update, provided) => {
-    const message = update.destination
-      ? `You have moved the deal to stage ${update.destination.index + 1}`
-      : `You are currently not over a droppable area`
-    provided.announce(message)
-  }
+  // onDragUpdate = (update, provided) => {
+  //   const message = update.destination
+  //     ? `You have moved the deal to stage ${update.destination.index + 1}`
+  //     : `You are currently not over a droppable area`
+  //   provided.announce(message)
+  // }
 
-  onDragEnd = (result, provided) => {
-    const message = result.destination
-      ? `You have moved the deal from stage ${result.source.index +
-          1} to ${result.destination.index + 1}`
-      : `The task has been returned to its starting position of ${result.source
-          .index + 1}`
+  onDragEnd = (result) => {
+    // const message = result.destination
+    //   ? `You have moved the deal from stage ${result.source.index +
+    //   1} to ${result.destination.index + 1}`
+    //   : `The task has been returned to its starting position of ${result.source
+    //     .index + 1}`
 
-    provided.announce(message)
+    // provided.announce(message)
 
     //TODO: reorder our column
     const { destination, source, draggableId } = result
@@ -57,13 +57,13 @@ class Deals extends Component {
 
     if (startStage === finishStage) {
       //immutable state
-      let newDealIds = Array.from(startStage.dealIds)
+      const newDealIds = [...startStage.dealIds]
 
       //move task id from old array index to new array index
       newDealIds.splice(source.index, 1)
       newDealIds.splice(destination.index, 0, draggableId)
 
-      let newStage = {
+      const newStage = {
         ...startStage,
         dealIds: newDealIds
       }
@@ -101,8 +101,8 @@ class Deals extends Component {
       ...this.state,
       stages: {
         ...this.state.stages,
-        [newStartStage.id]: newStartStage,
-        [newFinishStage.id]: newFinishStage
+        [newStartStage.stageId]: newStartStage,
+        [newFinishStage.stageId]: newFinishStage
       }
     }
 
@@ -122,7 +122,7 @@ class Deals extends Component {
           {this.state.stageOrder.map(stageId => {
             const stage = this.state.stages[stageId]
             const deals = stage.dealIds.map(dealId => this.state.deals[dealId])
-            return <StageColumn key={stage.id} stage={stage} deals={deals} />
+            return <StageColumn key={stage.stageId} stage={stage} deals={deals} />
           })}
         </Container>
       </DragDropContext>

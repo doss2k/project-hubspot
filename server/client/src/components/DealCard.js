@@ -16,7 +16,7 @@ export class DealCard extends Component {
     return (
       //a draggable has two required props, draggableId (which we'll assign to the deal id) and an index//
       //draggable also expects its child to be a function
-      <Draggable draggableId={this.props.deal.id} index={this.props.index}>
+      <Draggable draggableId={this.props.deal.dealId} index={this.props.index}>
         {(provided, snapshot) => (
           <Container
             {...provided.draggableProps}
@@ -25,7 +25,7 @@ export class DealCard extends Component {
             // innerRef={provided.innerRef}
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
-            aria-roledescription="Press space bar to lift the deal"
+          // aria-roledescription="Press space bar to lift the deal"
           >
             {this.props.deal.dealName}
           </Container>

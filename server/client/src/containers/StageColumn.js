@@ -22,13 +22,15 @@ const DealList = styled.div`
   min-height: 100px;
 `
 
-export default class StageColumn extends Component {
+class StageColumn extends Component {  
   render() {
+    console.log(this.props.stage.stageId);
+    debugger;
     return (
       <Container>
         <Title>{this.props.stage.title}</Title>
         {/* droppable has one required prop: a droppableId, and expects children to be a function */}
-        <Droppable droppableId={this.props.stage.id}>
+        <Droppable droppableId={this.props.stage.stageId}>
           {(provided, snapshot) => (
             //provided object has a property called innerREf which is a function used to supply the dom node of your component to react-beaitulf dnd. A styled component has a callback property named inner ref that  returns the DOM node of the component. we can assign the function to the prop
             <DealList
@@ -39,7 +41,7 @@ export default class StageColumn extends Component {
               isdraggingOver={snapshot.isDraggingOver}
             >
               {this.props.deals.map((deal, index) => (
-                <DealCard key={deal.id} deal={deal} index={index} />
+                <DealCard key={deal.dealId} deal={deal} index={index} />
               ))}
               {provided.placeholder}
             </DealList>
@@ -49,3 +51,5 @@ export default class StageColumn extends Component {
     )
   }
 }
+
+export default StageColumn;
