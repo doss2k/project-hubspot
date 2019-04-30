@@ -5,7 +5,11 @@ const pool = server.getPool();
 router.get("/api/companies", (req, res) => {
   pool.query("SELECT * FROM companies", function(error, results, fields) {
     if (error) throw error;
-    res.json(results);
+    if (results.length > 0) {
+      res.json(results);
+    } else {
+      res.status(404).send("No companies found.");
+    }
   });
 });
 
