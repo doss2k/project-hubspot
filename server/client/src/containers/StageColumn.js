@@ -4,51 +4,40 @@ import styled from 'styled-components'
 import DealCard from './DealCard'
 
 export class StageColumn extends Component {
-  addTotal = () => {
-    console.log('i got called')
-    const amount = this.props.stage.dealIds.map(dealId => {
-      const result = this.props.deals.reduce((total, deal) => {
-        return 3 + 1
-      }, 0)
-      return result
-    })
-    return amount
-  }
-
   render() {
     return (
-      <Container>
-        <Title>
-          {this.props.stage.title}
-          <span style={{ float: 'right' }}>
-            {this.props.stage.dealIds.length}
-          </span>
-        </Title>
-        <Droppable droppableId={this.props.stage.id}>
-          {(provided, snapshot) => (
-            <DealList
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-              isDraggingOver={snapshot.isDraggingOver}
-            >
-              {this.props.deals.map((deal, index) => (
-                <DealCard key={deal.id} deal={deal} index={index} />
-              ))}
-              {provided.placeholder}
-            </DealList>
-          )}
-        </Droppable>
-        <div
-          style={{
-            backgroundColor: 'white',
-            textAlign: 'center'
-          }}
-        >
-          Total: $ {this.addTotal()}
-        </div>
-      </Container>
+      <Container>  
+      <Title>
+        {this.props.stage.title}
+        <span style={{ float: 'right' }}>
+          {this.props.stage.dealIds.length}
+        </span>
+      </Title>
+      <Droppable droppableId={this.props.stage.id}>
+        {(provided, snapshot) => (
+          <DealList
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            isDraggingOver={snapshot.isDraggingOver}
+          >
+            {this.props.deals.map((deal, index) => (
+              <DealCard key={deal.id} deal={deal} index={index} />
+            ))}
+            {provided.placeholder}
+          </DealList>
+        )}
+      </Droppable>
+      <div
+        style={{
+          backgroundColor: 'white',
+          textAlign: 'center'
+        }}
+      >
+        Total: $ {this.props.amount}
+      </div>  
+    </Container>
     )
-  }
+  }  
 }
 
 const Container = styled.div`

@@ -89,7 +89,10 @@ export class Deals extends Component {
               const deals = stage.dealIds.map(
                 dealId => this.state.deals[dealId]
               )
-              return <StageColumn key={stage.id} stage={stage} deals={deals} />
+              const amount = deals.reduce((total, deal) => {
+                return total += deal.amount
+              },0)
+              return <StageColumn key={stage.id} stage={stage} deals={deals} amount={amount}/>
             })}
           </Container>
         </DragDropContext>
