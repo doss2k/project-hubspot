@@ -5,7 +5,7 @@ export const dealsReducer = (state = {}, action) => {
     case actionTypes.GET_ALL_DEALS:
       return {
         ...state,
-        deals: action.payload
+        deals: action.payload.data
       }
 
     default:
