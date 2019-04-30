@@ -1,6 +1,5 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { orderBy } from "lodash";
 import Button from "./Button";
 
 import * as actionTypes from "../actions";
