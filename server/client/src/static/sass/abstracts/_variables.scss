@@ -18,3 +18,7 @@ $text-link-color: #02a4bd;
 @mixin fastEaseOut {
   transition: all 0.1s ease-out;
 }
+
+@mixin slowEaseOut {
+  transition: all 0.3s ease-out;
+}
