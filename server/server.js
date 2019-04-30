@@ -12,10 +12,10 @@ module.exports = {
   getPool: function () {
     if (pool) return pool;
     pool = mysql.createPool({
-      host     : 'localhost',
-      user     : '', // MySQL username
-      password : '', // MySQL password
-      database : 'projecthubspot' // MySQL database name 
+      host: 'localhost',
+      user: '', // MySQL username
+      password: '', // MySQL password
+      database: 'projecthubspot' // MySQL database name 
     });
     return pool;
   }

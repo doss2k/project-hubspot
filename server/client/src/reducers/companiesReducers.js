@@ -5,7 +5,7 @@ export const companiesReducer = (state = {}, action) => {
     case actionTypes.GET_ALL_COMPANIES:
       return {
         ...state,
-        companies: action.payload
+        companies: action.payload.data
       }
 
     default:
