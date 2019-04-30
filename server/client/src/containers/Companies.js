@@ -10,10 +10,25 @@ class Companies extends Component {
     this.props.getAllCompanies();
   }
 
+  renderCompanies() {
+    if (this.props.companies) {
+      return this.props.companies.map(company => {
+        return (
+          <div key={company.companyId}>
+            <h1 style={{"marginTop": "60px"}}> Hello: {company.companyName}</h1>
+          </div>
+        )
+      })
+  } else {
+    return <div>Loading...</div>
+  }
+  }
+
   render() {
     return (
       <div>
-        <h1>Companies data is available in 'this.props.companies'</h1>
+        <h1 style={{"marginTop": "60px"}}>Companies</h1>
+        <div>{this.renderCompanies()}</div>
       </div>
     )
   }
