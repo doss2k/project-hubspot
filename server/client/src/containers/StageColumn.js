@@ -65,8 +65,13 @@ const Title = styled.h3`
 `
 const DealList = styled.div`
   padding: 8px;
+<<<<<<< HEAD
   background-color: ${props => (props.isDraggingOver ? '#e2eaf2' : '#f4f8fa')};
   transition: background-color 0.2s ease;
+=======
+  background-color: ${props => props.isDraggingOver ? '#e2eaf2' : '#f4f8fa'};
+  transition: background-color .2s ease;
+>>>>>>> 63b19c992b52831197bd0da47d290dbaf5452118
   flex-grow: 1;
   min-height: 100px;
 `
