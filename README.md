@@ -2,6 +2,38 @@
 
 <bold>Be sure to npm install in the server and client folders.</bold>
 
+4/30 4pm update - Changed user/password in server.js to env variables. Create a .env file and add them there then reference the .env file in your launch.json. Remember to git ignore your env file.
+
+Example:
+<bold>launch.json</bold>
+```js
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "type": "node",
+      "request": "launch",
+      "name": "Launch Program",
+      "program": "${workspaceFolder}\\server\\server.js",
+      "envFile": "${workspaceFolder}\\server\\.env",
+      "skipFiles": [
+        "node_modules/**/*.js",
+        "lib/**/*.js",
+        "<node_internals>/**/*.js"
+      ]
+    }
+  ]
+}
+```
+
+<bold>.env file:</bold>
+```js
+user="username"
+password="password"
+```
 
 # Server Setup
 The instructions below assume that you successfully completed the MySQL lesson and already have the necessary software installed. If you have any issues reach out to the backend team.
@@ -63,13 +95,4 @@ INSERT INTO Deals VALUES
 </details>
 
 4. Refresh all data under the navigator pane (left side of screen.)
-5. In server/server.js find the code below and add in your username and password for your local db. <bold>Remember to remove the username/pw when you push to GitHub so the whole world doesn't know your db login.</bold>
-```js
-    pool = mysql.createPool({
-      host     : 'localhost',
-      user     : '', // MySQL username
-      password : '', // MySQL password
-      database : 'projecthubspot'
-    });
-```
-6. Start the server and navigate to http://localhost:8000/api/companies to verify that the setup was sucessful.
+5. Start the server and navigate to http://localhost:8000/api/companies to verify that the setup was sucessful.
