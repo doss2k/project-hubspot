@@ -45,12 +45,50 @@
   padding: 20px;
   box-shadow: 0 0 5px 1px #d8d8d8; }
 
+.company-grid-container {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center; }
+
+.grid-title-bar {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  background: #f4f8fa;
+  color: #2c2c2c;
+  font-weight: 500;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  padding: 5px 0 5px 0; }
+
+.grid-title-items {
+  width: 200px;
+  height: auto; }
+  .grid-title-items:nth-child(1) {
+    margin-left: 40px; }
+
+.header-div {
+  height: 70px;
+  margin-top: 70px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: left;
+  border-bottom: 1px solid #acacac; }
+  .header-div h2 {
+    color: #2c2c2c;
+    font-weight: 300; }
+
 .info-card {
   margin-top: 15px;
   background: #f4f8fa;
   border-radius: 3px;
   padding: 20px;
   box-shadow: 0 0 5px 1px #d8d8d8; }
+
 
 .header-div {
   height: 70px;
