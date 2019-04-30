@@ -34,6 +34,7 @@ export class CompanyForm extends Component {
             />
           </div>
         </div>
+
       </React.Fragment>
     );
   }

@@ -1,28 +1,43 @@
 import React, { Component } from 'react'
 import { Droppable } from 'react-beautiful-dnd'
 import styled from 'styled-components'
-import DealCard from '../components/DealCard'
+import DealCard from './DealCard'
 
 export class StageColumn extends Component {
   render() {
     return (
-      <Container>
-        <Title>{this.props.stage.title}</Title>
-        <Droppable droppableId={this.props.stage.id}>
-          {(provided, snapshot) => (
-            <DealList
-              ref={provided.innerRef}
-              {...provided.droppableProps}
-              isDraggingOver={snapshot.isDraggingOver}
-            >
-              {this.props.deals.map((deal, index) => <DealCard key={deal.id} deal={deal} index={index} />)}
-              {provided.placeholder}
-            </DealList>
-          )}
-        </Droppable>
-      </Container>
+      <Container>  
+      <Title>
+        {this.props.stage.title}
+        <span style={{ float: 'right' }}>
+          {this.props.stage.dealIds.length}
+        </span>
+      </Title>
+      <Droppable droppableId={this.props.stage.id}>
+        {(provided, snapshot) => (
+          <DealList
+            ref={provided.innerRef}
+            {...provided.droppableProps}
+            isDraggingOver={snapshot.isDraggingOver}
+          >
+            {this.props.deals.map((deal, index) => (
+              <DealCard key={deal.id} deal={deal} index={index} />
+            ))}
+            {provided.placeholder}
+          </DealList>
+        )}
+      </Droppable>
+      <div
+        style={{
+          backgroundColor: 'white',
+          textAlign: 'center'
+        }}
+      >
+        Total: $ {this.props.amount}
+      </div>  
+    </Container>
     )
-  }
+  }  
 }
 
 const Container = styled.div`
@@ -32,16 +47,17 @@ const Container = styled.div`
   width: 30%;
   display: flex;
   flex-direction: column;
-`;
+  min-height: 100%;
+`
 const Title = styled.h3`
   padding: 8px;
-`;
+`
 const DealList = styled.div`
   padding: 8px;
-  background-color: ${props => props.isDraggingOver ? '#e2eaf2' : '#f4f8fa'};
-  transition: background-color .2s ease;
+  background-color: ${props => (props.isDraggingOver ? '#e2eaf2' : '#f4f8fa')};
+  transition: background-color 0.2s ease;
   flex-grow: 1;
   min-height: 100px;
-`;
+`
 
-export default StageColumn;
+export default StageColumn

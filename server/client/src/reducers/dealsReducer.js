@@ -8,6 +8,12 @@ export const dealsReducer = (state = {}, action) => {
         deals: action.payload.data
       }
 
+    case actionTypes.GET_DEAL_BY_ID:
+      return {
+        ...state,
+        deal: action.payload.data
+      }
+
     default:
       return state;
   }
