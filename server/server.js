@@ -1,6 +1,8 @@
 const express = require('express');
 const app = express();
 var mysql = require('mysql');
+const bodyParser = require('body-parser');
+var cors = require('cors');
 
 var pool;
 
@@ -21,6 +23,8 @@ module.exports = {
 
 const mainRoutes = require('./routes/main')
 
+app.use(cors())
+app.use(bodyParser.json())
 app.use(mainRoutes);
 
 app.listen(8000, () => {

@@ -4,7 +4,7 @@ const pool = server.getPool();
 
 router.get("/api/companies", (req, res) => {
   pool.query("SELECT * FROM companies", function(error, results, fields) {
-    if (error) throw error;
+    if (error) {throw error}
     if (results.length > 0) {
       res.json(results);
     } else {
