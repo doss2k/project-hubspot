@@ -1,34 +1,25 @@
 import React from "react";
+import { Link } from "react-router-dom";
+import Image from "../static/images/axon_logo.png";
 
 export default function Navbar() {
   return (
     <nav className="nav-container">
       <div className="nav-style-line" />
-      <ul className="nav-list">
-        <li className="nav-list-item nav-logo">
-          <a href="/dashboard" className="branding-link nav-link">
-            <img
-              src="https://cdn.freebiesupply.com/logos/large/2x/pony-3-logo-png-transparent.png"
-              width="40px"
-            />
-          </a>
-        </li>
-        <li className="nav-list-item">
-          <a href="/dashboard" className="nav-link">
-            Dashboard
-          </a>
-        </li>
-        <li className="nav-list-item">
-          <a href="/companies" className="nav-link">
-            Companies
-          </a>
-        </li>
-        <li className="nav-list-item">
-          <a href="/deals" className="nav-link">
-            Deals
-          </a>
-        </li>
-      </ul>
+      <div className="nav-list">
+        <Link className="nav-list-item" to="/dashboard">
+          <img src={Image} width="40px" />
+        </Link>
+        <Link className="nav-list-item" to="/dashboard">
+          Dashboard
+        </Link>
+        <Link className="nav-list-item" to="/companies">
+          Companies
+        </Link>
+        <Link className="nav-list-item" to="/deals">
+          Deals
+        </Link>
+      </div>
     </nav>
   );
 }
