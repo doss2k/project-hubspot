@@ -1,7 +1,18 @@
 // VARIABLES GO HERE
-$primary-color: #4b336e;
-$secondary-color: #218179;
-// $tertiary-color: ;
+
+//backgrounds and dark text on light background color
+$primary-color: #2c2c2c;
+//buttons and highlights
+$secondary-color: #5cff7a;
+//not sure yet
+$tertiary-color: #2eb347;
+
+//form & table colors, please reference the images in the project assignment document for use cases
+$primary-card-color: #f4f8fa;
+$secondary-card-color: #e2eaf2;
+
+//text links on white backgrounds
+$text-link-color: #02a4bd;
 
 //mixins
 @mixin fastEaseOut {
