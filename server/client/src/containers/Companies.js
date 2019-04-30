@@ -3,15 +3,9 @@ import { connect } from "react-redux";
 
 import * as actionTypes from "../actions";
 
-<<<<<<< HEAD
 import { AgGridReact } from "ag-grid-react";
 import "ag-grid-community/dist/styles/ag-grid.css";
 import "ag-grid-community/dist/styles/ag-theme-balham.css";
-=======
-import { AgGridReact } from 'ag-grid-react';
-import 'ag-grid-community/dist/styles/ag-grid.css';
-import 'ag-grid-community/dist/styles/ag-theme-balham.css';
->>>>>>> master
 
 class Companies extends Component {
   //define column names for table
@@ -31,36 +25,19 @@ class Companies extends Component {
   renderCompanies() {
     if (this.props.companies) {
       return (
-<<<<<<< HEAD
         <AgGridReact columnDefs={this.colDefs} rowData={this.props.companies} />
       );
     } else {
       return <div>Loading...</div>;
-=======
-        <AgGridReact
-          columnDefs={this.colDefs}
-          rowData={this.props.companies}
-        />
-      )
-    } else {
-      return <div>Loading...</div>
->>>>>>> master
     }
   }
 
   render() {
-    console.log('this.props ', this.props.companies)
+    console.log("this.props ", this.props.companies);
     return (
-<<<<<<< HEAD
       <React.Fragment>
         <div className="header-div">
           <h2>Companies</h2>
-=======
-      <div>
-        <h1 style={{ "marginTop": "60px" }}>Companies</h1>
-        <div id='myGrid' style={{ "marginTop": "10px", height: 450, width: '600' }} className="ag-theme-balham">
-          {this.renderCompanies()}
->>>>>>> master
         </div>
         {/* <ul className="grid-title-bar">
           <li className="grid-title-items">logo</li>
