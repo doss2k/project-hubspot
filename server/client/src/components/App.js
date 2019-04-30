@@ -4,7 +4,6 @@ import Dashboard from "./Dashboard";
 import Navbar from "./Navbar";
 import Companies from "../containers/Companies";
 import Deals from "../containers/Deals";
-import NewCompany from "../containers/CreateCompanyForm"
 
 function App() {
   return (
