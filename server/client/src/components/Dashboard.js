@@ -25,7 +25,8 @@ class Dashboard extends Component {
       // To avoid unnecessary update keep all options in the state.
       chartOptions: {
         chart: {
-          type: "area"
+          type: "area",
+          backgroundColor: "#f4f8fa"
         },
         xAxis: {
           type: "datetime",
@@ -53,8 +54,8 @@ class Dashboard extends Component {
         series: [
           {
             name: "Closed",
-            color: "#000099",
-            fillOpacity: 0.5,
+            color: "#2eb347",
+            fillOpacity: 0.4,
 
             data: [
               [Date.UTC(2018, 10, 25), 100],
@@ -73,9 +74,9 @@ class Dashboard extends Component {
           },
           {
             name: "Forecast",
-            color: "#000199",
+            color: "#2c2c2c",
 
-            fillOpacity: 0.2,
+            fillOpacity: 0.4,
             data: [
               //   [Date.UTC(2018, 10, 25), 100],
               //   [Date.UTC(2018, 11, 20), 141],
@@ -124,7 +125,10 @@ class Dashboard extends Component {
         <div className="header-div">
           <h2>Dashboard</h2>
         </div>
-        <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+        <div className="chart-card">
+          <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+        </div>
+        <div className="info-card">placeholder text</div>
       </React.Fragment>
     );
   }

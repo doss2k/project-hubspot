@@ -62,6 +62,20 @@
     color: #2c2c2c;
     font-weight: 300; }
 
+.chart-card {
+  margin-top: 15px;
+  background: #f4f8fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 5px 1px #d8d8d8; }
+
+.info-card {
+  margin-top: 15px;
+  background: #f4f8fa;
+  border-radius: 10px;
+  padding: 20px;
+  box-shadow: 0 0 5px 1px #d8d8d8; }
+
 .header-div {
   height: 70px;
   margin-top: 70px;
@@ -81,7 +95,7 @@
 body {
   font-family: "Muli", sans-serif;
   box-sizing: border-box;
-  color: red;
+  color: #2c2c2c;
   margin: 0 55px 0 55px; }
 
 a {
