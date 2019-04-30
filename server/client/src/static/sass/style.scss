@@ -1,5 +1,6 @@
 @import "abstracts/variables";
 @import "partitions/navbar";
+@import "partitions/companies";
 
 * {
   margin: 0;
@@ -10,6 +11,7 @@ body {
   font-family: "Muli", sans-serif;
   box-sizing: border-box;
   color: red;
+  margin: 0 55px 0 55px;
 }
 
 a {
