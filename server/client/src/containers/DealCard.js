@@ -13,7 +13,9 @@ export class DealCard extends Component {
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            {this.props.deal.dealName}
+            <p>${this.props.deal.amount}</p>
+            <p>{this.props.deal.dealName}</p>
+            <p>Close date: {this.props.deal.closeDate}</p>
           </Container>
         )}
       </Draggable>
