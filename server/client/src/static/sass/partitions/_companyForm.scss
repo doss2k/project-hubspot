@@ -1,0 +1,37 @@
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: $primary-color;
+  opacity: 0.8;
+
+  &.show {
+    display: block;
+  }
+}
+
+.form-container {
+  z-index: 10;
+  height: 600px;
+  width: 500px;
+  background: #fff;
+  margin: auto;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: left;
+
+  &.show {
+    @include slowEaseOut;
+    transform: translateY(-86%);
+  }
+
+  .form-header {
+    height: 60px;
+    width: 100%;
+    background: $primary-color;
+    color: white;
+  }
+}

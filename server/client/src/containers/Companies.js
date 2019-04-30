@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "./Button";
+import CompanyForm from "./CompanyForm";
 
 import * as actionTypes from "../actions";
 
@@ -81,7 +82,9 @@ class Companies extends Component {
             </div>
           last updated</div>
         </div>
+      
         {this.renderCompanies()}
+
       </React.Fragment>
     );
   }

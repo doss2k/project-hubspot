@@ -8,6 +8,7 @@
   color: white;
 }
 
+
 .nav-style-line {
   position: absolute;
   top: 0px;
@@ -117,6 +118,35 @@
   color: #2c2c2c;
   font-weight: 300;
 }
+
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #2c2c2c;
+  opacity: 0.8; }
+  .mask.show {
+    display: block; }
+
+.form-container {
+  height: 600px;
+  width: 500px;
+  background: #fff;
+  margin: auto;
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: left; }
+  .form-container.show {
+    transition: all 0.3s ease-out;
+    transform: translateY(-86%); }
+  .form-container .form-header {
+    height: 60px;
+    width: 100%;
+    background: #2c2c2c;
+    color: white; }
 
 * {
   margin: 0;
