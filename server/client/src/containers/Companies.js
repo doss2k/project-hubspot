@@ -1,8 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
-import { orderBy } from "lodash";
 import Button from "./Button";
-
 
 import * as actionTypes from "../actions";
 
@@ -28,7 +26,7 @@ class Companies extends Component {
         return (
           <div className="grid-title-bar" key={company.companyId}>
 
-            <div className="grid-title-items"><img src={company.logoUrl} style={{"width": "10%"}} alt="company logo" />{company.companyName}</div>
+            <div className="grid-title-items"><img src={company.logoUrl} style={{"width": "20%"}} alt="company logo" />{company.companyName}</div>
             <div className="grid-title-items">{company.city}</div>
             <div className="grid-title-items">{company.state}</div>
             <div className="grid-title-items">{moment(company.createdDate*1000).format('MM/DD/YYYY')}</div>

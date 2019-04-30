@@ -26,8 +26,8 @@ module.exports = {
     if (pool) return pool;
     pool = mysql.createPool({
       host: 'localhost',
-      user: 'doss2k', // MySQL username
-      password: 'password', // MySQL password
+      user: process.env.user, // MySQL username
+      password: process.env.password, // MySQL password
       database: 'projecthubspot' // MySQL database name 
     });
     return pool;
