@@ -83,25 +83,27 @@ router.get("/api/deals/:id", (req, res) => {
   });
 });
 
+/* POST This endpoint inserts a new deal into the database.  The deal info
+   must be supplied in the body of the request in JSON format.  It returns the body of the
+   request upon success.  If the deal is not added to the database returns a 404 error */
+
 router.post("/api/deals", (req, res) => {
- const sql = `INSERT into deals VALUES
-   (NULL,
-   "${req.body.dealName}",
-   "${req.body.stage}",
-   "${req.body.amount}",
-   "${req.body.createdDate}",
-   "${req.body.closeDate}",
-   "${req.body.companyName}",
-   UNIX_TIMESTAMP(),
-   UNIX_TIMESTAMP())`
- pool.query(sql, function(error, results, fields) {
-   if (error) throw error;
-   if (results) {
-     res.json(req.body);
-   } else {
-     res.status(404).send("Deal was not added");
-   }
- });
-});
+  const sql = `INSERT into deals VALUES
+    (NULL,
+    "${req.body.dealName}",
+    "${req.body.stage}",
+    "${req.body.amount}",
+    "${req.body.createdDate}",
+    "${req.body.closeDate}",
+    "${req.body.companyId}")`
+  pool.query(sql, function(error, results, fields) {
+    if (error) throw error;
+    if (results) {
+      res.json(req.body);
+    } else {
+      res.status(404).send("Deal was not added");
+    }
+  });
+  });
 
 module.exports = router;
