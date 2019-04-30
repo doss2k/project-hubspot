@@ -3,19 +3,9 @@ import { connect } from "react-redux";
 
 import * as actionTypes from "../actions";
 
-import { AgGridReact } from "ag-grid-react";
-import "ag-grid-community/dist/styles/ag-grid.css";
-import "ag-grid-community/dist/styles/ag-theme-balham.css";
 
 class Companies extends Component {
-  //define column names for table
-  colDefs = [
-    { field: "companyName", sortable: true },
-    { field: "city", sortable: true },
-    { field: "state", sortable: true },
-    { field: "createdDate", sortable: true },
-    { field: "updatedDate", sortable: true }
-  ];
+
 
   // As soon as component mounts make call to redux to fetch all companies
   componentDidMount() {
@@ -24,37 +14,39 @@ class Companies extends Component {
 
   renderCompanies() {
     if (this.props.companies) {
-      return (
-        <AgGridReact columnDefs={this.colDefs} rowData={this.props.companies} />
-      );
+      return this.props.companies.map(company => {
+        return (
+          <div className="grid-title-bar" key={company.companyId}>
+            <div className="grid-title-items"><img src={company.logoUrl} style={{"width": "50%"}} alt="company logo" /></div>
+            <div className="grid-title-items">{company.companyName}</div>
+            <div className="grid-title-items">{company.city}</div>
+            <div className="grid-title-items">{company.state}</div>
+            <div className="grid-title-items">{company.createdDate}</div>
+            <div className="grid-title-items">{company.updatedDate}</div>
+          </div>
+          
+        )
+      })
     } else {
       return <div>Loading...</div>;
     }
   }
 
   render() {
-    console.log("this.props ", this.props.companies);
     return (
       <React.Fragment>
         <div className="header-div">
           <h2>Companies</h2>
         </div>
-        {/* <ul className="grid-title-bar">
-          <li className="grid-title-items">logo</li>
-          <li className="grid-title-items">company</li>
-          <li className="grid-title-items">city</li>
-          <li className="grid-title-items">date created</li>
-          <li className="grid-title-items">last updated</li>
-        </ul> */}
-        <div className="company-grid-container">
-          <div
-            id="myGrid"
-            style={{ marginTop: "10px", height: 450, width: "600" }}
-            className="ag-theme-balham"
-          >
-            {this.renderCompanies()}
-          </div>
+        <div className="grid-title-bar">
+          <div className="grid-title-items">logo</div>
+          <div className="grid-title-items">company</div>
+          <div className="grid-title-items">city</div>
+          <div className="grid-title-items">state</div>
+          <div className="grid-title-items">date created</div>
+          <div className="grid-title-items">last updated</div>
         </div>
+        {this.renderCompanies()}
       </React.Fragment>
     );
   }

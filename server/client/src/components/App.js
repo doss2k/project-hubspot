@@ -4,6 +4,7 @@ import Dashboard from "./Dashboard";
 import Navbar from "./Navbar";
 import Companies from "../containers/Companies";
 import Deals from "../containers/Deals";
+import NewCompany from "../containers/CreateCompanyForm"
 
 function App() {
   return (
@@ -14,6 +15,7 @@ function App() {
         <Route exact path="/dashboard" render={() => <Dashboard />} />
         <Route exact path="/companies" render={() => <Companies />} />
         <Route exact path="/deals" render={() => <Deals />} />
+        <Route exact path="/addcompany" render={() => <NewCompany />} />
       </Switch>
     </BrowserRouter>
   );
