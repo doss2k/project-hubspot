@@ -1,28 +1,43 @@
-// .company-grid-container {
-//   display: flex;
-//   flex-flow: row;
-//   align-items: center;
-//   justify-content: center;
-// }
+.header-div {
+  height: 70px;
+  margin-top: 70px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: left;
+  border-bottom: 1px solid lighten($primary-color, 50%);
 
-// .grid-title-bar {
-//   display: flex;
-//   flex-flow: row;
-//   align-items: center;
-//   justify-content: center;
-//   list-style: none;
-//   background: $primary-card-color;
-//   color: $primary-color;
-//   font-weight: 500;
-//   font-size: 0.6rem;
-//   text-transform: uppercase;
-//   padding: 5px 0 5px 0;
-// }
+  h2 {
+    color: $primary-color;
+    font-weight: 300;
+  }
+}
 
-// .grid-title-items {
-//   width: 200px;
-//   height: auto;
-//   // &:nth-child(1) {
-//   //   margin-left: 40px;
-//   // }
-// }
+.company-grid-container {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+}
+
+.grid-title-bar {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center;
+  list-style: none;
+  background: $primary-card-color;
+  color: $primary-color;
+  font-weight: 500;
+  font-size: 0.6rem;
+  text-transform: uppercase;
+  padding: 5px 0 5px 0;
+}
+
+.grid-title-items {
+  width: 200px;
+  height: auto;
+  &:nth-child(1) {
+    margin-left: 40px;
+  }
+}
