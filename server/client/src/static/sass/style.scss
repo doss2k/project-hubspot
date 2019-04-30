@@ -1,5 +1,8 @@
 @import "abstracts/variables";
 @import "partitions/navbar";
+@import "partitions/companies";
+@import "partitions/dashboard";
+@import "partitions/deals";
 
 * {
   margin: 0;
@@ -9,7 +12,8 @@
 body {
   font-family: "Muli", sans-serif;
   box-sizing: border-box;
-  color: red;
+  color: $primary-color;
+  margin: 0 55px 0 55px;
 }
 
 a {
