@@ -46,6 +46,9 @@
   box-shadow: 0 0 5px 1px #d8d8d8; }
 
 <<<<<<< HEAD
+<<<<<<< HEAD
+=======
+>>>>>>> cd282ae3f4600912a19691b24463a686077b6ffc
 .company-grid-container {
   display: flex;
   flex-flow: row;
@@ -82,14 +85,22 @@
   .header-div h2 {
     color: #2c2c2c;
     font-weight: 300; }
+<<<<<<< HEAD
 =======
+=======
+
+>>>>>>> cd282ae3f4600912a19691b24463a686077b6ffc
 .info-card {
   margin-top: 15px;
   background: #f4f8fa;
   border-radius: 3px;
   padding: 20px;
   box-shadow: 0 0 5px 1px #d8d8d8; }
+<<<<<<< HEAD
 >>>>>>> 3d1aaca7a4840ee9542df8a44e1718cad1da4029
+=======
+
+>>>>>>> cd282ae3f4600912a19691b24463a686077b6ffc
 
 .header-div {
   height: 70px;
