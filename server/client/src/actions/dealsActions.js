@@ -11,3 +11,14 @@ export const getAllDeals = () => {
     payload: request
   }
 }
+
+export const getDealById = (dealId) => {
+  const request = axios.get(`http://localhost:8000/api/deals${dealId}`, {
+    headers: CORS_HEADERS
+  })
+
+  return {
+    type: actionTypes.GET_DEAL_BY_ID,
+    payload: request
+  }
+}
