@@ -15,7 +15,6 @@ function App() {
         <Route exact path="/dashboard" render={() => <Dashboard />} />
         <Route exact path="/companies" render={() => <Companies />} />
         <Route exact path="/deals" render={() => <Deals />} />
-        <Route exact path="/addcompany" render={() => <NewCompany />} />
       </Switch>
     </BrowserRouter>
   );
