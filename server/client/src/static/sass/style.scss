@@ -3,6 +3,7 @@
 @import "partitions/companies";
 @import "partitions/dashboard";
 @import "partitions/deals";
+@import "partitions/companyForms";
 
 * {
   margin: 0;
@@ -12,11 +13,42 @@
 body {
   font-family: "Muli", sans-serif;
   box-sizing: border-box;
-  color: red;
+  color: $primary-color;
   margin: 0 55px 0 55px;
 }
 
 a {
   color: #fff;
   text-decoration: none;
+}
+
+.btn {
+  position: absolute;
+  right: 0;
+  background: $tertiary-color;
+  font-size: 0.8rem;
+  font-weight: 600;
+  padding: 12px 24px 12px 24px;
+  border-radius: 3px;
+
+  &:hover {
+    background: lighten($tertiary-color, 5%);
+    @include fastEaseOut;
+  }
+}
+
+.header-div {
+  position: relative;
+  height: 70px;
+  margin-top: 70px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: left;
+  border-bottom: 1px solid lighten($primary-color, 50%);
+
+  h2 {
+    color: $primary-color;
+    font-weight: 300;
+  }
 }
