@@ -3,6 +3,7 @@ import dnddata from '../static/sampleData/dnddata'
 import StageColumn from './StageColumn'
 import { DragDropContext } from 'react-beautiful-dnd'
 import styled from 'styled-components'
+import Button from './Button'
 
 export class Deals extends Component {
   state = dnddata
@@ -75,15 +76,24 @@ export class Deals extends Component {
 
   render() {
     return (
-      <DragDropContext onDragEnd={this.onDragEnd}>
-        <Container>
-          {this.state.stageOrder.map(stageId => {
-            const stage = this.state.stages[stageId]
-            const deals = stage.dealIds.map(dealId => this.state.deals[dealId])
-            return <StageColumn key={stage.id} stage={stage} deals={deals} />
-          })}
-        </Container>
-      </DragDropContext>
+      <React.Fragment>
+        <div className="header-div">
+          <h2>Deals</h2>
+          <Button title={'Create Deal'} route="/deals" />
+        </div>
+
+        <DragDropContext onDragEnd={this.onDragEnd}>
+          <Container>
+            {this.state.stageOrder.map(stageId => {
+              const stage = this.state.stages[stageId]
+              const deals = stage.dealIds.map(
+                dealId => this.state.deals[dealId]
+              )
+              return <StageColumn key={stage.id} stage={stage} deals={deals} />
+            })}
+          </Container>
+        </DragDropContext>
+      </React.Fragment>
     )
   }
 }
