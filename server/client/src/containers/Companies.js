@@ -1,5 +1,6 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
+import Button from "./Button";
 
 import * as actionTypes from "../actions";
 
@@ -38,6 +39,7 @@ class Companies extends Component {
       <React.Fragment>
         <div className="header-div">
           <h2>Companies</h2>
+          <Button title={"Create Company"} route={"/"} />
         </div>
         {/* <ul className="grid-title-bar">
           <li className="grid-title-items">logo</li>
