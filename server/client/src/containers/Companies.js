@@ -14,9 +14,14 @@ class Companies extends Component {
     if (this.props.companies) {
       return this.props.companies.map(company => {
         return (
-          <div key={company.companyId}>
-            <h1 style={{"marginTop": "60px"}}> Hello: {company.companyName}</h1>
-          </div>
+            <tr key={company.companyId}> 
+              <td><img src={company.logoUrl} /></td>
+              <td>{company.companyName}</td>
+              <td>{company.city}</td>
+              <td>{company.state}</td>
+              <td>{company.createdDate}</td>
+              <td>{company.updatedDate}</td>
+            </tr>
         )
       })
   } else {
@@ -25,10 +30,21 @@ class Companies extends Component {
   }
 
   render() {
+    console.log(this.props.companies)
     return (
       <div>
         <h1 style={{"marginTop": "60px"}}>Companies</h1>
-        <div>{this.renderCompanies()}</div>
+        <table>
+          <tr>
+            <th>Logo</th>
+            <th>Name</th>
+            <th>City</th>
+            <th>State</th>
+            <th>Created Date</th>
+            <th>Updated Date</th>
+          </tr>
+          {this.renderCompanies()} 
+        </table>
       </div>
     )
   }
