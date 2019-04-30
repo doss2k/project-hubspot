@@ -50,6 +50,30 @@
     color: #2c2c2c;
     font-weight: 300; }
 
+.header-div {
+  height: 70px;
+  margin-top: 70px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: left;
+  border-bottom: 1px solid #acacac; }
+  .header-div h2 {
+    color: #2c2c2c;
+    font-weight: 300; }
+
+.header-div {
+  height: 70px;
+  margin-top: 70px;
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: left;
+  border-bottom: 1px solid #acacac; }
+  .header-div h2 {
+    color: #2c2c2c;
+    font-weight: 300; }
+
 * {
   margin: 0;
   padding: 0; }

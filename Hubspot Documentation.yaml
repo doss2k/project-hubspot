@@ -1,0 +1,275 @@
+swagger: '2.0'
+info:
+  title: Hubspot
+  description: An API to support the Hubspot platform
+  version: 1.0.0
+host: localhost:8080
+basePath: /api
+schemes:
+  - https
+paths:
+  /companies:
+    get:
+      tags:
+      - Companies
+      summary: An array of all the companies that are clients with our Cohort five company
+      description: |
+        The Companies endpoint allows you to get all companies that the cohort 5 company has conducted deals with in the past or present
+      responses:
+        '200':
+          description: All the companies are provided
+        '404':
+          description: No companies were found
+          schema:
+            $ref: '#/definitions/Company'
+    post:
+     tags:
+     - Companies
+     description: Adds all companies
+     parameters:
+      - name: companyName
+        in: path
+        description: Company name is used to pick a specify a client that the company has done a deal with.
+        required: true
+        type: string
+      - name: city
+        in: path
+        description: City is used to pick clients that are headquartered in that particular location.
+        required: true
+        type: string
+      - name: state
+        in: path
+        description: State is used to pick clients that are headquartered in that particular state.
+        required: true
+        type: string
+     responses:
+       '200':
+         description: All companies added successfully.
+         schema:
+           type: string
+       '400':
+         description: The companies were not added successfully.
+    
+  /companies/:id:
+    get:
+      tags:
+      - Companies
+      summary: Gets one company/client that is associated with that specific ID
+      parameters:
+      - name: companyId
+        in: path
+        description: Company ID is used to pick a specific client that the company has done a deal with.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: The correct company was returned successfully.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Company'
+        '404':
+          description: That particular company is not available/found.
+    put:
+      tags:
+      - Companies
+      summary: Edits a company that is associated with the specific ID.
+      parameters:
+      - name: companyId
+        in: path
+        description: Company ID is used to pick a specific client that the company has done a deal with.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: The correct company was added successfully.
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/Company'
+        '404':
+          description: That particular company is not available/found.
+    delete:
+      tags:
+      - Companies
+      summary: Removes a company that is associated with the specific ID.
+      parameters:
+      - name: companyId
+        in: path
+        description: Company ID is used to pick a specific client that the company has done a deal with.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: The correct company was deleted successfully.
+          schema:
+            type: string
+            items:
+              $ref: '#/definitions/Company'
+        '404':
+          description: That particular company is not available/found.
+
+  /deals:
+    get:
+      tags:
+      - Deals
+      summary: All deals that our company has.
+      description:
+        An array of all the deals Cohort five company has had or has had in the past.
+      responses:
+        '200':
+          description: All the deals are provided.
+          schema:
+            $ref: '#/definitions/Deal'
+    post:
+      tags:
+      - Deals
+      description: Adds all deals
+      parameters:
+      - name: dealName
+        in: path
+        description: Company name is used to pick a specify a deal that the company has done with a client.
+        required: true
+        type: string
+      - name: stage
+        in: path
+        description: The stage is used to identify a speicific point in the process of a deal.
+        required: true
+        type: string
+      - name: amount
+        in: path
+        description: The amount is the total amount of money the deal is worth.
+        required: true
+        type: integer
+      - name: createdDate
+        in: path
+        description: The created date is the date that the deal was started with the client company.
+        required: true
+        type: integer
+      - name: closeDate
+        in: path
+        description: The close date is the date that the deal was terminated.
+        required: true
+        type: integer
+      - name: companyName
+        in: path
+        description: Company name is used to pick a specify a client that the company has done a deal with.
+        required: true
+        type: string
+      responses:
+       '200':
+         description: All deals added successfully.
+         schema:
+           type: string
+       '400':
+         description: The deals were not added successfully.
+  /deals/:id:
+    get:
+      tags:
+      - Deals
+      summary: Gets one deal that is associated with that specific ID
+      parameters:
+      - name: dealId
+        in: path
+        description: Deal ID is used to pick a specific deal that the company has done with a client company.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: The deal company was returned successfully.
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Deal'
+        '404':
+          description: That particular deal is not available/found.
+    put:
+      tags:
+      - Deals
+      summary: Edits a deal that is associated with the specific ID.
+      parameters:
+      - name: dealId
+        in: path
+        description: Deal ID is used to pick a specific deal that the company has done with a client company.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: The correct deal was added successfully.
+          schema:
+            type: object
+            items:
+              $ref: '#/definitions/Deal'
+        '404':
+          description: That particular deal is not available/found.
+    delete:
+      tags:
+      - Deals
+      summary: Removes a deal that is associated with the specific ID.
+      parameters:
+      - name: dealId
+        in: path
+        description: Deal ID is used to pick a specific client that the company has done a deal with.
+        required: true
+        type: string
+      responses:
+        '200':
+          description: The correct deal was deleted successfully.
+          schema:
+            type: string
+            items:
+              $ref: '#/definitions/Deal'
+        '404':
+          description: That particular deal is not available/found.
+  
+definitions:
+  Company:
+    type: array
+    items:
+      type: object
+      properties:
+        companyId:
+          type: string
+          description: The company ID.
+        companyName:
+          type: string
+          description: The company name.
+        logoUrl:
+          type: string
+          description: The image URL for the company logo.
+        city: 
+          type: string
+          description: The city where the company headquarters is located.
+        state: 
+          type: string
+          description: The state where the company headquarters is located.
+        createdDate:
+          type: integer
+          description: The date that the client relationship with the company was established.
+        updatedDate: 
+          type: integer
+          description: The date that the company information is updated.
+  Deal:
+    type: object
+    properties:
+      dealId:
+        type: string
+        description: The unique ID for a deal.
+      dealName:
+        type: string
+        description: The specific name for a deal with a company/client.
+      stage:
+        type: string
+        description: The status of the deal for the specific company.
+      amount:
+        type: integer
+        description: The total amount of money the deal is for.
+      createdDate:
+        type: integer
+        description: The date that the client relationship with the company was established.
+      closedDate:
+        type: integer
+        description: The date that the client relationship with the company was ended.
+      companyId:
+        type: string
+        description: The company ID.
