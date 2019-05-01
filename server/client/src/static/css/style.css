@@ -117,15 +117,12 @@
   z-index: 10;
   height: 600px;
   width: 500px;
-  background: #fff;
+  background: blue;
   margin: auto;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: left; }
-  .form-container.show {
-    transition: all 0.3s ease-out;
-    transform: translateY(-86%); }
   .form-container .form-header {
     height: 60px;
     width: 100%;

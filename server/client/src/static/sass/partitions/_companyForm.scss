@@ -16,7 +16,7 @@
   z-index: 10;
   height: 600px;
   width: 500px;
-  background: #fff;
+  background: blue;
   margin: auto;
   display: flex;
   flex-flow: column;
@@ -24,8 +24,8 @@
   justify-content: left;
 
   &.show {
-    @include slowEaseOut;
-    transform: translateY(-86%);
+    // @include slowEaseOut;
+    // transform: translateY(-86%);
   }
 
   .form-header {

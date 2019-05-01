@@ -103,7 +103,7 @@ export class Deals extends Component {
 
 const Container = styled.div`
   display: flex;
-  margin-top: 100px;
+  margin-top: 50px;
 `
 
 export default Deals
