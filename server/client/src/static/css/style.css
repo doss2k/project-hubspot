@@ -186,7 +186,10 @@
   display: flex;
   flex-flow: row;
   justify-content: center;
-  overflow: hidden; }
+  overflow: hidden;
+  visibility: hidden; }
+  .form-container.show {
+    visibility: visible; }
   .form-container .form-card {
     position: relative;
     height: 600px;
