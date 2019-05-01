@@ -96,6 +96,8 @@ class Companies extends Component {
             last updated
           </div>
         </div>
+
+        <CompanyForm />
       
         {this.renderCompanies()}
 
