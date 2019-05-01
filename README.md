@@ -2,7 +2,7 @@
 
 <bold>Be sure to npm install in the server and client folders.</bold>
 
-4/30 4pm update - Changed user/password in server.js to env variables. Create a .env file and add them there then reference the .env file in your launch.json. Remember to git ignore your env file.
+4/30 4pm update - Changed user/password in server.js to env variables. Create a .env file and add them there then reference the .env file in your launch.json. Remember to git ignore your env file. You will need to launch your server from VS Code instead of the command line for this to work.
 
 Example:
 <bold>launch.json</bold>

@@ -163,6 +163,18 @@
 .deal-card-title-link {
   padding-bottom: 5px; }
 
+
+/* .mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: #2c2c2c;
+  opacity: 0.8; }
+  .mask.show {
+    display: block; } */
+
 .form-container {
   z-index: 10;
   height: 600px;

@@ -56,8 +56,6 @@ class Companies extends Component {
   }
 
   render() {
-    let date = moment(1546562110).format("MM/DD/YY");
-    console.log(date);
     return (
       <React.Fragment>
         <div className="header-div">
