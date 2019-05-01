@@ -1,33 +1,42 @@
-// .mask {
-//   position: absolute;
-//   top: 0;
-//   left: 0;
-//   width: 100vw;
-//   height: 100vh;
-//   background: $primary-color;
-//   opacity: 0.8;
+.mask {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  background: $primary-color;
+  opacity: 0.8;
+  z-index: 5;
 
-//   &.show {
-//     display: block;
-//   }
-// }
+  &.show {
+    display: block;
+  }
+}
 
 .form-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100vh;
+  width: 100vw;
   z-index: 10;
-  height: 600px;
-  width: 500px;
-  background: blue;
   margin: auto;
   display: flex;
   flex-flow: column;
   align-items: center;
   justify-content: left;
-  display: none; // TAKE THIS OUT WHEN DONE FORMATTING COMPANIES
 
-  &.show {
-    @include slowEaseOut;
-    transform: translateY(-86%);
+  .form-card {
+    height: 600px;
+    width: 500px;
+    background: blue;
+    margin-top: 100px;
   }
+
+  // &.show {
+  //   @include slowEaseOut;
+  //   transform: translateY(-86%);
+  // }
 
   .form-header {
     height: 60px;
