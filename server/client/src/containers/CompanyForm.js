@@ -32,9 +32,9 @@ export class CompanyForm extends Component {
   render() {
     return (
       <React.Fragment>
-        <div className="mask " />
-        <div className="form-container">
-          <div className="form-card ">
+        <div className="mask show" />
+        <div className="form-container show">
+          <div className="form-card show">
             <div className="form-header-container">
               <div className="form-header">
                 <div className="form-name">create company</div>

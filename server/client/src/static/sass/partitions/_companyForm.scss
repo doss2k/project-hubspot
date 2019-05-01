@@ -25,6 +25,11 @@
   flex-flow: row;
   justify-content: center;
   overflow: hidden;
+  visibility: hidden;
+
+  &.show {
+    visibility: visible;
+  }
 
   .form-card {
     position: relative;
