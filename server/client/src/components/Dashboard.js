@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
-import Button from "../containers/Button";
 
 function formatDate(d) {
   var date = new Date(d);

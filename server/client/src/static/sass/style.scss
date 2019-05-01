@@ -4,6 +4,7 @@
 @import "partitions/dashboard";
 @import "partitions/deals";
 @import "partitions/companyForm";
+@import "partitions/dealProgressLists";
 
 * {
   margin: 0;
@@ -51,4 +52,12 @@ a {
     color: $primary-color;
     font-weight: 300;
   }
+}
+
+.bold {
+  font-weight: 600;
+}
+
+.text-link {
+  color: $text-link-color;
 }
