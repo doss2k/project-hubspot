@@ -23,14 +23,21 @@ class Companies extends Component {
     if (this.props.companies) {
       return this.props.companies.map(company => {
         return (
-          <div className="grid-title-bar" key={company.companyId}>
+          <div
+            className="company-grid-row company-grid-items"
+            key={company.companyId}
+          >
             <div className="grid-title-items">
-              <img
-                src={company.logoUrl}
-                style={{ width: "20%" }}
-                alt="company logo"
-              />
-              {company.companyName}
+              <div className="grid-logo-and-name-container">
+                <img
+                  src={company.logoUrl}
+                  style={{ width: "20px" }}
+                  alt="company logo"
+                />
+                <div className="text-link company-grid-name">
+                  {company.companyName}
+                </div>
+              </div>
             </div>
             <div className="grid-title-items">{company.city}</div>
             <div className="grid-title-items">{company.state}</div>
@@ -55,52 +62,53 @@ class Companies extends Component {
           <h2>Companies</h2>
           <Button title={"Create Company"} route={"/"} />
         </div>
-        <div className="grid-title-bar">
-          <div
-            className="grid-title-items"
-            onClick={this.onSort}
-            id="companyName"
-          >
-            <div>
-              <i className="fas fa-sort-up" />
-              <i className="fas fa-sort-down" />
+        <div className="company-grid-container">
+          <div className="company-grid-row company-grid-header">
+            <div
+              className="grid-title-items"
+              onClick={this.onSort}
+              id="companyName"
+            >
+              company
+              <div className="arrow-container">
+                <i className="fas fa-sort-up" />
+                <i className="fas fa-sort-down" />
+              </div>
             </div>
-            company
-          </div>
-          <div className="grid-title-items">
-            <div>
-              <i className="fas fa-sort-up" />
-              <i className="fas fa-sort-down" />
+            <div className="grid-title-items">
+              city
+              <div className="arrow-container">
+                <i className="fas fa-sort-up" />
+                <i className="fas fa-sort-down" />
+              </div>
             </div>
-            city
-          </div>
-          <div className="grid-title-items">
-            <div>
-              <i className="fas fa-sort-up" />
-              <i className="fas fa-sort-down" />
+            <div className="grid-title-items">
+              state
+              <div className="arrow-container">
+                <i className="fas fa-sort-up" />
+                <i className="fas fa-sort-down" />
+              </div>
             </div>
-            state
-          </div>
-          <div className="grid-title-items">
-            <div>
-              <i className="fas fa-sort-up" />
-              <i className="fas fa-sort-down" />
+            <div className="grid-title-items">
+              date created
+              <div className="arrow-container">
+                <i className="fas fa-sort-up" />
+                <i className="fas fa-sort-down" />
+              </div>
             </div>
-            date created
-          </div>
-          <div className="grid-title-items">
-            <div>
-              <i className="fas fa-sort-up" />
-              <i className="fas fa-sort-down" />
+            <div className="grid-title-items">
+              last updated
+              <div className="arrow-container">
+                <i className="fas fa-sort-up" />
+                <i className="fas fa-sort-down" />
+              </div>
             </div>
-            last updated
           </div>
+
+          <CompanyForm />
+
+          {this.renderCompanies()}
         </div>
-
-        <CompanyForm />
-      
-        {this.renderCompanies()}
-
       </React.Fragment>
     );
   }
