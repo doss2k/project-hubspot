@@ -35,3 +35,13 @@ export const createCompany = (formData) => {
     payload: request
   }
 }
+
+export const deleteCompanyById = (companyId) => {
+  const request = axios.delete(`http://localhost:8080/api/companies/${companyId}`, {
+    headers: CORS_HEADERS
+  });
+  return {
+    type: actionTypes.DELETE_COMPANY_BY_ID,
+    payload: request
+  }
+}

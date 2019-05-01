@@ -91,8 +91,8 @@ export class Deals extends Component {
               )
               const amount = deals.reduce((total, deal) => {
                 return total += deal.amount
-              },0)
-              return <StageColumn key={stage.id} stage={stage} deals={deals} amount={amount}/>
+              }, 0)
+              return <StageColumn key={stage.id} stage={stage} deals={deals} amount={amount} />
             })}
           </Container>
         </DragDropContext>

@@ -14,6 +14,14 @@ export const dealsReducer = (state = {}, action) => {
         deal: action.payload.data
       }
 
+    case actionTypes.CREATE_DEAL:
+      return {
+        ...state,
+        dealCreated: action.payload.data
+      }
+
+    // case actionTypes.create  
+
     default:
       return state;
   }
