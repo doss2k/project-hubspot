@@ -31,10 +31,10 @@ export class CompanyForm extends Component {
 
   render() {
     return (
-    <React.Fragment>
-        <div className="mask show" />
-        <div className="form-container show">
-          <div className="form-card">
+      <React.Fragment>
+        <div className="mask " />
+        <div className="form-container">
+          <div className="form-card ">
             <div className="form-header-container">
               <div className="form-header">
                 <div className="form-name">create company</div>
@@ -74,7 +74,10 @@ export class CompanyForm extends Component {
                 value={this.state.state}
                 onChange={this.onInputChange}
               />
+            </div>
+            <div className="form-footer-container">
               <input
+                className="company-submit-button"
                 title={"Create Company"}
                 route={"/companies"}
                 type="submit"
