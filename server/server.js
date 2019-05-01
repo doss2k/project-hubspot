@@ -1,23 +1,12 @@
 const express = require("express");
 const app = express();
-var mysql = require("mysql");
+const mysql = require("mysql");
 const bodyParser = require("body-parser");
-var cors = require("cors");
+const cors = require("cors");
+const port = process.env.PORT || 8000;
+const path = require("path");
 
 var pool;
-
-if (process.env.NODE_ENV === "production") {
-  // Express will serve up production assets
-  // like our main.js file, or main.css file!
-  app.use(express.static("client/build"));
-
-  // Express will serve up the index.html file
-  // if it doesn't recognize the route
-  const path = require("path");
-  app.get("*", (req, res) => {
-    res.sendFile(path.resolve(__dirname, "client", "build", "index.html"));
-  });
-}
 
 // For user, password, and database you will the enter information for your local db copy.
 
@@ -41,7 +30,15 @@ app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
 app.use(mainRoutes);
 
-const port = process.env.PORT || 8000;
+if (process.env.NODE_ENV === 'production') {
+  // Serve any static files
+  app.use(express.static(path.join(__dirname, 'client/build')));
+// Handle React routing, return all requests to React app
+  app.get('*', function(req, res) {
+    res.sendFile(path.join(__dirname, 'client/build', 'index.html'));
+  });
+}
+
 app.listen(port, () => {
   console.log("Server is listening on port " + 8000);
 });

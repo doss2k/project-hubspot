@@ -37,7 +37,8 @@ export class DealCard extends Component {
 }
 
 const Container = styled.div`
-  background-color: ${props => (props.isDragging ? "#eee" : "white")};
+  background-color: ${props => (props.isDragging ? "white" : "white")};
+  box-shadow: ${props => (props.isDragging ? "5px 5px 10px -5px #b5bcc5" : "")};
 `;
 
 export default DealCard;
