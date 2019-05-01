@@ -29,19 +29,49 @@
   .form-card {
     height: 600px;
     width: 500px;
-    background: blue;
+    background: #fff;
     margin-top: 100px;
-  }
+    border-radius: 5px;
 
-  // &.show {
-  //   @include slowEaseOut;
-  //   transform: translateY(-86%);
-  // }
+    //   &.show {
+    //   @include slowEaseOut;
+    //   transform: translateY(-86%);
+    // }
 
-  .form-header {
-    height: 60px;
-    width: 100%;
-    background: $primary-color;
-    color: white;
+    .form-header-container {
+      display: flex;
+      flex-flow: row;
+      align-items: left;
+      justify-content: center;
+      // height: 100%;
+      height: 50px;
+      width: auto;
+      background-image: linear-gradient(
+        to right,
+        $tertiary-color,
+        $secondary-color
+      );
+      color: #fff;
+      font-weight: 900;
+      text-transform: capitalize;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+      text-align: left;
+
+      .form-header {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+      }
+    }
+
+    .form-name {
+      width: 440px;
+    }
+    .fa-times {
+      width: auto;
+    }
   }
 }
