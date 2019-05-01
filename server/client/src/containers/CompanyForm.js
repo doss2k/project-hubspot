@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Button from "./Button";
+import { connect } from 'react-redux';
+import * as actionTypes from '../actions/index';
 
 export class CompanyForm extends Component {
   constructor(props) {
@@ -15,13 +17,17 @@ export class CompanyForm extends Component {
   }
   //as data is typed, caputer in the state
   onInputChange(event) {
-    this.setState({ [event.target.name] : event.target.value });
+    this.setState({ [event.target.name]: event.target.value });
   }
   //on submit, send POST request to the server
   onFormSubmit(e) {
     e.preventDefault()
     console.log(this.state)
 
+  }
+
+  cCom = () => {
+    console.log("hello")
   }
 
   render() {
@@ -63,7 +69,7 @@ export class CompanyForm extends Component {
               value={this.state.state}
               onChange={this.onInputChange}
             />
-            <input title={"Create Company"} route={"/companies"} type="submit" value="submit"/>
+            <input onClick={() => this.cComp()} title={"Create Company"} route={"/companies"} type="submit" value="submit" />
           </div>
         </div>
 
