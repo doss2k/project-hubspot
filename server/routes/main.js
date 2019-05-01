@@ -198,7 +198,7 @@ router.post("/api/deals", (req, res) => {
 });
 
 
-// Data nerds calcs
+// Data nerds calcs 
 
 router.get("/api/calc/successrate", (req, res) => {
   const sql = "CALL success_rate()";
@@ -238,6 +238,57 @@ router.get("/api/calc/avgtimetoclose", (req, res) => {
   pool.query(sql, function(error, results, fields) {
     if (error) throw error;
       res.json(results[0]);
+  });
+});
+
+router.get("/api/calc/topthreeclients", (req, res) => {
+  const sql = `select sum(deals.amount) AS Total, deals.dealId, companies.logoUrl, companies.companyName
+  from deals
+  INNER JOIN companies ON companies.companyId = deals.companyId
+  GROUP BY dealId
+  ORDER BY Total DESC
+  LIMIT 3`;
+  pool.query(sql, function(error, results, fields) {
+    if (error) throw error;
+      res.json(results);
+  });
+});
+
+//rich endpoint
+
+router.get("/api/dealsposition/", (req, res) => {
+  const sql = `select dealId, stage, stageOrder from deals
+  ORDER BY stage, stageOrder;`;
+  const objectTemplate = {
+    id: "",
+    title: "",
+    deadlId: []
+  };
+  const resultArray = [];
+  let returnObject = false;
+  pool.query(sql, function(error, results, fields) {
+    if (error) throw error;
+    //to-do: refactor this mess.
+    let oldStage = false;
+    results.forEach((result,index) => {
+      if (result.stage != oldStage && returnObject) {
+        resultArray.push(returnObject);
+        returnObject = false;
+      }
+      if (result.stage == oldStage) {
+        returnObject.deadlId = returnObject.deadlId.concat(result.dealId)
+      } else if (!returnObject) {
+          returnObject = Object.assign({},objectTemplate)
+          returnObject.id = result.stage;
+          returnObject.title = result.stage;
+        if (result.stage != oldStage) {
+          returnObject.deadlId = returnObject.deadlId.concat(result.dealId)
+        }
+        oldStage = result.stage;
+      }
+    });
+    if (returnObject) {resultArray.push(returnObject)}
+      res.json(resultArray);
   });
 });
 
