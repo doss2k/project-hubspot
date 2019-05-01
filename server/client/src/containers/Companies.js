@@ -68,6 +68,7 @@ class Companies extends Component {
   render() {
     return (
       <React.Fragment>
+        <CompanyForm />
         <div className="header-div">
           <h2 onClick={this.cComp}>Companies</h2>
           <Button title={"Create Company"} />
@@ -114,9 +115,6 @@ class Companies extends Component {
               </div>
             </div>
           </div>
-
-          <CompanyForm />
-
           {this.renderCompanies()}
         </div>
       </React.Fragment>
