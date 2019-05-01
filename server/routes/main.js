@@ -56,6 +56,23 @@ router.get("/api/companies/:id", (req, res) => {
   });
 });
 
+/* DELETE This endpoint deletes a specific company based on a supplied company ID.  If there are 
+   no companies matching the ID in the database it will return a 404 error. */
+
+router.delete("/api/companies/:id", (req, res) => {
+  const companyId = req.params.id;
+  const sql = "DELETE FROM companies WHERE companyId = ?";
+  pool.query(sql, companyId, function(error, results, fields) {
+    if (error) throw error;
+    // Check for no results.
+    if (results.affectedRows !== 0) {
+      res.json(results);
+    } else {
+      res.status(404).send("That companyId is not in the database");
+    }
+  });
+});
+
 /* GET This endpoint gets all of the users associated deals.  If there are 
    no deals in the database it will return a 404 error. */
 
