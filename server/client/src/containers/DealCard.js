@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export class DealCard extends Component {
   render() {
@@ -13,9 +14,21 @@ export class DealCard extends Component {
             ref={provided.innerRef}
             isDragging={snapshot.isDragging}
           >
-            <p>${this.props.deal.amount}</p>
-            <p>{this.props.deal.dealName}</p>
-            <p>Close date: {this.props.deal.closeDate}</p>
+            <div className="deal-card-container">
+              <div className="deal-card-title-link">
+                <Link className="bold text-link" to="/dashboard">
+                  {this.props.deal.dealName}
+                </Link>
+              </div>
+              <p>
+                <span className="bold">Total sale: </span>$
+                {this.props.deal.amount}
+              </p>
+              <p>
+                <span className="bold">Close date: </span>
+                {this.props.deal.closeDate}
+              </p>
+            </div>
           </Container>
         )}
       </Draggable>
@@ -24,12 +37,7 @@ export class DealCard extends Component {
 }
 
 const Container = styled.div`
-  background-color: ${props => props.isDragging ? '#eee' : 'white'};
-  transition: background-color 0.2s ease;
-  border: 1px solid #5cff7a;
-  border-radius: 4px;
-  padding: 8px;
-  margin-bottom: 8px;
+  background-color: ${props => (props.isDragging ? "#eee" : "white")};
 `;
 
 export default DealCard;
