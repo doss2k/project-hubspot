@@ -5,12 +5,25 @@ export class CompanyForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      name: '',
-      logo: '',
+      companyName: '',
+      logoUrl: '',
       city: '',
       state: ''
     }
+    this.onInputChange = this.onInputChange.bind(this);
+    this.onFormSubmit = this.onFormSubmit.bind(this);
   }
+  //as data is typed, caputer in the state
+  onInputChange(event) {
+    this.setState({ [event.target.name] : event.target.value });
+  }
+  //on submit, send POST request to the server
+  onFormSubmit(e) {
+    e.preventDefault()
+    console.log(this.state)
+
+  }
+
   render() {
     return (
       <React.Fragment>
@@ -20,17 +33,19 @@ export class CompanyForm extends Component {
           <div className="form-field-container">
             <input
               type="text"
-              name="name"
+              name="companyName"
               className="form-field"
               placeholder="Enter company name"
-              value={this.state.name}
+              value={this.state.companyName}
+              onChange={this.onInputChange}
             />
             <input
               type="text"
-              name="logo"
+              name="logoUrl"
               className="form-field"
               placeholder="Enter logo url"
-              value={this.state.logo}
+              value={this.state.logoUrl}
+              onChange={this.onInputChange}
             />
             <input
               type="text"
@@ -38,15 +53,17 @@ export class CompanyForm extends Component {
               className="form-field"
               placeholder="Enter city"
               value={this.state.city}
+              onChange={this.onInputChange}
             />
             <input
               type="text"
-              name="city"
+              name="state"
               className="form-field"
               placeholder="Enter state"
               value={this.state.state}
+              onChange={this.onInputChange}
             />
-            <Button title={"Create Company"} route={"/companies"} />
+            <input title={"Create Company"} route={"/companies"} type="submit" value="submit"/>
           </div>
         </div>
 

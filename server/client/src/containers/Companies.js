@@ -5,8 +5,7 @@ import CompanyForm from "./CompanyForm";
 
 import * as actionTypes from "../actions";
 
-var moment = require('moment');
-
+let moment = require("moment");
 
 class Companies extends Component {
   constructor(props) {
@@ -20,72 +19,96 @@ class Companies extends Component {
 
   //when header is clicked, sort in ascending order
 
-
   renderCompanies() {
     if (this.props.companies) {
       return this.props.companies.map(company => {
         return (
-          <div className="grid-title-bar" key={company.companyId}>
-
-            <div className="grid-title-items"><img src={company.logoUrl} style={{ "width": "20%" }} alt="company logo" />{company.companyName}</div>
+          <div
+            className="company-grid-row company-grid-items"
+            key={company.companyId}
+          >
+            <div className="grid-title-items">
+              <div className="grid-logo-and-name-container">
+                <img
+                  src={company.logoUrl}
+                  style={{ width: "20px" }}
+                  alt="company logo"
+                />
+                <div className="text-link company-grid-name">
+                  {company.companyName}
+                </div>
+              </div>
+            </div>
             <div className="grid-title-items">{company.city}</div>
             <div className="grid-title-items">{company.state}</div>
-            <div className="grid-title-items">{moment(company.createdDate * 1000).format('MM/DD/YYYY')}</div>
-            <div className="grid-title-items">{moment(company.updatedDate * 1000).format('MM/DD/YYYY')}</div>
+            <div className="grid-title-items">
+              {moment(company.createdDate * 1000).format("MM/DD/YYYY")}
+            </div>
+            <div className="grid-title-items">
+              {moment(company.updatedDate * 1000).format("MM/DD/YYYY")}
+            </div>
           </div>
-
-        )
-      })
+        );
+      });
     } else {
       return <div>Loading...</div>;
     }
   }
 
   render() {
-    let date = moment(1546562110).format('MM/DD/YY')
-    console.log(date)
     return (
       <React.Fragment>
         <div className="header-div">
           <h2>Companies</h2>
           <Button title={"Create Company"} route={"/"} />
         </div>
-        <div className="grid-title-bar">
-          <div className="grid-title-items" onClick={this.onSort} id="companyName">
-            <div>
-              <i className="fas fa-sort-up" />
-              <i className="fas fa-sort-down" />
+        <div className="company-grid-container">
+          <div className="company-grid-row company-grid-header">
+            <div
+              className="grid-title-items"
+              onClick={this.onSort}
+              id="companyName"
+            >
+              company
+              <div className="arrow-container">
+                <i className="fas fa-sort-up" />
+                <i className="fas fa-sort-down" />
+              </div>
             </div>
-            company</div>
-          <div className="grid-title-items">
-            <div>
-              <i className="fas fa-sort-up" />
-              <i className="fas fa-sort-down" />
+            <div className="grid-title-items">
+              city
+              <div className="arrow-container">
+                <i className="fas fa-sort-up" />
+                <i className="fas fa-sort-down" />
+              </div>
             </div>
-            city</div>
-          <div className="grid-title-items">
-            <div>
-              <i className="fas fa-sort-up" />
-              <i className="fas fa-sort-down" />
+            <div className="grid-title-items">
+              state
+              <div className="arrow-container">
+                <i className="fas fa-sort-up" />
+                <i className="fas fa-sort-down" />
+              </div>
             </div>
-            state</div>
-          <div className="grid-title-items">
-            <div>
-              <i className="fas fa-sort-up" />
-              <i className="fas fa-sort-down" />
+            <div className="grid-title-items">
+              date created
+              <div className="arrow-container">
+                <i className="fas fa-sort-up" />
+                <i className="fas fa-sort-down" />
+              </div>
             </div>
-            date created</div>
-          <div className="grid-title-items">
-            <div>
-              <i className="fas fa-sort-up" />
-              <i className="fas fa-sort-down" />
+            <div className="grid-title-items">
+              last updated
+              <div className="arrow-container">
+                <i className="fas fa-sort-up" />
+                <i className="fas fa-sort-down" />
+              </div>
             </div>
-            last updated</div>
+          </div>
+
+          <CompanyForm />
+
+          {this.renderCompanies()}
         </div>
-        <CompanyForm />
-
-        {this.renderCompanies()}
-
       </React.Fragment>
     );
   }
