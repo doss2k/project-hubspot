@@ -100,6 +100,23 @@ router.get("/api/deals/:id", (req, res) => {
   });
 });
 
+/* DELETE This endpoint deletes a specific deal based on a supplied deal ID.  If there are 
+   no deals matching the ID in the database it will return a 404 error. */
+
+router.delete("/api/deals/:id", (req, res) => {
+  const dealId = req.params.id;
+  const sql = "DELETE FROM deals WHERE dealId = ?";
+  pool.query(sql, dealId, function(error, results, fields) {
+    if (error) throw error;
+    // Check for no results.
+    if (results.affectedRows !== 0) {
+      res.json(results);
+    } else {
+      res.status(404).send("That dealId is not in the database");
+    }
+  });
+});
+
 /* POST This endpoint inserts a new deal into the database.  The deal info
    must be supplied in the body of the request in JSON format.  It returns the body of the
    request upon success.  If the deal is not added to the database returns a 404 error */
@@ -121,6 +138,6 @@ router.post("/api/deals", (req, res) => {
       res.status(404).send("Deal was not added");
     }
   });
-  });
+});
 
 module.exports = router;
