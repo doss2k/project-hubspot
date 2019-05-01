@@ -131,8 +131,9 @@ router.delete("/api/deals/:id", (req, res) => {
   });
 });
 
-/*PUT This endpoint allows you to edit and field for any indidual company. If the company
+/* PUT This endpoint allows you to edit and field for any indidual company. If the company
   is not edited than it will return a 404 error */
+
 router.put("/api/companies/:id", (req, res) => {
   const companyId = parseInt(req.params.id);
   const sql = `UPDATE companies SET 
