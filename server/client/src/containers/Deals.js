@@ -90,7 +90,7 @@ export class Deals extends Component {
                 dealId => this.state.deals[dealId]
               );
               const amount = deals.reduce((total, deal) => {
-                return (total += deal.amount);
+  return (total += deal.amount);
               }, 0);
               return (
                 <StageColumn
