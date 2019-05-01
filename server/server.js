@@ -38,6 +38,7 @@ const mainRoutes = require("./routes/main");
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(mainRoutes);
 
 const port = process.env.PORT || 8000;
