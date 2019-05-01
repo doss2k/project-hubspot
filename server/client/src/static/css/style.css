@@ -11,7 +11,7 @@
 .nav-style-line {
   position: absolute;
   top: 0px;
-  background: #5cff7a;
+  background: #33c74f;
   width: 100%;
   height: 2px; }
 
@@ -130,7 +130,7 @@
     width: 220px;
     display: flex;
     flex-direction: column;
-    min-height: 100%;
+    height: 100%;
     margin-bottom: 15px; }
     .deal-grid-container .deal-list-container .deal-list-title {
       padding: 8px;
@@ -142,7 +142,7 @@
       padding: 8px;
       transition: background-color 0.2s ease;
       flex: 1;
-      min-height: 100px; }
+      overflow-y: scroll; }
       .deal-grid-container .deal-list-container .deal-list .deal-card-container {
         transition: background-color 0.2s ease;
         border: 1px solid #c9d1da;
@@ -163,37 +163,82 @@
 .deal-card-title-link {
   padding-bottom: 5px; }
 
-
-/* .mask {
+.mask {
   position: absolute;
   top: 0;
   left: 0;
   width: 100vw;
   height: 100vh;
   background: #2c2c2c;
-  opacity: 0.8; }
+  opacity: 0.8;
+  z-index: 5;
+  display: none; }
   .mask.show {
-    display: block; } */
+    display: block; }
 
 .form-container {
-  z-index: 10;
-  height: 600px;
-  width: 500px;
-  background: blue;
-  margin: auto;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  z-index: 6;
+  display: inline;
   display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: left;
-  display: none; }
+  flex-flow: row;
+  justify-content: center;
+  overflow: hidden;
+  visibility: hidden; }
   .form-container.show {
-    transition: all 0.3s ease-out;
-    transform: translateY(-86%); }
-  .form-container .form-header {
-    height: 60px;
-    width: 100%;
-    background: #2c2c2c;
-    color: white; }
+    visibility: visible; }
+  .form-container .form-card {
+    position: relative;
+    height: 600px;
+    width: 500px;
+    background: #fff;
+    margin-top: 100px;
+    border-radius: 5px;
+    transform: translateX(100vw);
+    transition: all 0.3s ease-out; }
+    .form-container .form-card.show {
+      transition: all 0.3s ease-out;
+      transform: translateX(0); }
+    .form-container .form-card .form-header-container {
+      display: flex;
+      flex-flow: row;
+      align-items: left;
+      justify-content: center;
+      height: 50px;
+      width: auto;
+      background-image: linear-gradient(to right, #2eb347, #33c74f);
+      color: #fff;
+      font-weight: 900;
+      text-transform: capitalize;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      text-align: left; }
+      .form-container .form-card .form-header-container .form-header {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: center;
+        height: auto; }
+    .form-container .form-card .form-name {
+      width: 441px; }
+    .form-container .form-card .fa-times {
+      width: auto; }
+    .form-container .form-card .form-footer-container {
+      position: absolute;
+      bottom: 0;
+      height: 60px;
+      width: 100%;
+      background: #f4f8fa;
+      border-top: 1px solid #c9d1da;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px; }
+    .form-container .form-card .company-submit-button {
+      position: absolute;
+      bottom: 15px;
+      right: 24px; }
 
 .Initiated-deal-progress-list {
   background: #f4f8fa;

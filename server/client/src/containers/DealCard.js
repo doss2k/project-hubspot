@@ -2,9 +2,15 @@ import React, { Component } from "react";
 import { Draggable } from "react-beautiful-dnd";
 import styled from "styled-components";
 import { Link } from "react-router-dom";
+import moment from 'moment';
 
 export class DealCard extends Component {
   render() {
+    const formatter = new Intl.NumberFormat('en-us', {
+      style: 'currency',
+      currency: 'USD'
+    });
+
     return (
       <Draggable draggableId={this.props.deal.id} index={this.props.index}>
         {(provided, snapshot) => (
@@ -21,12 +27,12 @@ export class DealCard extends Component {
                 </Link>
               </div>
               <p>
-                <span className="bold">Total sale: </span>$
-                {this.props.deal.amount}
+                <span className="bold">Total sale: </span>
+                {formatter.format(this.props.deal.amount)}
               </p>
               <p>
                 <span className="bold">Close date: </span>
-                {this.props.deal.closeDate}
+                {moment(this.props.deal.closeDate * 1000).format('MM/DD/YYYY')}
               </p>
             </div>
           </Container>
@@ -37,7 +43,8 @@ export class DealCard extends Component {
 }
 
 const Container = styled.div`
-  background-color: ${props => (props.isDragging ? "#eee" : "white")};
+  background-color: ${props => (props.isDragging ? "white" : "white")};
+  box-shadow: ${props => (props.isDragging ? "5px 5px 10px -5px #b5bcc5" : "")};
 `;
 
 export default DealCard;

@@ -17,6 +17,16 @@ class Companies extends Component {
     this.props.getAllCompanies();
   }
 
+  cComp = () => {
+    console.log("hiii")
+    this.props.createCompany({
+      "companyName": "MONOIS",
+      "logoUrl": "testasdf stage",
+      "city": "dfasdf",
+      "state": "fasdfasdf"
+    })
+  }
+
   //when header is clicked, sort in ascending order
 
   renderCompanies() {
@@ -58,9 +68,10 @@ class Companies extends Component {
   render() {
     return (
       <React.Fragment>
+        <CompanyForm />
         <div className="header-div">
-          <h2>Companies</h2>
-          <Button title={"Create Company"} route={"/"} />
+          <h2 onClick={this.cComp}>Companies</h2>
+          <Button title={"Create Company"} />
         </div>
         <div className="company-grid-container">
           <div className="company-grid-row company-grid-header">
@@ -104,9 +115,6 @@ class Companies extends Component {
               </div>
             </div>
           </div>
-
-          <CompanyForm />
-
           {this.renderCompanies()}
         </div>
       </React.Fragment>
@@ -122,9 +130,11 @@ const mapStateToProps = state => {
 
 const mapDispatchToProps = dispatch => {
   return {
-    getAllCompanies: () => dispatch(actionTypes.getAllCompanies())
+    getAllCompanies: () => dispatch(actionTypes.getAllCompanies()),
+    createCompany: (formData) => dispatch(actionTypes.createCompany(formData))
   };
 };
+
 
 export default connect(
   mapStateToProps,
