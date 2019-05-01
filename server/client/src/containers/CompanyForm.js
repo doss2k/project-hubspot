@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Button from "./Button";
+import { connect } from 'react-redux';
+import * as actionTypes from '../actions/index';
 
 export class CompanyForm extends Component {
   constructor(props) {
@@ -23,9 +25,13 @@ export class CompanyForm extends Component {
     console.log(this.state);
   }
 
+  cCom = () => {
+    console.log("hello")
+  }
+
   render() {
     return (
-      <React.Fragment>
+    <React.Fragment>
         <div className="mask show" />
         <div className="form-container show">
           <div className="form-card">

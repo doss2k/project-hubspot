@@ -1,17 +1,30 @@
 import * as actionTypes from '../actions/actionTypes';
+// let state = {
+//   companies: null
+// }
 
-export const companiesReducer = (state = {}, action) => {
+const initialState = {}
+let data = [];
+export const companiesReducer = (state = initialState, action) => {
   switch (action.type) {
+
     case actionTypes.GET_ALL_COMPANIES:
+      if (action.payload.data.companyName) {
+        const newCompany = action.payload.data;
+        data.push(newCompany)
+      } else {
+        data = action.payload.data
+      }
+
       return {
         ...state,
-        companies: action.payload.data
+        companies: [...data]
       }
 
     case actionTypes.CREATE_COMPANY:
       return {
         ...state,
-        companyCreated: action.payload.data
+        companyName: action.payload.data
       }
 
     case actionTypes.GET_COMPANY_BY_ID:
