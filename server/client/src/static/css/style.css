@@ -130,7 +130,7 @@
     width: 220px;
     display: flex;
     flex-direction: column;
-    min-height: 100%;
+    height: 100%;
     margin-bottom: 15px; }
     .deal-grid-container .deal-list-container .deal-list-title {
       padding: 8px;
@@ -142,7 +142,7 @@
       padding: 8px;
       transition: background-color 0.2s ease;
       flex: 1;
-      min-height: 100px; }
+      overflow-y: scroll; }
       .deal-grid-container .deal-list-container .deal-list .deal-card-container {
         transition: background-color 0.2s ease;
         border: 1px solid #c9d1da;
@@ -162,18 +162,6 @@
 
 .deal-card-title-link {
   padding-bottom: 5px; }
-
-
-/* .mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #2c2c2c;
-  opacity: 0.8; }
-  .mask.show {
-    display: block; } */
 
 .form-container {
   z-index: 10;
