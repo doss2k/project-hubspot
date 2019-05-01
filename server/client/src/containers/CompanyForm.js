@@ -1,5 +1,7 @@
 import React, { Component } from "react";
 import Button from "./Button";
+import { connect } from 'react-redux';
+import * as actionTypes from '../actions/index';
 
 export class CompanyForm extends Component {
   constructor(props) {
@@ -21,6 +23,10 @@ export class CompanyForm extends Component {
   onFormSubmit(e) {
     e.preventDefault();
     console.log(this.state);
+  }
+
+  cCom = () => {
+    console.log("hello")
   }
 
   render() {

@@ -19,13 +19,13 @@ paths:
         '200':
           description: All the companies are provided
         '404':
-          description: No companies were found
+          description: No companies found
           schema:
             $ref: '#/definitions/Company'
     post:
      tags:
      - Companies
-     description: Adds all companies
+     description: Adds a company
      parameters:
       - name: companyName
         in: path
@@ -44,11 +44,11 @@ paths:
         type: string
      responses:
        '200':
-         description: All companies added successfully.
+         description: The company added successfully.
          schema:
            type: string
-       '400':
-         description: The companies were not added successfully.
+       '404':
+         description: The company was not added successfully.
     
   /companies/:id:
     get:
@@ -69,7 +69,7 @@ paths:
             items:
               $ref: '#/definitions/Company'
         '404':
-          description: That particular company is not available/found.
+          description: Company ID not found.
     put:
       tags:
       - Companies
@@ -82,13 +82,13 @@ paths:
         type: string
       responses:
         '200':
-          description: The correct company was added successfully.
+          description: The correct company was edited successfully.
           schema:
             type: object
             items:
               $ref: '#/definitions/Company'
         '404':
-          description: That particular company is not available/found.
+          description: The company was not edited.
     delete:
       tags:
       - Companies
@@ -107,7 +107,7 @@ paths:
             items:
               $ref: '#/definitions/Company'
         '404':
-          description: That particular company is not available/found.
+          description: That company ID is not in the database.
 
   /deals:
     get:
@@ -158,11 +158,11 @@ paths:
         type: string
       responses:
        '200':
-         description: All deals added successfully.
+         description: The deal was added successfully.
          schema:
            type: string
-       '400':
-         description: The deals were not added successfully.
+       '404':
+         description: The deal was not added.
   /deals/:id:
     get:
       tags:
@@ -176,13 +176,13 @@ paths:
         type: string
       responses:
         '200':
-          description: The deal company was returned successfully.
+          description: The dealId was returned successfully.
           schema:
             type: array
             items:
               $ref: '#/definitions/Deal'
         '404':
-          description: That particular deal is not available/found.
+          description: The dealId was not found.
     put:
       tags:
       - Deals
@@ -201,7 +201,7 @@ paths:
             items:
               $ref: '#/definitions/Deal'
         '404':
-          description: That particular deal is not available/found.
+          description: The deal was not edited.
     delete:
       tags:
       - Deals
@@ -214,13 +214,13 @@ paths:
         type: string
       responses:
         '200':
-          description: The correct deal was deleted successfully.
+          description: The deal was deleted successfully.
           schema:
             type: string
             items:
               $ref: '#/definitions/Deal'
         '404':
-          description: That particular deal is not available/found.
+          description: The dealId was not found.
   
 definitions:
   Company:
