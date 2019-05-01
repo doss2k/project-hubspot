@@ -20,13 +20,8 @@ export class CompanyForm extends Component {
   //on submit, send POST request to the server
   onFormSubmit(e) {
     e.preventDefault()
-    console.log(e.target.vlaue)
-    this.setState({
-      companyName: e.target.value,
-      logoUrl: e.target.value,
-      city: e.target.value,
-      state: e.target.value
-    })
+    console.log(this.state)
+
   }
 
   render() {
@@ -68,7 +63,7 @@ export class CompanyForm extends Component {
               value={this.state.state}
               onChange={this.onInputChange}
             />
-            <Button title={"Create Company"} route={"/companies"} type="submit" />
+            <input title={"Create Company"} route={"/companies"} type="submit" value="submit"/>
           </div>
         </div>
 
