@@ -138,7 +138,26 @@ router.put("/api/companies/:id", (req, res) => {
   });
 });
 
-
+/*PUT This endpoint allows you to edit a field for any deal. If the deal
+  is not edited than it will return a 404 error */
+  router.put("/api/deals/:id", (req, res) => {
+    const dealId = parseInt(req.params.id);
+    const sql = `UPDATE deals SET
+      dealName = '${req.body.dealName}',
+      stage = '${req.body.stage}',
+      amount = '${req.body.amount}',
+      closeDate = '${req.body.closeDate}',
+      companyId = '${req.body.companyId}'
+      WHERE dealId = ?`
+    pool.query(sql, dealId, function(error, results, fields){
+      if (error) throw error;
+      if (results.affectedRows !== 0) {
+        res.json(results);
+      } else {
+        res.status(404).send("The deal was not edited");
+      }
+    });
+  });
 
 /* POST This endpoint inserts a new deal into the database.  The deal info
    must be supplied in the body of the request in JSON format.  It returns the body of the
