@@ -39,18 +39,6 @@
     cursor: pointer;
     transition: all 0.1s ease-out; }
 
-.header-div {
-  height: 70px;
-  margin-top: 70px;
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: left;
-  border-bottom: 1px solid #acacac; }
-  .header-div h2 {
-    color: #2c2c2c;
-    font-weight: 300; }
-
 .company-grid-container {
   display: flex;
   flex-flow: row;
@@ -90,17 +78,49 @@
   padding: 20px;
   box-shadow: 0 0 5px 1px #d8d8d8; }
 
-.header-div {
-  height: 70px;
-  margin-top: 70px;
+.deal-grid-container {
   display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: left;
-  border-bottom: 1px solid #acacac; }
-  .header-div h2 {
-    color: #2c2c2c;
-    font-weight: 300; }
+  flex-wrap: wrap;
+  justify-content: center;
+  padding-top: 15px;
+  height: 600px; }
+  .deal-grid-container .deal-list-container {
+    border-right: 1px solid lightgray;
+    width: 220px;
+    display: flex;
+    flex-direction: column;
+    min-height: 100%;
+    margin-bottom: 15px; }
+    .deal-grid-container .deal-list-container .deal-list-title {
+      padding: 8px;
+      background: #f4f8fa;
+      text-transform: uppercase;
+      font-size: 0.7rem;
+      font-weight: 600; }
+    .deal-grid-container .deal-list-container .deal-list {
+      padding: 8px;
+      transition: background-color 0.2s ease;
+      flex: 1;
+      min-height: 100px; }
+      .deal-grid-container .deal-list-container .deal-list .deal-card-container {
+        transition: background-color 0.2s ease;
+        border: 1px solid #c9d1da;
+        border-radius: 3px;
+        padding: 8px;
+        margin-bottom: 8px;
+        font-weight: 300;
+        font-size: 0.7rem; }
+    .deal-grid-container .deal-list-container .deal-list-footer {
+      background: white;
+      text-align: center;
+      border-top: 1px solid #c9d1da;
+      border-bottom: 1px solid #c9d1da;
+      font-size: 0.7rem;
+      font-weight: 600;
+      padding: 8px; }
+
+.deal-card-title-link {
+  padding-bottom: 5px; }
 
 /* .mask {
   position: absolute;
@@ -128,6 +148,116 @@
     width: 100%;
     background: #2c2c2c;
     color: white; }
+
+.Initiated-deal-progress-list {
+  background: #f4f8fa;
+  list-style: none;
+  margin-top: -5px;
+  padding: 0 5px 15px 5px;
+  border-bottom: 1px solid #c9d1da; }
+  .Initiated-deal-progress-list .deal-progress-line {
+    width: 38px;
+    height: 4px;
+    margin: 0 2px 0 2px;
+    display: inline-block; }
+    .Initiated-deal-progress-list .deal-progress-line:nth-child(1) {
+      background: #2eb347; }
+    .Initiated-deal-progress-list .deal-progress-line:nth-child(2) {
+      background: #e2eaf2; }
+    .Initiated-deal-progress-list .deal-progress-line:nth-child(3) {
+      background: #e2eaf2; }
+    .Initiated-deal-progress-list .deal-progress-line:nth-child(4) {
+      background: #e2eaf2; }
+    .Initiated-deal-progress-list .deal-progress-line:nth-child(5) {
+      background: #e2eaf2; }
+
+.Qualified-deal-progress-list {
+  background: #f4f8fa;
+  list-style: none;
+  margin-top: -5px;
+  padding: 0 5px 15px 5px;
+  border-bottom: 1px solid #c9d1da; }
+  .Qualified-deal-progress-list .deal-progress-line {
+    width: 38px;
+    height: 4px;
+    margin: 0 2px 0 2px;
+    display: inline-block; }
+    .Qualified-deal-progress-list .deal-progress-line:nth-child(1) {
+      background: #2eb347; }
+    .Qualified-deal-progress-list .deal-progress-line:nth-child(2) {
+      background: #2eb347; }
+    .Qualified-deal-progress-list .deal-progress-line:nth-child(3) {
+      background: #e2eaf2; }
+    .Qualified-deal-progress-list .deal-progress-line:nth-child(4) {
+      background: #e2eaf2; }
+    .Qualified-deal-progress-list .deal-progress-line:nth-child(5) {
+      background: #e2eaf2; }
+
+.Sent-deal-progress-list {
+  background: #f4f8fa;
+  list-style: none;
+  margin-top: -5px;
+  padding: 0 5px 15px 5px;
+  border-bottom: 1px solid #c9d1da; }
+  .Sent-deal-progress-list .deal-progress-line {
+    width: 38px;
+    height: 4px;
+    margin: 0 2px 0 2px;
+    display: inline-block; }
+    .Sent-deal-progress-list .deal-progress-line:nth-child(1) {
+      background: #2eb347; }
+    .Sent-deal-progress-list .deal-progress-line:nth-child(2) {
+      background: #2eb347; }
+    .Sent-deal-progress-list .deal-progress-line:nth-child(3) {
+      background: #2eb347; }
+    .Sent-deal-progress-list .deal-progress-line:nth-child(4) {
+      background: #e2eaf2; }
+    .Sent-deal-progress-list .deal-progress-line:nth-child(5) {
+      background: #e2eaf2; }
+
+.Won-deal-progress-list {
+  background: #f4f8fa;
+  list-style: none;
+  margin-top: -5px;
+  padding: 0 5px 15px 5px;
+  border-bottom: 1px solid #c9d1da; }
+  .Won-deal-progress-list .deal-progress-line {
+    width: 38px;
+    height: 4px;
+    margin: 0 2px 0 2px;
+    display: inline-block; }
+    .Won-deal-progress-list .deal-progress-line:nth-child(1) {
+      background: #2eb347; }
+    .Won-deal-progress-list .deal-progress-line:nth-child(2) {
+      background: #2eb347; }
+    .Won-deal-progress-list .deal-progress-line:nth-child(3) {
+      background: #2eb347; }
+    .Won-deal-progress-list .deal-progress-line:nth-child(4) {
+      background: #2eb347; }
+    .Won-deal-progress-list .deal-progress-line:nth-child(5) {
+      background: #e2eaf2; }
+
+.Lost-deal-progress-list {
+  background: #f4f8fa;
+  list-style: none;
+  margin-top: -5px;
+  padding: 0 5px 15px 5px;
+  border-bottom: 1px solid #c9d1da; }
+  .Lost-deal-progress-list .deal-progress-line {
+    width: 38px;
+    height: 4px;
+    margin: 0 2px 0 2px;
+    display: inline-block; }
+    .Lost-deal-progress-list .deal-progress-line:nth-child(1) {
+      background: #2eb347; }
+    .Lost-deal-progress-list .deal-progress-line:nth-child(2) {
+      background: #2eb347; }
+    .Lost-deal-progress-list .deal-progress-line:nth-child(3) {
+      background: #2eb347; }
+    .Lost-deal-progress-list .deal-progress-line:nth-child(4) {
+      background: #2eb347; }
+    .Lost-deal-progress-list .deal-progress-line:nth-child(5) {
+      background: #2eb347; }
 
 * {
   margin: 0;
@@ -167,3 +297,9 @@ a {
   .header-div h2 {
     color: #2c2c2c;
     font-weight: 300; }
+
+.bold {
+  font-weight: 600; }
+
+.text-link {
+  color: #02a4bd; }

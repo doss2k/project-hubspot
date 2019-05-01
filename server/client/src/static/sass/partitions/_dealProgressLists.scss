@@ -1,0 +1,158 @@
+.Initiated-deal-progress-list {
+  background: $primary-card-color;
+  list-style: none;
+  margin-top: -5px;
+  padding: 0 5px 15px 5px;
+  border-bottom: 1px solid $tertiary-card-color;
+
+  .deal-progress-line {
+    width: 38px;
+    height: 4px;
+    margin: 0 2px 0 2px;
+    display: inline-block;
+
+    &:nth-child(1) {
+      background: $tertiary-color;
+    }
+    &:nth-child(2) {
+      background: $secondary-card-color;
+    }
+    &:nth-child(3) {
+      background: $secondary-card-color;
+    }
+    &:nth-child(4) {
+      background: $secondary-card-color;
+    }
+    &:nth-child(5) {
+      background: $secondary-card-color;
+    }
+  }
+}
+
+.Qualified-deal-progress-list {
+  background: $primary-card-color;
+  list-style: none;
+  margin-top: -5px;
+  padding: 0 5px 15px 5px;
+  border-bottom: 1px solid $tertiary-card-color;
+
+  .deal-progress-line {
+    // background: black;
+    width: 38px;
+    height: 4px;
+    margin: 0 2px 0 2px;
+    display: inline-block;
+
+    &:nth-child(1) {
+      background: $tertiary-color;
+    }
+    &:nth-child(2) {
+      background: $tertiary-color;
+    }
+    &:nth-child(3) {
+      background: $secondary-card-color;
+    }
+    &:nth-child(4) {
+      background: $secondary-card-color;
+    }
+    &:nth-child(5) {
+      background: $secondary-card-color;
+    }
+  }
+}
+
+.Sent-deal-progress-list {
+  background: $primary-card-color;
+  list-style: none;
+  margin-top: -5px;
+  padding: 0 5px 15px 5px;
+  border-bottom: 1px solid $tertiary-card-color;
+
+  .deal-progress-line {
+    // background: black;
+    width: 38px;
+    height: 4px;
+    margin: 0 2px 0 2px;
+    display: inline-block;
+
+    &:nth-child(1) {
+      background: $tertiary-color;
+    }
+    &:nth-child(2) {
+      background: $tertiary-color;
+    }
+    &:nth-child(3) {
+      background: $tertiary-color;
+    }
+    &:nth-child(4) {
+      background: $secondary-card-color;
+    }
+    &:nth-child(5) {
+      background: $secondary-card-color;
+    }
+  }
+}
+
+.Won-deal-progress-list {
+  background: $primary-card-color;
+  list-style: none;
+  margin-top: -5px;
+  padding: 0 5px 15px 5px;
+  border-bottom: 1px solid $tertiary-card-color;
+
+  .deal-progress-line {
+    // background: black;
+    width: 38px;
+    height: 4px;
+    margin: 0 2px 0 2px;
+    display: inline-block;
+
+    &:nth-child(1) {
+      background: $tertiary-color;
+    }
+    &:nth-child(2) {
+      background: $tertiary-color;
+    }
+    &:nth-child(3) {
+      background: $tertiary-color;
+    }
+    &:nth-child(4) {
+      background: $tertiary-color;
+    }
+    &:nth-child(5) {
+      background: $secondary-card-color;
+    }
+  }
+}
+
+.Lost-deal-progress-list {
+  background: $primary-card-color;
+  list-style: none;
+  margin-top: -5px;
+  padding: 0 5px 15px 5px;
+  border-bottom: 1px solid $tertiary-card-color;
+
+  .deal-progress-line {
+    // background: black;
+    width: 38px;
+    height: 4px;
+    margin: 0 2px 0 2px;
+    display: inline-block;
+
+    &:nth-child(1) {
+      background: $tertiary-color;
+    }
+    &:nth-child(2) {
+      background: $tertiary-color;
+    }
+    &:nth-child(3) {
+      background: $tertiary-color;
+    }
+    &:nth-child(4) {
+      background: $tertiary-color;
+    }
+    &:nth-child(5) {
+      background: $tertiary-color;
+    }
+  }
+}
