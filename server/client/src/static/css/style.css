@@ -122,7 +122,7 @@
 .deal-card-title-link {
   padding-bottom: 5px; }
 
-.mask {
+/* .mask {
   position: absolute;
   top: 0;
   left: 0;
@@ -131,7 +131,7 @@
   background: #2c2c2c;
   opacity: 0.8; }
   .mask.show {
-    display: block; }
+    display: block; } */
 
 .form-container {
   z-index: 10;
