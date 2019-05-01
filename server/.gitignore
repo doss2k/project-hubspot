@@ -24,4 +24,4 @@ yarn-debug.log*
 yarn-error.log*
 
 # launch.json
-../vscode/launch.json
+launch.json
