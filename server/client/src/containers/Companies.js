@@ -5,7 +5,7 @@ import CompanyForm from "./CompanyForm";
 
 import * as actionTypes from "../actions";
 
-var moment = require('moment');
+let moment = require('moment');
 
 
 class Companies extends Component {
@@ -27,7 +27,7 @@ class Companies extends Component {
         return (
           <div className="grid-title-bar" key={company.companyId}>
 
-            <div className="grid-title-items"><img src={company.logoUrl} style={{"width": "20%"}} alt="company logo" />{company.companyName}</div>
+            <div className="grid-title-items"><img src={company.logoUrl} style={{"width": "%"}} alt="company logo" />{company.companyName}</div>
             <div className="grid-title-items">{company.city}</div>
             <div className="grid-title-items">{company.state}</div>
             <div className="grid-title-items">{moment(company.createdDate*1000).format('MM/DD/YYYY')}</div>
@@ -42,8 +42,6 @@ class Companies extends Component {
   }
 
   render() {
-    let date = moment(1546562110).format('MM/DD/YY')
-    console.log(date)
     return (
       <React.Fragment>
         <div className="header-div">
