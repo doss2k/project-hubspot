@@ -5,6 +5,11 @@ import DealCard from "./DealCard";
 
 export class StageColumn extends Component {
   render() {
+    const formatter = new Intl.NumberFormat('en-us', {
+      style: 'currency',
+      currency: 'USD'
+    });
+
     return (
       <div className="deal-list-container">
         <div className="deal-header-container">
@@ -37,7 +42,7 @@ export class StageColumn extends Component {
             </DealList>
           )}
         </Droppable>
-        <div className="deal-list-footer">Total: $ {this.props.amount}</div>
+        <div className="deal-list-footer">Total: {formatter.format(this.props.amount)}</div>
       </div>
     );
   }
