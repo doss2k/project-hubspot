@@ -6,7 +6,7 @@ var cors = require("cors");
 
 var pool;
 
-if (process.env.NODE_ENV === "production") {
+if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets
   // like our main.js file, or main.css file!
   app.use(express.static("client/build"));
@@ -38,7 +38,9 @@ const mainRoutes = require("./routes/main");
 
 app.use(cors());
 app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({ extended: true }));
 app.use(mainRoutes);
+app.disable('etag');
 
 const port = process.env.PORT || 8000;
 app.listen(port, () => {

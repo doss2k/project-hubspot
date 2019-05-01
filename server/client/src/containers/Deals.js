@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import dnddata from "../static/sampleData/dnddata";
 import StageColumn from "./StageColumn";
 import { DragDropContext } from "react-beautiful-dnd";
-import styled from "styled-components";
 import Button from "./Button";
 
 export class Deals extends Component {
@@ -90,7 +89,7 @@ export class Deals extends Component {
                 dealId => this.state.deals[dealId]
               );
               const amount = deals.reduce((total, deal) => {
-                return (total += deal.amount);
+  return (total += deal.amount);
               }, 0);
               return (
                 <StageColumn

@@ -20,6 +20,12 @@ export const companiesReducer = (state = {}, action) => {
         company: action.payload.data
       }
 
+    case actionTypes.DELETE_COMPANY_BY_ID:
+      return {
+        ...state,
+        companyDeleted: action.payload.data
+      }
+
     default:
       return state;
   }

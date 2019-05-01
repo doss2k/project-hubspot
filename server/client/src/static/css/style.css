@@ -40,29 +40,70 @@
     transition: all 0.1s ease-out; }
 
 .company-grid-container {
-  display: flex;
-  flex-flow: row;
-  align-items: center;
-  justify-content: center; }
+  margin-top: 15px;
+  border-left: 1px solid #c9d1da;
+  border-right: 1px solid #c9d1da;
+  border-top: 1px solid #c9d1da; }
 
-.grid-title-bar {
+.company-grid-row {
   display: flex;
   flex-flow: row;
   align-items: center;
   justify-content: center;
   list-style: none;
-  background: #f4f8fa;
   color: #2c2c2c;
+  border-bottom: 1px solid #c9d1da;
   font-weight: 500;
-  font-size: 0.6rem;
-  text-transform: uppercase;
-  padding: 5px 0 5px 0; }
+  font-size: 0.8rem;
+  text-transform: uppercase; }
+
+.company-grid-items {
+  background: #fff;
+  height: 35px;
+  text-transform: capitalize; }
+
+.company-grid-header {
+  font-weight: 600;
+  background: #f4f8fa;
+  height: 40px; }
 
 .grid-title-items {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: left;
   width: 200px;
-  height: auto; }
+  height: 100%; }
   .grid-title-items:nth-child(1) {
-    margin-left: 40px; }
+    margin-left: 20px;
+    width: 300px; }
+  .grid-title-items:nth-child(4) {
+    width: 200px; }
+  .grid-title-items:nth-child(5) {
+    width: 200x; }
+
+.company-grid-name {
+  font-weight: 600;
+  padding-left: 20px; }
+
+.grid-logo-and-name-container {
+  display: flex;
+  flex-flow: row;
+  align-items: center;
+  justify-content: center; }
+
+.arrow-container {
+  display: flex;
+  flex-flow: column;
+  align-items: center;
+  justify-content: center;
+  margin-left: 10px; }
+  .arrow-container .fa-sort-up {
+    margin-bottom: -5px;
+    color: #c9d1da; }
+  .arrow-container .fa-sort-down {
+    margin-top: -5px;
+    color: #c9d1da; }
 
 .chart-card {
   margin-top: 15px;
@@ -89,7 +130,7 @@
     width: 220px;
     display: flex;
     flex-direction: column;
-    min-height: 100%;
+    height: 100%;
     margin-bottom: 15px; }
     .deal-grid-container .deal-list-container .deal-list-title {
       padding: 8px;
@@ -101,7 +142,7 @@
       padding: 8px;
       transition: background-color 0.2s ease;
       flex: 1;
-      min-height: 100px; }
+      overflow-y: scroll; }
       .deal-grid-container .deal-list-container .deal-list .deal-card-container {
         transition: background-color 0.2s ease;
         border: 1px solid #c9d1da;
@@ -122,17 +163,6 @@
 .deal-card-title-link {
   padding-bottom: 5px; }
 
-.mask {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100vw;
-  height: 100vh;
-  background: #2c2c2c;
-  opacity: 0.8; }
-  .mask.show {
-    display: block; }
-
 .form-container {
   z-index: 10;
   height: 600px;
@@ -142,7 +172,11 @@
   display: flex;
   flex-flow: column;
   align-items: center;
-  justify-content: left; }
+  justify-content: left;
+  display: none; }
+  .form-container.show {
+    transition: all 0.3s ease-out;
+    transform: translateY(-86%); }
   .form-container .form-header {
     height: 60px;
     width: 100%;

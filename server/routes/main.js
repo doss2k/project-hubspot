@@ -5,16 +5,30 @@ const pool = server.getPool();
 /* GET This endpoint gets all of the users associated companies.  If there are 
    no companies in the database it will return a 404 error. */
 
-router.get("/api/companies", (req, res) => {
-  pool.query("SELECT * FROM companies", function(error, results, fields) {
-    if (error) {throw error}
-    if (results.length > 0) {
-      res.json(results);
+   router.get("/api/companies", (req, res) => {
+    const { field, sort } = req.query;
+    const sql = `SELECT * FROM companies ORDER BY ${field} ${sort}`;
+    if (field && sort) {
+      pool.query(sql, function(error, results, fields) {
+        if (error) {throw error}
+        if (results.length > 0) {
+          res.json(results);
+        } else {
+          res.status(404).send("No companies found.");
+        }
+      });
+    // Query params not passed
     } else {
-      res.status(404).send("No companies found.");
-    }
+    pool.query("SELECT * FROM companies", function(error, results, fields) {
+      if (error) {throw error}
+      if (results.length > 0) {
+        res.json(results);
+      } else {
+        res.status(404).send("No companies found.");
+      }
+    });
+  }
   });
-});
 
 /* POST This endpoint inserts a new company into the database.  The company info
    must be supplied in the body of the request in JSON format.  It returns the body of the
@@ -117,6 +131,29 @@ router.delete("/api/deals/:id", (req, res) => {
   });
 });
 
+/*PUT This endpoint allows you to edit and field for any indidual company. If the company
+  is not edited than it will return a 404 error */
+router.put("/api/companies/:id", (req, res) => {
+  const companyId = parseInt(req.params.id);
+  const sql = `UPDATE companies SET 
+    companyName = '${req.body.companyName}',
+    logoUrl = '${req.body.logoUrl}',
+    city = '${req.body.city}',
+    state = '${req.body.state}',
+    updatedDate = '${req.body.updatedDate}'
+    WHERE companyId = ?`
+  pool.query(sql, companyId, function(error, results, fields){
+    if (error) throw error;
+    if (results.affectedRows !== 0) {
+      res.json(results);
+    } else {
+      res.status(404).send("The company was not edited");
+    }
+  });
+});
+
+
+
 /* POST This endpoint inserts a new deal into the database.  The deal info
    must be supplied in the body of the request in JSON format.  It returns the body of the
    request upon success.  If the deal is not added to the database returns a 404 error */
@@ -137,6 +174,50 @@ router.post("/api/deals", (req, res) => {
     } else {
       res.status(404).send("Deal was not added");
     }
+  });
+});
+
+
+// Data nerds calcs
+
+router.get("/api/calc/successrate", (req, res) => {
+  const sql = "CALL success_rate()";
+  pool.query(sql, function(error, results, fields) {
+    if (error) throw error;
+      res.json(results[0]);
+  });
+});
+
+router.get("/api/calc/dealsinprogress", (req, res) => {
+  const sql = "SELECT SUM(amount) AS 'Deals In Progress' FROM deals WHERE stage NOT IN ('Closed Lost','Closed Won')";
+  pool.query(sql, function(error, results, fields) {
+    if (error) throw error;
+      res.json(results);
+  });
+});
+
+router.get("/api/calc/avgrevperdeal", (req, res) => {
+  const sql = "CALL avg_rev_per_deal()";
+  pool.query(sql, function(error, results, fields) {
+    if (error) throw error;
+      res.json(results[0]);
+  });
+});
+
+router.get("/api/calc/totalrevytd", (req, res) => {
+  const sql = `SELECT SUM(amount) AS 'Total Revenue YTD' from deals 
+  WHERE stage = 'Closed Won' AND closeDate > 1546300800`;
+  pool.query(sql, function(error, results, fields) {
+    if (error) throw error;
+      res.json(results);
+  });
+});
+
+router.get("/api/calc/avgtimetoclose", (req, res) => {
+  const sql = "CALL avg_time_to_close()";
+  pool.query(sql, function(error, results, fields) {
+    if (error) throw error;
+      res.json(results[0]);
   });
 });
 
