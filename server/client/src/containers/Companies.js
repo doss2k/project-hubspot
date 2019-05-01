@@ -4,6 +4,7 @@ import Button from "./Button";
 import CompanyForm from "./CompanyForm";
 
 import * as actionTypes from "../actions";
+import CompanyDetails from "./CompanyDetails";
 
 let moment = require("moment");
 
@@ -96,8 +97,6 @@ class Companies extends Component {
             last updated
           </div>
         </div>
-
-        <CompanyForm />
       
         {this.renderCompanies()}
 

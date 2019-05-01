@@ -1,5 +1,7 @@
 import React, { Component } from "react";
-import Button from "./Button";
+import { Link } from "react-router-dom";
+import { connect } from "react-redux";
+import * as actionTypes from "../actions";
 
 export class CompanyForm extends Component {
   constructor(props) {
@@ -20,7 +22,15 @@ export class CompanyForm extends Component {
   //on submit, send POST request to the server
   onFormSubmit(e) {
     e.preventDefault()
-    console.log(this.state)
+    this.props.createCompany(this.state)
+    //reset form
+    window.location.reload()
+    this.setState({
+      companyName: '',
+      logoUrl: '',
+      city: '',
+      state: ''
+    })
 
   }
 
@@ -28,9 +38,11 @@ export class CompanyForm extends Component {
     return (
       <React.Fragment>
         <div className="mask show" />
-        <div className="form-container show">
-          <div className="form-header">Title</div>
-          <div className="form-field-container">
+        <div className="form-container show" style={{"position":"relative"}}>
+          <div className="form-header">Title 
+          <Link to="/"><i className="fas fa-times"></i></Link>
+          </div>
+          <form className="form-field-container" onSubmit={this.onFormSubmit}>
             <input
               type="text"
               name="companyName"
@@ -63,8 +75,8 @@ export class CompanyForm extends Component {
               value={this.state.state}
               onChange={this.onInputChange}
             />
-            <input title={"Create Company"} route={"/companies"} type="submit" value="submit"/>
-          </div>
+            <button type="submit" value="Create Company" className="btn">Create Company</button>
+          </form>
         </div>
 
       </React.Fragment>
@@ -72,4 +84,14 @@ export class CompanyForm extends Component {
   }
 }
 
-export default CompanyForm;
+
+const mapDispatchToProps = dispatch => {
+  return {
+    createCompany: (companyData => dispatch(actionTypes.createCompany(companyData))
+    )};
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(CompanyForm);
