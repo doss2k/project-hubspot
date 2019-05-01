@@ -2,7 +2,6 @@ import React, { Component } from "react";
 import dnddata from "../static/sampleData/dnddata";
 import StageColumn from "./StageColumn";
 import { DragDropContext } from "react-beautiful-dnd";
-import styled from "styled-components";
 import Button from "./Button";
 
 export class Deals extends Component {
