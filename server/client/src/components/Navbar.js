@@ -8,7 +8,7 @@ export default function Navbar() {
       <div className="nav-style-line" />
       <div className="nav-list">
         <Link className="nav-list-item" to="/dashboard">
-          <img src={Image} width="40px" />
+          <img src={Image} alt="" width="40px" />
         </Link>
         <Link className="nav-list-item" to="/dashboard">
           Dashboard

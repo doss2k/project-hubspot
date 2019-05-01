@@ -5,8 +5,7 @@ import CompanyForm from "./CompanyForm";
 
 import * as actionTypes from "../actions";
 
-let moment = require('moment');
-
+let moment = require("moment");
 
 class Companies extends Component {
   constructor(props) {
@@ -20,22 +19,30 @@ class Companies extends Component {
 
   //when header is clicked, sort in ascending order
 
-
   renderCompanies() {
     if (this.props.companies) {
       return this.props.companies.map(company => {
         return (
           <div className="grid-title-bar" key={company.companyId}>
-
-            <div className="grid-title-items"><img src={company.logoUrl} style={{"width": "20%"}} alt="company logo" />{company.companyName}</div>
+            <div className="grid-title-items">
+              <img
+                src={company.logoUrl}
+                style={{ width: "20%" }}
+                alt="company logo"
+              />
+              {company.companyName}
+            </div>
             <div className="grid-title-items">{company.city}</div>
             <div className="grid-title-items">{company.state}</div>
-            <div className="grid-title-items">{moment(company.createdDate*1000).format('MM/DD/YYYY')}</div>
-            <div className="grid-title-items">{moment(company.updatedDate*1000).format('MM/DD/YYYY')}</div>
+            <div className="grid-title-items">
+              {moment(company.createdDate * 1000).format("MM/DD/YYYY")}
+            </div>
+            <div className="grid-title-items">
+              {moment(company.updatedDate * 1000).format("MM/DD/YYYY")}
+            </div>
           </div>
-          
-        )
-      })
+        );
+      });
     } else {
       return <div>Loading...</div>;
     }
@@ -49,36 +56,45 @@ class Companies extends Component {
           <Button title={"Create Company"} route={"/"} />
         </div>
         <div className="grid-title-bar">
-          <div className="grid-title-items" onClick={this.onSort} id="companyName">
+          <div
+            className="grid-title-items"
+            onClick={this.onSort}
+            id="companyName"
+          >
             <div>
-              <i className="fas fa-sort-up"/>
-              <i className="fas fa-sort-down"/>
+              <i className="fas fa-sort-up" />
+              <i className="fas fa-sort-down" />
             </div>
-          company</div>
+            company
+          </div>
           <div className="grid-title-items">
             <div>
-              <i className="fas fa-sort-up"/>
-              <i className="fas fa-sort-down"/>
+              <i className="fas fa-sort-up" />
+              <i className="fas fa-sort-down" />
             </div>
-          city</div>
+            city
+          </div>
           <div className="grid-title-items">
             <div>
-              <i className="fas fa-sort-up"/>
-              <i className="fas fa-sort-down"/>
+              <i className="fas fa-sort-up" />
+              <i className="fas fa-sort-down" />
             </div>
-          state</div>
+            state
+          </div>
           <div className="grid-title-items">
             <div>
-              <i className="fas fa-sort-up"/>
-              <i className="fas fa-sort-down"/>
+              <i className="fas fa-sort-up" />
+              <i className="fas fa-sort-down" />
             </div>
-          date created</div>
+            date created
+          </div>
           <div className="grid-title-items">
             <div>
-              <i className="fas fa-sort-up"/>
-              <i className="fas fa-sort-down"/>
+              <i className="fas fa-sort-up" />
+              <i className="fas fa-sort-down" />
             </div>
-          last updated</div>
+            last updated
+          </div>
         </div>
 
         <CompanyForm />
