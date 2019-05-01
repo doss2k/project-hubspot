@@ -171,7 +171,8 @@
   height: 100vh;
   background: #2c2c2c;
   opacity: 0.8;
-  z-index: 5; }
+  z-index: 5;
+  display: none; }
   .mask.show {
     display: block; }
 
@@ -179,20 +180,28 @@
   position: absolute;
   top: 0;
   left: 0;
-  height: 100vh;
   width: 100vw;
   z-index: 6;
-  margin: auto;
+  display: inline;
   display: flex;
-  flex-flow: column;
-  align-items: center;
-  justify-content: left; }
+  flex-flow: row;
+  justify-content: center;
+  overflow: hidden;
+  visibility: hidden; }
+  .form-container.show {
+    visibility: visible; }
   .form-container .form-card {
+    position: relative;
     height: 600px;
     width: 500px;
     background: #fff;
     margin-top: 100px;
-    border-radius: 5px; }
+    border-radius: 5px;
+    transform: translateX(100vw);
+    transition: all 0.3s ease-out; }
+    .form-container .form-card.show {
+      transition: all 0.3s ease-out;
+      transform: translateX(0); }
     .form-container .form-card .form-header-container {
       display: flex;
       flex-flow: row;
@@ -204,8 +213,8 @@
       color: #fff;
       font-weight: 900;
       text-transform: capitalize;
-      border-top-left-radius: 2px;
-      border-top-right-radius: 2px;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
       text-align: left; }
       .form-container .form-card .form-header-container .form-header {
         display: flex;
@@ -214,9 +223,22 @@
         justify-content: center;
         height: auto; }
     .form-container .form-card .form-name {
-      width: 440px; }
+      width: 441px; }
     .form-container .form-card .fa-times {
       width: auto; }
+    .form-container .form-card .form-footer-container {
+      position: absolute;
+      bottom: 0;
+      height: 60px;
+      width: 100%;
+      background: #f4f8fa;
+      border-top: 1px solid #c9d1da;
+      border-bottom-left-radius: 5px;
+      border-bottom-right-radius: 5px; }
+    .form-container .form-card .company-submit-button {
+      position: absolute;
+      bottom: 15px;
+      right: 24px; }
 
 .Initiated-deal-progress-list {
   background: #f4f8fa;
