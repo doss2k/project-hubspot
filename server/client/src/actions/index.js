@@ -2,10 +2,13 @@
 export {
   getAllCompanies,
   createCompany,
-  getCompanyById
+  getCompanyById,
+  deleteCompanyById
 } from './companiesActions';
 
 export {
   getAllDeals,
-  getDealById
+  getDealById,
+  createDeal,
+  deleteDealById
 } from './dealsActions';
