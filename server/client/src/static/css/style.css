@@ -11,7 +11,7 @@
 .nav-style-line {
   position: absolute;
   top: 0px;
-  background: #5cff7a;
+  background: #33c74f;
   width: 100%;
   height: 2px; }
 
@@ -190,13 +190,33 @@
   .form-container .form-card {
     height: 600px;
     width: 500px;
-    background: blue;
-    margin-top: 100px; }
-  .form-container .form-header {
-    height: 60px;
-    width: 100%;
-    background: #2c2c2c;
-    color: white; }
+    background: #fff;
+    margin-top: 100px;
+    border-radius: 5px; }
+    .form-container .form-card .form-header-container {
+      display: flex;
+      flex-flow: row;
+      align-items: left;
+      justify-content: center;
+      height: 50px;
+      width: auto;
+      background-image: linear-gradient(to right, #2eb347, #33c74f);
+      color: #fff;
+      font-weight: 900;
+      text-transform: capitalize;
+      border-top-left-radius: 2px;
+      border-top-right-radius: 2px;
+      text-align: left; }
+      .form-container .form-card .form-header-container .form-header {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: center;
+        height: auto; }
+    .form-container .form-card .form-name {
+      width: 440px; }
+    .form-container .form-card .fa-times {
+      width: auto; }
 
 .Initiated-deal-progress-list {
   background: #f4f8fa;

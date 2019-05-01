@@ -35,7 +35,12 @@ export class CompanyForm extends Component {
         <div className="mask show" />
         <div className="form-container show">
           <div className="form-card">
-            <div className="form-header">Title</div>
+            <div className="form-header-container">
+              <div className="form-header">
+                <div className="form-name">create company</div>
+                <div className="fas fa-times" />
+              </div>
+            </div>
             <div className="form-field-container">
               <input
                 type="text"
