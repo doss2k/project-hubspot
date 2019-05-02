@@ -25,7 +25,8 @@ class Companies extends Component {
   };
 
   //when company details is clicked, toggle show details
-  detailClick = () => {
+  detailClick = (company) => {
+    this.props.getCompanyById(company)
     this.setState({ showDetails: !this.state.showDetails })
   }
 
@@ -39,7 +40,7 @@ class Companies extends Component {
             className="company-grid-row company-grid-items"
             key={company.companyId}
           >
-            <div className="grid-title-items">
+            <div className="grid-title-items" onClick={() => this.detailClick(company.companyId)}>
               <div className="grid-logo-and-name-container">
                 <img
                   src={company.logoUrl}
@@ -77,6 +78,7 @@ class Companies extends Component {
         <CompanyDetails
           isActive={this.state.showDetails}
           detailClick={this.detailClick}
+          company={this.props.company}
         />
         <div className="header-div">
           <h2 onClick={this.cComp}>Companies</h2>
@@ -133,14 +135,16 @@ class Companies extends Component {
 
 const mapStateToProps = state => {
   return {
-    companies: state.companiesReducer.companies
+    companies: state.companiesReducer.companies,
+    company: state.companiesReducer.company
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     getAllCompanies: () => dispatch(actionTypes.getAllCompanies()),
-    createCompany: formData => dispatch(actionTypes.createCompany(formData))
+    createCompany: formData => dispatch(actionTypes.createCompany(formData)),
+    getCompanyById: company => dispatch(actionTypes.getCompanyById(company))
   };
 };
 
