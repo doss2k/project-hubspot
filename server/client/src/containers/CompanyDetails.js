@@ -8,6 +8,11 @@ class CompanyDetails extends Component {
     this.props.detailClick()
   }
 
+  editMode(e) {
+    console.log(e)
+
+  }
+
   render() {
     const { isActive, detailClick } = this.props;
     if (!this.props.company) {
@@ -23,7 +28,7 @@ class CompanyDetails extends Component {
               <div className="form-header-container">
                 <div className="form-header">
                   <div className="form-name">{companyName}</div>
-                  <div className="fas fa-pencil-alt" style={{'margin': "5px"}}/>
+                  <div className="fas fa-pencil-alt" style={{'margin': "5px"}} onClick={() => this.editMode(this.props.company[0])}/>
                   <div className="fas fa-times" onClick={detailClick} />
                 </div>
               </div>
