@@ -13,7 +13,7 @@ export const getAllCompanies = () => {
 }
 
 export const getCompanyById = (companyId) => {
-  const request = axios.get(`http://localhost:8000/api/companies/${companyId}`, {
+  const request = axios.get(`/api/companies/${companyId}`, {
     headers: CORS_HEADERS
   })
 
@@ -26,7 +26,7 @@ export const getCompanyById = (companyId) => {
 export const createCompany = (formData) => {
   const request = axios({
     method: 'post',
-    url: 'http://localhost:8000/api/companies',
+    url: '/api/companies',
     headers: CORS_HEADERS,
     data: formData
   })
@@ -38,7 +38,7 @@ export const createCompany = (formData) => {
 
 export const deleteCompanyById = (companyId) => {
   console.log(companyId)
-  const request = axios.delete(`http://localhost:8000/api/companies/${companyId}`, {
+  const request = axios.delete(`/api/companies/${companyId}`, {
     headers: CORS_HEADERS
   });
   return {
