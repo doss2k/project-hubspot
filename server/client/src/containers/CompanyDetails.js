@@ -14,7 +14,7 @@ class CompanyDetails extends Component {
   }
 
   render() {
-    const { isActive, detailClick } = this.props;
+    const { isActive, detailClick, formClick } = this.props;
     if (!this.props.company) {
       return <div>Please select a company</div>
     }

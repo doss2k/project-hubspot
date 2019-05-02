@@ -78,6 +78,7 @@ class Companies extends Component {
         <CompanyDetails
           isActive={this.state.showDetails}
           detailClick={this.detailClick}
+          formClick={this.formClick}
           company={this.props.company}
         />
         <div className="header-div">
