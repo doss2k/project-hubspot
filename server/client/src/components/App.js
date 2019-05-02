@@ -1,6 +1,6 @@
 import React from "react";
 import { BrowserRouter, Switch, Route, Redirect } from "react-router-dom";
-import Dashboard from "./Dashboard";
+import Dashboard from "./dashboard/Dashboard";
 import Navbar from "./Navbar";
 import Companies from "../containers/Companies";
 import Deals from "../containers/Deals";
