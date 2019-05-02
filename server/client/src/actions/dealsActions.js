@@ -22,6 +22,13 @@ export const getDealPosition = () => {
   }
 }
 
+export const setDealPosition = newState => {
+  return {
+    type: actionTypes.SET_DEAL_POSITION,
+    payload: newState
+  }
+}
+
 export const createDeal = (dealData) => {
   const request = axios({
     method: 'post',

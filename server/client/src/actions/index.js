@@ -11,5 +11,6 @@ export {
   getDealById,
   createDeal,
   deleteDealById,
-  getDealPosition
+  getDealPosition,
+  setDealPosition
 } from './dealsActions';
