@@ -4,28 +4,25 @@ import Button from "./Button";
 import CompanyForm from "./CompanyForm";
 
 import * as actionTypes from "../actions";
+import CompanyDetails from "./CompanyDetails";
 
 let moment = require("moment");
 
 class Companies extends Component {
-  constructor(props) {
-    super(props);
-  }
+  state = {
+    showForm: false
+  };
 
   // As soon as component mounts make call to redux to fetch all companies
   componentDidMount() {
     this.props.getAllCompanies();
   }
 
-  cComp = () => {
-    console.log("hiii")
-    this.props.createCompany({
-      "companyName": "MONOIS",
-      "logoUrl": "testasdf stage",
-      "city": "dfasdf",
-      "state": "fasdfasdf"
-    })
-  }
+  formClick = e => {
+    console.log(this.state);
+    this.setState({ showForm: !this.state.showForm });
+    console.log(this.state);
+  };
 
   //when header is clicked, sort in ascending order
 
@@ -68,10 +65,13 @@ class Companies extends Component {
   render() {
     return (
       <React.Fragment>
-        <CompanyForm />
+        <CompanyForm
+          isActive={this.state.showForm}
+          formClick={this.formClick}
+        />
         <div className="header-div">
           <h2 onClick={this.cComp}>Companies</h2>
-          <Button title={"Create Company"} />
+          <Button title={"Create Company"} formClick={this.formClick} />
         </div>
         <div className="company-grid-container">
           <div className="company-grid-row company-grid-header">
@@ -131,10 +131,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getAllCompanies: () => dispatch(actionTypes.getAllCompanies()),
-    createCompany: (formData) => dispatch(actionTypes.createCompany(formData))
+    createCompany: formData => dispatch(actionTypes.createCompany(formData))
   };
 };
-
 
 export default connect(
   mapStateToProps,

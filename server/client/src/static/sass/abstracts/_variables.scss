@@ -23,3 +23,11 @@ $text-link-color: #02a4bd;
 @mixin slowEaseOut {
   transition: all 0.3s ease-out;
 }
+
+@mixin formSlideIn {
+  transition: all 0.3s cubic-bezier(0.76, 1.55, 0.96, 0.84);
+}
+
+@mixin waySlowEaseOut {
+  transition: all 1.5s ease-out;
+}

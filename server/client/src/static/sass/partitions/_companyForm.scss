@@ -5,12 +5,12 @@
   width: 100vw;
   height: 100vh;
   background: $primary-color;
-  opacity: 0.8;
+  opacity: 0.9;
   z-index: 5;
   display: none;
 
   &.show {
-    display: block;
+    display: inline;
   }
 }
 
@@ -51,14 +51,9 @@
       flex-flow: row;
       align-items: left;
       justify-content: center;
-      // height: 100%;
       height: 50px;
       width: auto;
-      background-image: linear-gradient(
-        to right,
-        $tertiary-color,
-        $secondary-color
-      );
+      background-image: url("../images/branding/form-header-1.png");
       color: #fff;
       font-weight: 900;
       text-transform: capitalize;
@@ -80,6 +75,7 @@
     }
     .fa-times {
       width: auto;
+      cursor: pointer;
     }
 
     .form-footer-container {
@@ -91,12 +87,7 @@
       border-top: 1px solid $tertiary-card-color;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
-    }
-
-    .company-submit-button {
-      position: absolute;
-      bottom: 15px;
-      right: 24px;
+      margin-left: -50px;
     }
   }
 }

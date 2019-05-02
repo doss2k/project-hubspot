@@ -3,13 +3,11 @@ import { Link } from "react-router-dom";
 
 export class Button extends Component {
   render() {
-    const { route, title } = this.props;
+    const { formClick, title } = this.props;
     return (
-      <React.Fragment>
-        <Link className="btn" to={route}>
-          {title}
-        </Link>
-      </React.Fragment>
+      <div className="btn" onClick={formClick}>
+        {title}
+      </div>
     );
   }
 }

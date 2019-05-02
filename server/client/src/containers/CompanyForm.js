@@ -1,7 +1,7 @@
 import React, { Component } from "react";
-import Button from "./Button";
-import { connect } from 'react-redux';
-import * as actionTypes from '../actions/index';
+import { connect } from "react-redux";
+import * as actionTypes from "../actions";
+import SubmitButtom from "./SubmitButton";
 
 export class CompanyForm extends Component {
   constructor(props) {
@@ -21,27 +21,34 @@ export class CompanyForm extends Component {
   }
   //on submit, send POST request to the server
   onFormSubmit(e) {
-    e.preventDefault();
     console.log(this.state);
-  }
-
-  cCom = () => {
-    console.log("hello")
+    e.preventDefault();
+    this.props.createCompany(this.state);
+    //reset form
+    this.setState({
+      companyName: "",
+      logoUrl: "",
+      city: "",
+      state: ""
+    });
   }
 
   render() {
+    const { isActive, formClick } = this.props;
     return (
       <React.Fragment>
-        <div className="mask show" />
-        <div className="form-container show">
-          <div className="form-card show">
+        <div className={isActive ? "mask show" : "mask"} />
+        <div className={isActive ? "form-container show" : "form-container"}>
+          <div className={isActive ? "form-card show" : "form-card"}>
             <div className="form-header-container">
               <div className="form-header">
                 <div className="form-name">create company</div>
-                <div className="fas fa-times" />
+                <div className="fas fa-times" onClick={formClick} />
               </div>
             </div>
-            <div className="form-field-container">
+            <form className="form-field-container" onSubmit={this.onFormSubmit}>
+              {" "}
+              <p className="company-form-company-p">company name</p>
               <input
                 type="text"
                 name="companyName"
@@ -50,6 +57,7 @@ export class CompanyForm extends Component {
                 value={this.state.companyName}
                 onChange={this.onInputChange}
               />
+              <p className="company-form-logo-p">logo url</p>
               <input
                 type="text"
                 name="logoUrl"
@@ -58,6 +66,7 @@ export class CompanyForm extends Component {
                 value={this.state.logoUrl}
                 onChange={this.onInputChange}
               />
+              <p className="company-form-city-p">city</p>
               <input
                 type="text"
                 name="city"
@@ -66,6 +75,7 @@ export class CompanyForm extends Component {
                 value={this.state.city}
                 onChange={this.onInputChange}
               />
+              <p className="company-form-state-p">state</p>
               <input
                 type="text"
                 name="state"
@@ -74,16 +84,10 @@ export class CompanyForm extends Component {
                 value={this.state.state}
                 onChange={this.onInputChange}
               />
-            </div>
-            <div className="form-footer-container">
-              <input
-                className="company-submit-button"
-                title={"Create Company"}
-                route={"/companies"}
-                type="submit"
-                value="submit"
-              />
-            </div>
+              <div className="form-footer-container">
+                <SubmitButtom formClick={formClick} />
+              </div>
+            </form>
           </div>
         </div>
       </React.Fragment>
@@ -91,4 +95,14 @@ export class CompanyForm extends Component {
   }
 }
 
-export default CompanyForm;
+const mapDispatchToProps = dispatch => {
+  return {
+    createCompany: companyData =>
+      dispatch(actionTypes.createCompany(companyData))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(CompanyForm);

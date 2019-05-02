@@ -5,6 +5,7 @@
 @import "partitions/deals";
 @import "partitions/companyForm";
 @import "partitions/dealProgressLists";
+@import "partitions/formFields";
 
 * {
   margin: 0;
@@ -31,10 +32,43 @@ a {
   font-weight: 600;
   padding: 12px 24px 12px 24px;
   border-radius: 3px;
+  color: #fff;
+  cursor: pointer;
 
   &:hover {
     background: lighten($tertiary-color, 5%);
     @include fastEaseOut;
+  }
+}
+
+.submit-button {
+  position: absolute;
+  bottom: 10px;
+  right: 24px;
+  background: $tertiary-color;
+  border: none;
+  color: #fff;
+  height: 40px;
+  width: 100px;
+  padding: 0 30px 0 30px;
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten($tertiary-color, 5%);
+    @include fastEaseOut;
+  }
+
+  &:active {
+    box-shadow: inset 0px 0px 5px darken($tertiary-color, 20%);
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
   }
 }
 

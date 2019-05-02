@@ -17,8 +17,7 @@ const pool = server.getPool();
           res.status(404).send("No companies found.");
         }
       });
-    // Query params not passed
-    } else {
+    } else { // If Query params not passed
     pool.query("SELECT * FROM companies", function(error, results, fields) {
       if (error) {throw error}
       if (results.length > 0) {
@@ -131,8 +130,8 @@ router.delete("/api/deals/:id", (req, res) => {
   });
 });
 
-/* PUT This endpoint allows you to edit and field for any indidual company. If the company
-  is not edited than it will return a 404 error */
+/* PUT This endpoint allows you to edit the company with the supplied companyId. If the supplied
+  companyId is not in the database it will return a 404 error */
 
 router.put("/api/companies/:id", (req, res) => {
   const companyId = parseInt(req.params.id);
@@ -141,38 +140,39 @@ router.put("/api/companies/:id", (req, res) => {
     logoUrl = '${req.body.logoUrl}',
     city = '${req.body.city}',
     state = '${req.body.state}',
-    updatedDate = '${req.body.updatedDate}'
+    updatedDate = UNIX_TIMESTAMP()
     WHERE companyId = ?`
   pool.query(sql, companyId, function(error, results, fields){
     if (error) throw error;
     if (results.affectedRows !== 0) {
       res.json(results);
     } else {
-      res.status(404).send("The company was not edited");
+      res.status(404).send("That companyId is not in the database");
     }
   });
 });
 
-/*PUT This endpoint allows you to edit a field for any deal. If the deal
-  is not edited than it will return a 404 error */
-  router.put("/api/deals/:id", (req, res) => {
-    const dealId = parseInt(req.params.id);
-    const sql = `UPDATE deals SET
-      dealName = '${req.body.dealName}',
-      stage = '${req.body.stage}',
-      amount = '${req.body.amount}',
-      closeDate = '${req.body.closeDate}',
-      companyId = '${req.body.companyId}'
-      WHERE dealId = ?`
-    pool.query(sql, dealId, function(error, results, fields){
-      if (error) throw error;
-      if (results.affectedRows !== 0) {
-        res.json(results);
-      } else {
-        res.status(404).send("The deal was not edited");
-      }
-    });
+/* PUT This endpoint allows you to edit the deal with the supplied dealId. If the supplied
+  dealId is not in the database it will return a 404 error */
+
+router.put("/api/deals/:id", (req, res) => {
+  const dealId = parseInt(req.params.id);
+  const sql = `UPDATE deals SET
+    dealName = '${req.body.dealName}',
+    stage = '${req.body.stage}',
+    amount = '${req.body.amount}',
+    closeDate = '${req.body.closeDate}',
+    companyId = '${req.body.companyId}'
+    WHERE dealId = ?`
+  pool.query(sql, dealId, function(error, results, fields){
+    if (error) throw error;
+    if (results.affectedRows !== 0) {
+      res.json(results);
+    } else {
+      res.status(404).send("That dealId is not in the database");
+    }
   });
+});
 
 /* POST This endpoint inserts a new deal into the database.  The deal info
    must be supplied in the body of the request in JSON format.  It returns the body of the
