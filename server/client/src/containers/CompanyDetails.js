@@ -7,7 +7,7 @@ class CompanyDetails extends Component {
   onDelete(e) {
     console.log('delete')
     this.props.deleteCompanyById(e)
-    
+    this.props.detailClick()
   }
 
   render() {
@@ -33,7 +33,7 @@ class CompanyDetails extends Component {
                 <p>{city}, {state} </p>
               </div>
               <div className="form-footer-container">
-              <input type="submit" value="delete" detailClick={detailClick} style={{'background': 'red', 'color': 'white'}} onClick={() => this.onDelete(companyId)}/>
+              <input type="submit" value="delete" style={{'background': 'red', 'color': 'white'}} onClick={() => this.onDelete(companyId)}/>
                 <SubmitButton formClick={detailClick} />
               </div>
             </div>
