@@ -109,7 +109,13 @@ router.put("/api/companies/:id", (req, res) => {
   pool.query(sql, companyId, function(error, results, fields){
     if (error) throw error;
     if (results.affectedRows !== 0) {
-      res.json(results);
+      const returnInfo = `SELECT * from companies where companyId = ${companyId}`
+      pool.query(returnInfo, function(error, results, fields) {
+        if (error) throw error;
+        if(results){
+        res.json(results);
+      }
+    })
     } else {
       res.status(404).send("That companyId is not in the database");
     }
@@ -126,7 +132,15 @@ router.delete("/api/companies/:id", (req, res) => {
     if (error) throw error;
     // Check for no results.
     if (results.affectedRows !== 0) {
-      res.json(results);
+      const deleteRelatedDeals = `DELETE FROM deals WHERE companyId = ${companyId}`
+      pool.query(deleteRelatedDeals, function(error, results, fields) {
+        if (error) throw error;
+        if(results.affectedRows !== 0){
+        res.json(`Company with ID of ${companyId} and all associated deals have been deleted`);
+      } else {
+        res.json(`Company with ID of ${companyId} has been deleted`);
+      }
+    })
     } else {
       res.status(404).send("That companyId is not in the database");
     }
