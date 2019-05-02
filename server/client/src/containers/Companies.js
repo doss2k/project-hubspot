@@ -40,13 +40,12 @@ class Companies extends Component {
             className="company-grid-row company-grid-items"
             key={company.companyId}
           >
-            <div className="grid-title-items">
+            <div className="grid-title-items" onClick={() => this.detailClick(company.companyId)}>
               <div className="grid-logo-and-name-container">
                 <img
                   src={company.logoUrl}
                   style={{ width: "20px" }}
                   alt="company logo"
-                  onClick={() => this.detailClick(company.companyId)}
                 />
                 <div className="text-link company-grid-name">
                   {company.companyName}

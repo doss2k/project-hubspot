@@ -1,13 +1,21 @@
 import React, { Component } from 'react';
-import { Link } from "react-router-dom";
+import SubmitButton from "./SubmitButton";
+import { connect } from "react-redux";
+import * as actionTypes from "../actions";
 
-export default class CompanyDetails extends Component {
+class CompanyDetails extends Component {
+  onDelete(e) {
+    console.log('delete')
+    this.props.deleteCompanyById(e)
+    
+  }
+
   render() {
     const { isActive, detailClick } = this.props;
     if (!this.props.company) {
       return <div>Please select a company</div>
     }
-    const { companyName, logoUrl, city, state } = this.props.company[0]
+    const { companyName, logoUrl, city, state, companyId } = this.props.company[0]
     return (
 
       <React.Fragment>
@@ -21,8 +29,12 @@ export default class CompanyDetails extends Component {
                 </div>
               </div>
               <div className="form-field-container">
-                <img src={logoUrl} />
-              
+                <img src={logoUrl} style={{ 'width': '150px', 'height':'150px', 'overflow': 'hidden', 'borderRadius': '50%' }} />
+                <p>{city}, {state} </p>
+              </div>
+              <div className="form-footer-container">
+              <input type="submit" value="delete" detailClick={detailClick} style={{'background': 'red', 'color': 'white'}} onClick={() => this.onDelete(companyId)}/>
+                <SubmitButton formClick={detailClick} />
               </div>
             </div>
             </div>
@@ -32,3 +44,15 @@ export default class CompanyDetails extends Component {
     )
   }
 }
+
+const mapDispatchToProps = dispatch => {
+  return {
+    deleteCompanyById: company =>
+      dispatch(actionTypes.deleteCompanyById(company))
+  };
+};
+
+export default connect(
+  null,
+  mapDispatchToProps
+)(CompanyDetails);
