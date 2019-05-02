@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
-import dnddata from '../static/sampleData/dnddata'
+import { connect } from 'react-redux'
+// import dnddata from '../static/sampleData/dnddata'
 import StageColumn from './StageColumn'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Button from './Button'
 import DealsForm from './DealsForm'
 
+import * as actionTypes from '../actions/';
+
 export class Deals extends Component {
-  state = dnddata
+  state = {
+    stageOrder: ['Initiated', 'Qualified', 'Contract Sent', 'Closed Won', 'Closed Lost']
+  }
+
+  componentDidMount() {
+    this.props.getAllDeals();
+    this.props.getDealPosition();
+  }
 
   onDragEnd = result => {
     const { destination, source, draggableId } = result
@@ -45,7 +55,7 @@ export class Deals extends Component {
       }
 
       this.setState(newState)
-      return
+      return;
     }
 
     const startDealIds = [...startingStage.dealIds]
@@ -109,4 +119,18 @@ export class Deals extends Component {
   }
 }
 
-export default Deals
+const mapStateToProps = state => {
+  return {
+    deals: state.deals,
+    stages: state.stages
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllDeals: () => dispatch(actionTypes.getAllDeals()),
+    getDealPosition: () => dispatch(actionTypes.getDealPosition())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Deals);
