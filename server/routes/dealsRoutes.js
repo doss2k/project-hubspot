@@ -45,11 +45,18 @@ router.post("/api/deals", (req, res) => {
     "${req.body.amount}",
     "${req.body.createdDate}",
     "${req.body.closeDate}",
-    "${req.body.companyId}")`
+    "${req.body.companyId}",
+    "${req.body.stageOrder}")`
   pool.query(sql, function(error, results, fields) {
     if (error) throw error;
     if (results) {
-      res.json(req.body);
+      const returnInfo = `SELECT * FROM deals WHERE dealId = ${results.insertId}`
+      pool.query(returnInfo, function(error, results, fields) {
+        if (error) throw error;
+        if(results){
+        res.json(results);
+      }
+    })
     } else {
       res.status(404).send("Deal was not added");
     }
@@ -75,7 +82,13 @@ router.put("/api/deals/:id", (req, res) => {
   pool.query(sql, dealId, function(error, results, fields){
     if (error) throw error;
     if (results.affectedRows !== 0) {
-      res.json(results);
+      const returnInfo = `SELECT * FROM deals WHERE dealId = ${dealId}`
+      pool.query(returnInfo, function(error, results, fields) {
+        if (error) throw error;
+        if(results){
+        res.json(results);
+      }
+    })
     } else {
       res.status(404).send("That dealId is not in the database");
     }
@@ -92,7 +105,7 @@ router.delete("/api/deals/:id", (req, res) => {
     if (error) throw error;
     // Check for no results.
     if (results.affectedRows !== 0) {
-      res.json(results);
+      res.json(`Deal with ID of ${dealId} has been deleted`);
     } else {
       res.status(404).send("That dealId is not in the database");
     }
