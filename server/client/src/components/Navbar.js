@@ -1,6 +1,6 @@
 import React from "react";
 import { Link } from "react-router-dom";
-import Image from "../static/images/axon_logo.png";
+import Image from "../static/images/branding/logo_png_med.png";
 
 export default function Navbar() {
   return (
