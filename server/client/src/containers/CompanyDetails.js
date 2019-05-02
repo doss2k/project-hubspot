@@ -11,6 +11,7 @@ class CompanyDetails extends Component {
   onDelete(e) {
     this.props.deleteCompanyById(e)
     this.props.detailClick()
+    window.location.reload()
   }
 
   editMode(e) {
@@ -19,28 +20,30 @@ class CompanyDetails extends Component {
   }
 
   renderDeals() {
-    return this.props.company[1].map(deal => {
-      return (
-        <div
-          className="company-grid-row company-grid-items"
-          key={deal.dealId}
-        >
-          <div className="grid-title-items">
-            <div className="grid-logo-and-name-container">
-              <div className="text-link company-grid-name">
-                {deal.dealName}
+    if (this.props.company) {
+      return this.props.company[1].map(deal => {
+        return (
+          <div
+            className="company-grid-row company-grid-items"
+            key={deal.dealId}
+          >
+            <div className="grid-title-items">
+              <div className="grid-logo-and-name-container">
+                <div className="text-link company-grid-name">
+                  {deal.dealName}
+                </div>
               </div>
             </div>
+            <div className="grid-title-items">{deal.stage}</div>
+            <div className="grid-title-items">{formatter.format(deal.amount)}</div>
           </div>
-          <div className="grid-title-items">{deal.stage}</div>
-          <div className="grid-title-items">{formatter.format(deal.amount)}</div>
-        </div>
-      );
-    })
+        );
+      })
+    }
   }
 
   render() {
-    const { isActive, detailClick, formClick } = this.props;
+    const { isActive, detailClick, detailExit } = this.props;
     if (!this.props.company) {
       return <div>Please select a company</div>
     }
@@ -55,7 +58,7 @@ class CompanyDetails extends Component {
                 <div className="form-header">
                   <div className="form-name">{companyName}</div>
                   <div className="fas fa-pencil-alt" style={{'margin': "5px"}} onClick={() => this.editMode(this.props.company[0])}/>
-                  <div className="fas fa-times" onClick={detailClick} />
+                  <div className="fas fa-times" onClick={detailExit} />
                 </div>
               </div>
               <div className="form-field-container">
