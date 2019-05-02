@@ -55,3 +55,17 @@ export const sortCompanies = (field, sort) => {
     payload: request
   }
 }
+
+export const editCompany = (companyId, companyData) => {
+  const request = axios({
+    method: 'put',
+    url: `/api/companies/${companyId}`,
+    headers: CORS_HEADERS,
+    data: companyData
+  });
+  return {
+    type: actionTypes.EDIT_COMPANY,
+    payload: request
+  }
+}
+
