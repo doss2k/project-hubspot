@@ -95,7 +95,7 @@ export class Deals extends Component {
         <DealsForm />
         <DragDropContext onDragEnd={this.onDragEnd}>
           <div className="deal-grid-container">
-            {this.state.stageOrder.map(stageId => {
+            {/* {this.state.stageOrder.map(stageId => {
               const stage = this.state.stages[stageId]
               const deals = stage.dealIds.map(
                 dealId => this.state.deals[dealId]
@@ -111,7 +111,7 @@ export class Deals extends Component {
                   amount={amount}
                 />
               )
-            })}
+            })} */}
           </div>
         </DragDropContext>
       </React.Fragment>
@@ -121,8 +121,8 @@ export class Deals extends Component {
 
 const mapStateToProps = state => {
   return {
-    deals: state.deals,
-    stages: state.stages
+    deals: state.dealsReducer.deals,
+    stages: state.dealsReducer.stages
   }
 }
 

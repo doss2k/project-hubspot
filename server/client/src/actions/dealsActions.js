@@ -3,10 +3,10 @@ import axios from 'axios'
 const CORS_HEADERS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, X-Authentication" };
 
 export const getAllDeals = () => {
-  const request = axios.get('http://localhost:8000/api/deals', {
+  // change the url back please and thank you
+  const request = axios.get('https://project-hubspot.herokuapp.com/api/deals', {
     headers: CORS_HEADERS
   })
-
   return {
     type: actionTypes.GET_ALL_DEALS,
     payload: request
