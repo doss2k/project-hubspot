@@ -51,7 +51,7 @@ export const sortCompanies = (field, sort) => {
     headers: CORS_HEADERS
   });
   return {
-    type: actionTypes.SORT_COMPANIES,
+    type: actionTypes.GET_ALL_COMPANIES,
     payload: request
   }
 }
