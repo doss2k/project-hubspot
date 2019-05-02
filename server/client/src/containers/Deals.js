@@ -32,8 +32,8 @@ export class Deals extends Component {
       return
     }
 
-    const startingStage = this.state.stages[source.droppableId]
-    const endingStage = this.state.stages[destination.droppableId]
+    const startingStage = this.props.stages[source.droppableId]
+    const endingStage = this.props.stages[destination.droppableId]
 
     if (startingStage === endingStage) {
       const newDealIds = [...startingStage.dealIds]
@@ -47,14 +47,15 @@ export class Deals extends Component {
       }
 
       const newState = {
-        ...this.state,
+        ...this.props,
         stages: {
-          ...this.state.stages,
+          ...this.props.stages,
           [newStage.id]: newStage
         }
       }
 
-      this.setState(newState)
+      // this.setState(newState)
+      this.setDealPosition(newState);
       return;
     }
 
@@ -73,15 +74,16 @@ export class Deals extends Component {
     }
 
     const newState = {
-      ...this.state,
+      ...this.props,
       stages: {
-        ...this.state.stages,
+        ...this.props.stages,
         [newStartingStage.id]: newStartingStage,
         [newEndingStage.id]: newEndingStage
       }
     }
 
-    this.setState(newState)
+    // this.setState(newState)
+    this.setDealPosition(newState);
   }
 
   render() {
@@ -95,10 +97,10 @@ export class Deals extends Component {
         <DealsForm />
         <DragDropContext onDragEnd={this.onDragEnd}>
           <div className="deal-grid-container">
-            {/* {this.state.stageOrder.map(stageId => {
-              const stage = this.state.stages[stageId]
+            {this.state.stageOrder.map(stageId => {
+              const stage = this.props.stages[stageId]
               const deals = stage.dealIds.map(
-                dealId => this.state.deals[dealId]
+                dealId => this.props.deals[dealId]
               )
               const amount = deals.reduce((total, deal) => {
                 return (total += deal.amount)
@@ -111,7 +113,7 @@ export class Deals extends Component {
                   amount={amount}
                 />
               )
-            })} */}
+            })}
           </div>
         </DragDropContext>
       </React.Fragment>
@@ -129,7 +131,8 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getAllDeals: () => dispatch(actionTypes.getAllDeals()),
-    getDealPosition: () => dispatch(actionTypes.getDealPosition())
+    getDealPosition: () => dispatch(actionTypes.getDealPosition()),
+    setDealPosition: newState => dispatch(actionTypes.setDealPosition(newState))
   }
 }
 

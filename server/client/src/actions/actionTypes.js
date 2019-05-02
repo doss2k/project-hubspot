@@ -6,6 +6,7 @@ export const DELETE_COMPANY_BY_ID = 'DELETE_COMPANY_BY_ID';
 
 export const GET_ALL_DEALS = 'GET_ALL_DEALS';
 export const GET_DEAL_POSITION = 'GET_DEAL_POSITION';
+export const SET_DEAL_POSITION = 'SET_DEAL_POSITION';
 export const GET_DEAL_BY_ID = 'GET_DEAL_BY_ID';
 export const CREATE_DEAL = 'CREATE_DEAL';
 export const DELETE_DEAL_BY_ID = 'DELETE_DEAL_BY_ID';
