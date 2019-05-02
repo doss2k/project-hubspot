@@ -11,21 +11,18 @@ let moment = require("moment");
 class Companies extends Component {
   state = {
     showForm: false
-  }
+  };
 
   // As soon as component mounts make call to redux to fetch all companies
   componentDidMount() {
     this.props.getAllCompanies();
   }
 
-  formClick = () => {
-    console.log('CLICK!')
-    if (!this.state.showMenu) {
-      this.setState({showForm: true});
-    } else {
-      this.setState({ showForm: false})
-    }
-  }
+  formClick = e => {
+    console.log(this.state);
+    this.setState({ showForm: !this.state.showForm });
+    console.log(this.state);
+  };
 
   //when header is clicked, sort in ascending order
 
@@ -68,10 +65,13 @@ class Companies extends Component {
   render() {
     return (
       <React.Fragment>
-        <CompanyForm isActive={this.state.showForm} formClick={this.formClick}/>
+        <CompanyForm
+          isActive={this.state.showForm}
+          formClick={this.formClick}
+        />
         <div className="header-div">
           <h2 onClick={this.cComp}>Companies</h2>
-          <Button title={"Create Company"} route={"/"} />
+          <Button title={"Create Company"} formClick={this.formClick} />
         </div>
         <div className="company-grid-container">
           <div className="company-grid-row company-grid-header">
@@ -131,10 +131,9 @@ const mapStateToProps = state => {
 const mapDispatchToProps = dispatch => {
   return {
     getAllCompanies: () => dispatch(actionTypes.getAllCompanies()),
-    createCompany: (formData) => dispatch(actionTypes.createCompany(formData))
+    createCompany: formData => dispatch(actionTypes.createCompany(formData))
   };
 };
-
 
 export default connect(
   mapStateToProps,
