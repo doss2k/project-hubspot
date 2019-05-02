@@ -69,7 +69,7 @@ router.get("/api/companies/:id", (req, res) => {
       if (error) throw error;
       finalResponse.push(results);
       // Check for no results.
-      if (results.length > 0) {
+      if (results.length > 0 || finalResponse) {
         if (finalResponse.length == 2) {
           res.json(finalResponse);
         }

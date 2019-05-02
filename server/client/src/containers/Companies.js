@@ -30,6 +30,10 @@ class Companies extends Component {
     this.setState({ showDetails: !this.state.showDetails })
   }
 
+  detailExit = () => {
+    this.setState({ showDetails: !this.state.showDetails })
+  }
+
   //when header is clicked, sort in ascending order
 
   renderCompanies() {
@@ -79,6 +83,7 @@ class Companies extends Component {
           isActive={this.state.showDetails}
           detailClick={this.detailClick}
           formClick={this.formClick}
+          detailExit={this.detailExit}
           company={this.props.company}
         />
         <div className="header-div">
