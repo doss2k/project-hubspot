@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { Link } from "react-router-dom";
 import { connect } from "react-redux";
 import * as actionTypes from "../actions";
 
@@ -34,7 +33,9 @@ export class CompanyForm extends Component {
   }
 
   render() {
+    const { isActive, formClick } = this.props;
     return (
+      <div className={isActive ? "show-menu" : ""}>
       <React.Fragment>
         <div className="mask show" />
         <div className="form-container show">
@@ -42,7 +43,7 @@ export class CompanyForm extends Component {
             <div className="form-header-container">
               <div className="form-header">
                 <div className="form-name">create company</div>
-                <div className="fas fa-times" />
+                <div className="fas fa-times" onClick={formClick}  />
               </div>
             </div>
             <form className="form-field-container" onSubmit={this.onFormSubmit}>
@@ -91,6 +92,7 @@ export class CompanyForm extends Component {
         </div>
         </div>
       </React.Fragment>
+      </div>
     );
   }
 }

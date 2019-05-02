@@ -9,8 +9,8 @@ import CompanyDetails from "./CompanyDetails";
 let moment = require("moment");
 
 class Companies extends Component {
-  constructor(props) {
-    super(props);
+  state = {
+    showForm: false
   }
 
   // As soon as component mounts make call to redux to fetch all companies
@@ -18,14 +18,13 @@ class Companies extends Component {
     this.props.getAllCompanies();
   }
 
-  cComp = () => {
-    console.log("hiii")
-    this.props.createCompany({
-      "companyName": "MONOIS",
-      "logoUrl": "testasdf stage",
-      "city": "dfasdf",
-      "state": "fasdfasdf"
-    })
+  formClick = () => {
+    console.log('CLICK!')
+    if (!this.state.showMenu) {
+      this.setState({showForm: true});
+    } else {
+      this.setState({ showForm: false})
+    }
   }
 
   //when header is clicked, sort in ascending order
@@ -69,7 +68,7 @@ class Companies extends Component {
   render() {
     return (
       <React.Fragment>
-        <CompanyForm />
+        <CompanyForm isActive={this.state.showForm} formClick={this.formClick}/>
         <div className="header-div">
           <h2 onClick={this.cComp}>Companies</h2>
           <Button title={"Create Company"} route={"/"} />
