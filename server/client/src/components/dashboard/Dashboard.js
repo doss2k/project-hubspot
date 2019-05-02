@@ -1,7 +1,8 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import HighchartsReact from 'highcharts-react-official';
-import Highcharts from 'highcharts';
+import React, { Component } from "react";
+import { render } from "react-dom";
+import HighchartsReact from "highcharts-react-official";
+import Highcharts from "highcharts";
+import TestInfoBlock from "./TestInfoBlock";
 
 function formatDate(d) {
   let newDate = d * 1000;
@@ -16,36 +17,36 @@ class Dashboard extends Component {
       // To avoid unnecessary update keep all options in the state.
       chartOptions: {
         chart: {
-          type: 'area',
-          backgroundColor: '#f4f8fa'
+          type: "area",
+          backgroundColor: "#fff"
         },
         xAxis: {
-          type: 'datetime',
+          type: "datetime",
           dateTimeLabelFormats: {
             // don't display the dummy year
             month: "%b '%y",
-            year: '%b'
+            year: "%b"
           },
           title: {
-            text: 'Date'
+            text: "Date"
           }
         },
         yAxis: {
           title: {
-            text: 'Revenue'
+            text: "Revenue"
           },
           min: 0
         },
         title: {
-          text: 'Revenue Forecast'
+          text: "Revenue Forecast"
         },
         subtitle: {
-          text: 'Sean really likes ponies'
+          text: "Sean really likes ponies"
         },
         series: [
           {
-            name: 'Closed',
-            color: '#2eb347',
+            name: "Closed",
+            color: "#2eb347",
             fillOpacity: 0.4,
 
             data: [
@@ -64,8 +65,8 @@ class Dashboard extends Component {
             ]
           },
           {
-            name: 'Forecast',
-            color: '#2c2c2c',
+            name: "Forecast",
+            color: "#2c2c2c",
 
             fillOpacity: 0.4,
             data: [
@@ -113,13 +114,23 @@ class Dashboard extends Component {
 
     return (
       <React.Fragment>
+        <div className="background-layer" />
+        <div className="background-highlight-layer" />
         <div className="header-div">
           <h2>Dashboard</h2>
         </div>
-        <div className="chart-card">
+        <div className="chart-container">
           <HighchartsReact highcharts={Highcharts} options={chartOptions} />
         </div>
-        <div className="info-container">
+        <div className="info-graphic-container">
+          <TestInfoBlock />
+          <TestInfoBlock />
+          <TestInfoBlock />
+          <TestInfoBlock />
+          <TestInfoBlock />
+          <TestInfoBlock />
+        </div>
+        {/* <div className="info-container">
           <div className="info-card">
             <div className="avgTimeToClose">
               <p>30</p>
@@ -156,7 +167,7 @@ class Dashboard extends Component {
               <p>Top Client</p>
             </div>
           </div>
-        </div>
+        </div> */}
       </React.Fragment>
     );
   }
