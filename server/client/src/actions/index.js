@@ -10,5 +10,6 @@ export {
   getAllDeals,
   getDealById,
   createDeal,
-  deleteDealById
+  deleteDealById,
+  getDealPosition
 } from './dealsActions';
