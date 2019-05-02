@@ -44,14 +44,14 @@ router.get("/api/calc/avgtimetoclose", (req, res) => {
       res.json(results[0]);
   });
 });
-
+// now going to return just top client, will need change endpoint name 
 router.get("/api/calc/topthreeclients", (req, res) => {
   const sql = `select sum(deals.amount) AS Total, companies.logoUrl, companies.companyName
   from deals
   INNER JOIN companies ON companies.companyId = deals.companyId
   GROUP BY dealId
   ORDER BY Total DESC
-  LIMIT 3`;
+  LIMIT 1`;
   pool.query(sql, function(error, results, fields) {
     if (error) throw error;
       res.json(results);
