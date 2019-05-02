@@ -242,7 +242,7 @@ router.get("/api/calc/avgtimetoclose", (req, res) => {
 });
 
 router.get("/api/calc/topthreeclients", (req, res) => {
-  const sql = `select sum(deals.amount) AS Total, deals.dealId, companies.logoUrl, companies.companyName
+  const sql = `select sum(deals.amount) AS Total, companies.logoUrl, companies.companyName
   from deals
   INNER JOIN companies ON companies.companyId = deals.companyId
   GROUP BY dealId
