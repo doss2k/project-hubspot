@@ -21,17 +21,16 @@ export class CompanyForm extends Component {
   }
   //on submit, send POST request to the server
   onFormSubmit(e) {
+    console.log(this.state)
     e.preventDefault()
     this.props.createCompany(this.state)
     //reset form
-    window.location.reload()
     this.setState({
       companyName: '',
       logoUrl: '',
       city: '',
       state: ''
     })
-
   }
 
   render() {
@@ -79,7 +78,15 @@ export class CompanyForm extends Component {
               value={this.state.state}
               onChange={this.onInputChange}
             />
-            <button type="submit" value="Create Company" className="btn">Create Company</button>
+            <div className="form-footer-container">
+              <input
+                className="company-submit-button"
+                title={"Create Company"}
+                route={"/companies"}
+                type="submit"
+                value="submit"
+              />
+            </div>
           </form>
         </div>
         </div>

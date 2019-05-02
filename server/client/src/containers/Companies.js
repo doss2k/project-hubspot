@@ -72,7 +72,7 @@ class Companies extends Component {
         <CompanyForm />
         <div className="header-div">
           <h2 onClick={this.cComp}>Companies</h2>
-          <Button title={"Create Company"} />
+          <Button title={"Create Company"} route={"/"} />
         </div>
         <div className="company-grid-container">
           <div className="company-grid-row company-grid-header">
