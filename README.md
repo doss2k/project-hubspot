@@ -50,7 +50,7 @@ CREATE DATABASE IF NOT EXISTS projecthubspot;
 
 USE projecthubspot;
 
-CREATE TABLE IF NOT EXISTS Companies (
+CREATE TABLE IF NOT EXISTS companies (
   `companyId` INT auto_increment primary key unique not null,
   `companyName` VARCHAR(150) CHARACTER SET utf8,
   `logoUrl` VARCHAR(250) CHARACTER SET utf8,
@@ -59,7 +59,7 @@ CREATE TABLE IF NOT EXISTS Companies (
   `createdDate` INT,
   `updatedDate` INT
 );
-INSERT INTO Companies VALUES
+INSERT INTO companies VALUES
     (NULL,'IBM','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/ibm.png','Armonk','New York',1546562110,1556580910),
     (NULL,'Cisco','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/cisco.png','San Francisco','California',1486168510,1526945710),
     (NULL,'United Health','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/unitedhealth.png','Minnetonka','Minnesota',1426376110,1503704110),
@@ -71,26 +71,27 @@ INSERT INTO Companies VALUES
     (NULL,'Home Depot','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/homedepot.png','Atlanta','Georgia',1404776110,1471476910),
     (NULL,'State Farm Insurance','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/statefarm.png','Bloomington','Indiana',1494891310,1525563310);
     
-    CREATE TABLE IF NOT EXISTS Deals (
+    CREATE TABLE IF NOT EXISTS deals (
     `dealId` INT auto_increment primary key unique not null,
     `dealName` VARCHAR(150) CHARACTER SET utf8,
     `stage` VARCHAR(150) CHARACTER SET utf8,
     `amount` NUMERIC(12, 2),
     `createdDate` INT,
     `closeDate` INT,
-    `companyId` INT
+    `companyId` INT,
+    `stageOrder` INT
 );
-INSERT INTO Deals VALUES
-    (NULL,'State Farm Insurance','Initiated',100000.00,1524432669,1532298909,10),
-    (NULL,'Home Depot POS Machine Sales','Contract Sent',500000.00,1540503069,1544744109,9),
-    (NULL,'Boeing PC Sales','Closed Lost',780650.00,1532295069,1552570269,8),
-    (NULL,'Lowes POS Machine Sales','Qualified',1200450.00,1541698269,1548016269,7),
-    (NULL,'Exxon Mobil Automated Gas Pump Sales','Closed Won',34789000.00,1520984109,1542929709,6),
-    (NULL,'Costco CC Machine Sales','Closed Lost',12300.00,1517229309,1540816509,5),
-    (NULL,'Verizon Tablet Sales','Contract Sent',1560000.00,1576330269,1549215069,4),
-    (NULL,'United Health PC Sales','Closed Won',490450.00,1513773309,1533422109,3),
-    (NULL,'Cisco Router Sales','Initiated',3800650.00,1523140509,1536881709,2),
-    (NULL,'IBM Computer Sales','Qualified',1678450.00,1555097469,1556393469,1);
+INSERT INTO deals VALUES
+    (NULL,'State Farm Insurance','Initiated',100000.00,1524432669,1532298909,10,1),
+    (NULL,'Home Depot POS Machine Sales','Contract Sent',500000.00,1540503069,1544744109,9,1),
+    (NULL,'Boeing PC Sales','Closed Lost',780650.00,1532295069,1552570269,8,1),
+    (NULL,'Lowes POS Machine Sales','Qualified',1200450.00,1541698269,1548016269,7,1),
+    (NULL,'Exxon Mobil Automated Gas Pump Sales','Closed Won',34789000.00,1520984109,1542929709,6,1),
+    (NULL,'Costco CC Machine Sales','Closed Lost',12300.00,1517229309,1540816509,5,2),
+    (NULL,'Verizon Tablet Sales','Contract Sent',1560000.00,1576330269,1549215069,4,2),
+    (NULL,'United Health PC Sales','Closed Won',490450.00,1513773309,1533422109,3,2),
+    (NULL,'Cisco Router Sales','Initiated',3800650.00,1523140509,1536881709,2,2),
+    (NULL,'IBM Computer Sales','Qualified',1678450.00,1555097469,1556393469,1,2);
 ```
 </details>
 
