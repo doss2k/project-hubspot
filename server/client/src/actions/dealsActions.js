@@ -14,7 +14,7 @@ export const getAllDeals = () => {
 }
 
 export const getDealPosition = () => {
-  const request = axios.get('/api/dealposition', { headers: CORS_HEADERS })
+  const request = axios.get('/api/dealsposition', { headers: CORS_HEADERS })
 
   return {
     type: actionTypes.GET_DEAL_POSITION,

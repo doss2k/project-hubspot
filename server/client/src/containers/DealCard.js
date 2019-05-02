@@ -12,7 +12,7 @@ export class DealCard extends Component {
     });
 
     return (
-      <Draggable draggableId={this.props.deal.id} index={this.props.index}>
+      <Draggable draggableId={this.props.deal.dealId} index={this.props.index}>
         {(provided, snapshot) => (
           <Container
             {...provided.draggableProps}

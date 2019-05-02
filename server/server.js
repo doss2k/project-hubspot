@@ -14,12 +14,12 @@ module.exports = {
   getPool: function () {
     if (pool) return pool;
     // if (process.env.NODE_ENV === 'production') {
-    pool = mysql.createPool({
-      host: "us-cdbr-iron-east-02.cleardb.net",
-      user: "b3a680a1274e8c",
-      password: "926ce534",
-      database: "heroku_4d0bb8f5ad72994"
-    });
+      pool = mysql.createPool({
+        host: "us-cdbr-iron-east-02.cleardb.net",
+        user: "b3a680a1274e8c",
+        password: "926ce534",
+        database: "heroku_4d0bb8f5ad72994"
+      });
     // } else {
     //   pool = mysql.createPool({
     //     host: "localhost",
