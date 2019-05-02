@@ -91,12 +91,12 @@ export class DealsForm extends Component {
             value={this.state.closeDate}
             onChange={this.onInputChange}
           />
-          <p className="startDateSelect">Select Start Date</p>
+          <p className="createDateSelect">Select Create Date</p>
           <input
-            className="form-control startDateSelect"
+            className="form-control createDateSelect"
             type="date"
             value="2019-05-14"
-            value={this.state.startDate}
+            value={this.state.createdDate}
             onChange={this.onInputChange}
           />
           <p className="companySelect">Select Company</p>
