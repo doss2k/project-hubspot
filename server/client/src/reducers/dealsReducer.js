@@ -22,6 +22,13 @@ export const dealsReducer = (state = {}, action) => {
         stages: normalizedStages
       }
 
+    case actionTypes.SET_DEAL_POSITION:
+      return {
+        ...state,
+        deals: { ...action.payload.deals },
+        stages: { ...action.payload.stages }
+      }
+
     case actionTypes.GET_DEAL_BY_ID:
       return {
         ...state,

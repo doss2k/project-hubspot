@@ -60,7 +60,6 @@ export class Deals extends Component {
         }
       }
 
-      // this.setState(newState)
       this.props.setDealPosition(newState);
       return;
     }
@@ -88,7 +87,6 @@ export class Deals extends Component {
       }
     }
 
-    // this.setState(newState)
     this.props.setDealPosition(newState);
   }
 
