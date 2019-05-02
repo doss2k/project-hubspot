@@ -10,7 +10,8 @@ let moment = require("moment");
 
 class Companies extends Component {
   state = {
-    showForm: false
+    showForm: false,
+    showDetails: false
   };
 
   // As soon as component mounts make call to redux to fetch all companies
@@ -18,11 +19,15 @@ class Companies extends Component {
     this.props.getAllCompanies();
   }
 
-  formClick = e => {
-    console.log(this.state);
+  //when create company is clicked, toggle show form
+  formClick = () => {
     this.setState({ showForm: !this.state.showForm });
-    console.log(this.state);
   };
+
+  //when company details is clicked, toggle show details
+  detailClick = () => {
+    this.setState({ showDetails: !this.state.showDetails })
+  }
 
   //when header is clicked, sort in ascending order
 
@@ -68,6 +73,10 @@ class Companies extends Component {
         <CompanyForm
           isActive={this.state.showForm}
           formClick={this.formClick}
+        />
+        <CompanyDetails
+          isActive={this.state.showDetails}
+          detailClick={this.detailClick}
         />
         <div className="header-div">
           <h2 onClick={this.cComp}>Companies</h2>
