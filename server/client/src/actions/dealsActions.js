@@ -4,7 +4,7 @@ const CORS_HEADERS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow
 
 export const getAllDeals = () => {
   // change the url back please and thank you
-  const request = axios.get('http://localhost:8000/api/deals', {
+  const request = axios.get('/api/deals', {
     headers: CORS_HEADERS
   })
   return {
@@ -14,7 +14,7 @@ export const getAllDeals = () => {
 }
 
 export const getDealPosition = () => {
-  const request = axios.get('http://localhost:8000/api/dealsposition', { headers: CORS_HEADERS })
+  const request = axios.get('/api/dealposition', { headers: CORS_HEADERS })
 
   return {
     type: actionTypes.GET_DEAL_POSITION,
@@ -32,7 +32,7 @@ export const setDealPosition = newState => {
 export const createDeal = (dealData) => {
   const request = axios({
     method: 'post',
-    url: 'http://localhost:8000/api/deals',
+    url: '/api/deals',
     headers: CORS_HEADERS,
     data: dealData
   })
@@ -44,7 +44,7 @@ export const createDeal = (dealData) => {
 }
 
 export const getDealById = (dealId) => {
-  const request = axios.get(`http://localhost:8000/api/deals/${dealId}`, {
+  const request = axios.get(`/api/deals/${dealId}`, {
     headers: CORS_HEADERS
   })
 
@@ -55,7 +55,7 @@ export const getDealById = (dealId) => {
 }
 
 export const deleteDealById = (dealId) => {
-  const request = axios.delete(`http://localhost:8080/api/deals/${dealId}`)
+  const request = axios.delete(`/api/deals/${dealId}`)
   return {
     type: actionTypes.DELETE_DEAL_BY_ID,
     payload: request
