@@ -3,8 +3,8 @@ const app = express();
 const mysql = require("mysql");
 const bodyParser = require("body-parser");
 const cors = require("cors");
-const port = process.env.PORT || 8000;
 const path = require("path");
+const port = process.env.PORT || 8000;
 
 var pool;
 
@@ -32,12 +32,18 @@ module.exports = {
   }
 };
 
-const mainRoutes = require("./routes/main");
+const companiesRoutes = require("./routes/companiesRoutes");
+const dealsRoutes = require("./routes/dealsRoutes");
+const dealsBoardRoutes = require("./routes/dealsBoardRoutes");
+const dashboardRoutes = require("./routes/dashboardRoutes");
 
 app.use(cors());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({ extended: true }));
-app.use(mainRoutes);
+app.use(companiesRoutes);
+app.use(dealsRoutes);
+app.use(dealsBoardRoutes);
+app.use(dashboardRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets
