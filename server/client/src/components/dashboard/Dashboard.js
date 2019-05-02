@@ -4,6 +4,7 @@ import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
 import { connect } from 'react-redux';
 import * as actionTypes from '../../actions/index';
+import Chart from './Chart.js';
 
 
 function formatDate(d) {
@@ -129,9 +130,7 @@ class Dashboard extends Component {
         <div className="header-div">
           <h2>Dashboard</h2>
         </div>
-        <div className="chart-card">
-          <HighchartsReact highcharts={Highcharts} options={chartOptions} />
-        </div>
+       <Chart />
         <div className="info-container">
           <div className="info-card">
             <div className="avgTimeToClose">
