@@ -21,7 +21,6 @@ export class CompanyForm extends Component {
   }
   //on submit, send POST request to the server
   onFormSubmit(e) {
-    console.log(this.state);
     e.preventDefault();
     this.props.createCompany(this.state);
     //reset form
