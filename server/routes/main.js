@@ -89,12 +89,8 @@ router.delete("/api/companies/:id", (req, res) => {
 /* GET This endpoint gets all of the users associated deals.  If there are 
    no deals in the database it will return a 404 error. */
 
-router.get("/api/deals", (req, res) => {
-<<<<<<< HEAD
-  pool.query("SELECT *, dealId as id FROM deals", function(error, results, fields) {
-=======
-  pool.query("SELECT *, dealId as id FROM deals", function(error, results, fields) {  //, dealId as id
->>>>>>> master
+  router.get("/api/deals", (req, res) => {
+  pool.query("SELECT * FROM deals", function(error, results, fields) {
     if (error) throw error;
     res.json(results);
   });
