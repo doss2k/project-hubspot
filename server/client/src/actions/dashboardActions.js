@@ -7,7 +7,7 @@ export const getSuccessRate = () => {
     headers: CORS_HEADERS
   })
   return {
-    type: actionTypes.GET_ALL_DEALS,
+    type: actionTypes.GET_SUCCESS_RATE,
     payload: request
   }
 }
@@ -17,16 +17,17 @@ export const getDealsInProgress = () => {
     headers: CORS_HEADERS
   })
   return {
-    type: actionTypes.GET_ALL_DEALS,
+    type: actionTypes.DEALS_IN_PROGRESS,
     payload: request
   }
 }
+
 export const getAveragePerDeal = () => {
   const request = axios.get('http://localhost:8000/api/calc/dealsinprogress', {
     headers: CORS_HEADERS
   })
   return {
-    type: actionTypes.GET_ALL_DEALS,
+    type: actionTypes.GET_AVERAGE_REVENUE_PER_DEAL,
     payload: request
   }
 }
@@ -36,7 +37,7 @@ export const getTotalRevenueToDate = () => {
     headers: CORS_HEADERS
   })
   return {
-    type: actionTypes.GET_ALL_DEALS,
+    type: actionTypes.GET_TOTAL_REVENUE_TO_DATE,
     payload: request
   }
 }
@@ -46,7 +47,7 @@ export const getAverageTimeToClose = () => {
     headers: CORS_HEADERS
   })
   return {
-    type: actionTypes.GET_ALL_DEALS,
+    type: actionTypes.GET_AVERAGE_TIME_TO_CLOSE_DEAL,
     payload: request
   }
 }
@@ -56,7 +57,7 @@ export const getTopThreeClients = () => {
     headers: CORS_HEADERS
   })
   return {
-    type: actionTypes.GET_ALL_DEALS,
+    type: actionTypes.GET_TOP_THREE_CLIENTS,
     payload: request
   }
 }
