@@ -89,7 +89,7 @@ router.delete("/api/companies/:id", (req, res) => {
 /* GET This endpoint gets all of the users associated deals.  If there are 
    no deals in the database it will return a 404 error. */
 
-router.get("/api/deals", (req, res) => {
+  router.get("/api/deals", (req, res) => {
   pool.query("SELECT * FROM deals", function(error, results, fields) {
     if (error) throw error;
     res.json(results);
@@ -242,7 +242,7 @@ router.get("/api/calc/avgtimetoclose", (req, res) => {
 });
 
 router.get("/api/calc/topthreeclients", (req, res) => {
-  const sql = `select sum(deals.amount) AS Total, deals.dealId, companies.logoUrl, companies.companyName
+  const sql = `select sum(deals.amount) AS Total, companies.logoUrl, companies.companyName
   from deals
   INNER JOIN companies ON companies.companyId = deals.companyId
   GROUP BY dealId
@@ -290,6 +290,25 @@ router.get("/api/dealsposition/", (req, res) => {
     if (returnObject) {resultArray.push(returnObject)}
       res.json(resultArray);
   });
+});
+
+
+router.put("/api/dealsposition/", (req, res) => {
+  let sql = "";
+  let updatedJson = []
+  req.body.forEach(item => {
+    for (let i=0; i<item.dealId.length; i++) {
+      sql = `update deals set stageOrder=${i+1}, stage='${item.id}' where dealId=${item.dealId[i]};`
+      updatedJson.push({dealId: item.dealId[i],
+                        stageOrder: i+1, 
+                        stage: item.id
+                      })
+      pool.query(sql, function(error, results, fields) {
+        if (error) throw error;
+      })
+  }
+  });
+  res.json(updatedJson);
 });
 
 module.exports = router;
