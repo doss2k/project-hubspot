@@ -57,15 +57,26 @@ router.post("/api/companies", (req, res) => {
 
 router.get("/api/companies/:id", (req, res) => {
   const companyId = req.params.id;
-  const sql = "SELECT * FROM companies WHERE companyId = ?";
-  pool.query(sql, companyId, function(error, results, fields) {
-    if (error) throw error;
-    // Check for no results.
-    if (results.length > 0) {
-      res.json(results);
-    } else {
-      res.status(404).send("CompanyId not found.");
-    }
+  const sql1 = "SELECT * FROM companies WHERE companyId = ?";
+  const sql2 = `select deals.*
+                from companies
+                inner join deals on companies.companyId = deals.companyId
+                where companies.companyId = ?;`
+  const queries = [sql1, sql2]
+  const finalResponse = [];
+  queries.forEach(call => {
+    pool.query(call, companyId, function(error, results, fields) {
+      if (error) throw error;
+      finalResponse.push(results);
+      // Check for no results.
+      if (results.length > 0) {
+        if (finalResponse.length == 2) {
+          res.json(finalResponse);
+        }
+      } else {
+        res.status(404).send("CompanyId not found.");
+      }
+    });
   });
 });
 
@@ -262,7 +273,7 @@ router.get("/api/dealsposition/", (req, res) => {
   const objectTemplate = {
     id: "",
     title: "",
-    deadlId: []
+    dealId: []
   };
   const resultArray = [];
   let returnObject = false;
@@ -276,13 +287,13 @@ router.get("/api/dealsposition/", (req, res) => {
         returnObject = false;
       }
       if (result.stage == oldStage) {
-        returnObject.deadlId = returnObject.deadlId.concat(result.dealId)
+        returnObject.dealId = returnObject.dealId.concat(result.dealId)
       } else if (!returnObject) {
           returnObject = Object.assign({},objectTemplate)
           returnObject.id = result.stage;
           returnObject.title = result.stage;
         if (result.stage != oldStage) {
-          returnObject.deadlId = returnObject.deadlId.concat(result.dealId)
+          returnObject.dealId = returnObject.dealId.concat(result.dealId)
         }
         oldStage = result.stage;
       }
