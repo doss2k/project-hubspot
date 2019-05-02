@@ -39,6 +39,12 @@ export const companiesReducer = (state = initialState, action) => {
         companyDeleted: action.payload.data
       }
 
+    case actionTypes.SORT_COMPANIES:
+      return {
+        ...state,
+        companiesSorted: action.payload.data
+      }
+
     default:
       return state;
   }

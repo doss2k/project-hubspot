@@ -3,7 +3,8 @@ export {
   getAllCompanies,
   createCompany,
   getCompanyById,
-  deleteCompanyById
+  deleteCompanyById,
+  sortCompanies
 } from './companiesActions';
 
 export {
