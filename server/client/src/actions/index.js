@@ -3,7 +3,8 @@ export {
   getAllCompanies,
   createCompany,
   getCompanyById,
-  deleteCompanyById
+  deleteCompanyById,
+  sortCompanies
 } from './companiesActions';
 
 export {
@@ -11,5 +12,6 @@ export {
   getDealById,
   createDeal,
   deleteDealById,
-  getDealPosition
+  getDealPosition,
+  setDealPosition
 } from './dealsActions';
