@@ -1,12 +1,22 @@
 import React, { Component } from 'react'
-import dnddata from '../static/sampleData/dnddata'
+import { connect } from 'react-redux'
+// import dnddata from '../static/sampleData/dnddata'
 import StageColumn from './StageColumn'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Button from './Button'
 import DealsForm from './DealsForm'
 
+import * as actionTypes from '../actions/';
+
 export class Deals extends Component {
-  state = dnddata
+  state = {
+    stageOrder: ['Initiated', 'Qualified', 'Contract Sent', 'Closed Won', 'Closed Lost']
+  }
+
+  componentDidMount() {
+    this.props.getAllDeals();
+    this.props.getDealPosition();
+  }
 
   onDragEnd = result => {
     const { destination, source, draggableId } = result
@@ -45,7 +55,7 @@ export class Deals extends Component {
       }
 
       this.setState(newState)
-      return
+      return;
     }
 
     const startDealIds = [...startingStage.dealIds]
@@ -85,7 +95,7 @@ export class Deals extends Component {
         <DealsForm />
         <DragDropContext onDragEnd={this.onDragEnd}>
           <div className="deal-grid-container">
-            {this.state.stageOrder.map(stageId => {
+            {/* {this.state.stageOrder.map(stageId => {
               const stage = this.state.stages[stageId]
               const deals = stage.dealIds.map(
                 dealId => this.state.deals[dealId]
@@ -101,7 +111,7 @@ export class Deals extends Component {
                   amount={amount}
                 />
               )
-            })}
+            })} */}
           </div>
         </DragDropContext>
       </React.Fragment>
@@ -109,4 +119,18 @@ export class Deals extends Component {
   }
 }
 
-export default Deals
+const mapStateToProps = state => {
+  return {
+    deals: state.dealsReducer.deals,
+    stages: state.dealsReducer.stages
+  }
+}
+
+const mapDispatchToProps = dispatch => {
+  return {
+    getAllDeals: () => dispatch(actionTypes.getAllDeals()),
+    getDealPosition: () => dispatch(actionTypes.getDealPosition())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Deals);

@@ -10,7 +10,8 @@ let moment = require("moment");
 
 class Companies extends Component {
   state = {
-    showForm: false
+    showForm: false,
+    showDetails: false
   };
 
   // As soon as component mounts make call to redux to fetch all companies
@@ -18,11 +19,16 @@ class Companies extends Component {
     this.props.getAllCompanies();
   }
 
-  formClick = e => {
-    console.log(this.state);
+  //when create company is clicked, toggle show form
+  formClick = () => {
     this.setState({ showForm: !this.state.showForm });
-    console.log(this.state);
   };
+
+  //when company details is clicked, toggle show details
+  detailClick = (company) => {
+    this.props.getCompanyById(company)
+    this.setState({ showDetails: !this.state.showDetails })
+  }
 
   //when header is clicked, sort in ascending order
 
@@ -34,7 +40,7 @@ class Companies extends Component {
             className="company-grid-row company-grid-items"
             key={company.companyId}
           >
-            <div className="grid-title-items">
+            <div className="grid-title-items" onClick={() => this.detailClick(company.companyId)}>
               <div className="grid-logo-and-name-container">
                 <img
                   src={company.logoUrl}
@@ -68,6 +74,11 @@ class Companies extends Component {
         <CompanyForm
           isActive={this.state.showForm}
           formClick={this.formClick}
+        />
+        <CompanyDetails
+          isActive={this.state.showDetails}
+          detailClick={this.detailClick}
+          company={this.props.company}
         />
         <div className="header-div">
           <h2 onClick={this.cComp}>Companies</h2>
@@ -124,14 +135,16 @@ class Companies extends Component {
 
 const mapStateToProps = state => {
   return {
-    companies: state.companiesReducer.companies
+    companies: state.companiesReducer.companies,
+    company: state.companiesReducer.company
   };
 };
 
 const mapDispatchToProps = dispatch => {
   return {
     getAllCompanies: () => dispatch(actionTypes.getAllCompanies()),
-    createCompany: formData => dispatch(actionTypes.createCompany(formData))
+    createCompany: formData => dispatch(actionTypes.createCompany(formData)),
+    getCompanyById: company => dispatch(actionTypes.getCompanyById(company))
   };
 };
 

@@ -11,10 +11,12 @@ import reducers from "./reducers";
 // create redux store
 const storeWithMiddleware = applyMiddleware(promise)(createStore);
 const app = (
-  <Provider store={storeWithMiddleware(reducers)}>
+  <Provider store={storeWithMiddleware(reducers, window.__REDUX_DEVTOOLS_EXTENSION__ && window.__REDUX_DEVTOOLS_EXTENSION__())}>
     <App />
   </Provider>
 );
+
+
 
 ReactDOM.render(app, document.getElementById("root"));
 
