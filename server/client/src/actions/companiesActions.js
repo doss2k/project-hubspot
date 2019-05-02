@@ -37,12 +37,21 @@ export const createCompany = (formData) => {
 }
 
 export const deleteCompanyById = (companyId) => {
-  console.log(companyId)
   const request = axios.delete(`/api/companies/${companyId}`, {
     headers: CORS_HEADERS
   });
   return {
     type: actionTypes.DELETE_COMPANY_BY_ID,
+    payload: request
+  }
+}
+
+export const sortCompanies = (field, sort) => {
+  const request = axios.get(`/api/companies?field=${field}&sort=${sort}`, {
+    headers: CORS_HEADERS
+  });
+  return {
+    type: actionTypes.GET_ALL_COMPANIES,
     payload: request
   }
 }
