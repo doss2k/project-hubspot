@@ -9,14 +9,13 @@ export class StageColumn extends Component {
       style: 'currency',
       currency: 'USD'
     });
-
     return (
       <div className="deal-list-container">
         <div className="deal-header-container">
           <div className="deal-list-title">
             {this.props.stage.title}
             <span style={{ float: "right" }}>
-              {this.props.stage.dealIds.length}
+              {this.props.stage.dealId.length}
             </span>
           </div>
           <ul className={this.props.stage.title + "-deal-progress-list"}>
@@ -36,7 +35,7 @@ export class StageColumn extends Component {
               isDraggingOver={snapshot.isDraggingOver}
             >
               {this.props.deals.map((deal, index) => (
-                <DealCard key={deal.id} deal={deal} index={index} />
+                <DealCard key={deal.dealId} deal={deal} index={index} />
               ))}
               {provided.placeholder}
             </DealList>

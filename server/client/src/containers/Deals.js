@@ -5,17 +5,23 @@ import StageColumn from './StageColumn'
 import { DragDropContext } from 'react-beautiful-dnd'
 import Button from './Button'
 import DealsForm from './DealsForm'
+import { bindActionCreators } from 'redux';
 
-import * as actionTypes from '../actions/';
+import { getAllDeals, getDealPosition, setDealPosition } from '../actions/'
 
 export class Deals extends Component {
   state = {
-    stageOrder: ['Initiated', 'Qualified', 'Contract Sent', 'Closed Won', 'Closed Lost']
+    stageOrder: ['Initiated', 'Qualified', 'Contract Sent', 'Closed Won', 'Closed Lost'],
+    showForm: false
   }
 
   componentDidMount() {
     this.props.getAllDeals();
     this.props.getDealPosition();
+  }
+
+  formClick = () => {
+    this.setState({ showForm: !this.state.showForm })
   }
 
   onDragEnd = result => {
@@ -36,14 +42,14 @@ export class Deals extends Component {
     const endingStage = this.props.stages[destination.droppableId]
 
     if (startingStage === endingStage) {
-      const newDealIds = [...startingStage.dealIds]
+      const newDealIds = [...startingStage.dealId]
 
       newDealIds.splice(source.index, 1)
       newDealIds.splice(destination.index, 0, draggableId)
 
       const newStage = {
         ...startingStage,
-        dealIds: newDealIds
+        dealId: newDealIds
       }
 
       const newState = {
@@ -55,22 +61,22 @@ export class Deals extends Component {
       }
 
       // this.setState(newState)
-      this.setDealPosition(newState);
+      this.props.setDealPosition(newState);
       return;
     }
 
-    const startDealIds = [...startingStage.dealIds]
+    const startDealIds = [...startingStage.dealId]
     startDealIds.splice(source.index, 1)
     const newStartingStage = {
       ...startingStage,
-      dealIds: startDealIds
+      dealId: startDealIds
     }
 
-    const finishDealIds = [...endingStage.dealIds]
+    const finishDealIds = [...endingStage.dealId]
     finishDealIds.splice(destination.index, 0, draggableId)
     const newEndingStage = {
       ...endingStage,
-      dealIds: finishDealIds
+      dealId: finishDealIds
     }
 
     const newState = {
@@ -83,41 +89,45 @@ export class Deals extends Component {
     }
 
     // this.setState(newState)
-    this.setDealPosition(newState);
+    this.props.setDealPosition(newState);
   }
 
   render() {
-    return (
-      <React.Fragment>
-        <div className="header-div">
-          <h2>Deals</h2>
-          <Button title={'Create Deal'} route="/deals" />
-        </div>
-        {/* comment this out if you don't want to see it */}
-        <DealsForm />
-        <DragDropContext onDragEnd={this.onDragEnd}>
-          <div className="deal-grid-container">
-            {this.state.stageOrder.map(stageId => {
-              const stage = this.props.stages[stageId]
-              const deals = stage.dealIds.map(
-                dealId => this.props.deals[dealId]
-              )
-              const amount = deals.reduce((total, deal) => {
-                return (total += deal.amount)
-              }, 0)
-              return (
-                <StageColumn
-                  key={stage.id}
-                  stage={stage}
-                  deals={deals}
-                  amount={amount}
-                />
-              )
-            })}
+    if (this.props.stages && this.props.deals) {
+      return (
+        <React.Fragment>
+          <div className="header-div">
+            <h2>Deals</h2>
+            <Button title={'Create Deal'} formClick={this.formClick} />
           </div>
-        </DragDropContext>
-      </React.Fragment>
-    )
+          {/* comment this out if you don't want to see it */}
+          <DealsForm isActive={this.state.showForm} formClick={this.formClick} />
+          <DragDropContext onDragEnd={this.onDragEnd}>
+            <div className="deal-grid-container">
+              {this.state.stageOrder.map(stageId => {
+                const stage = this.props.stages[stageId]
+                const deals = stage.dealId.map(
+                  dealId => this.props.deals[dealId]
+                )
+                const amount = deals.reduce((total, deal) => {
+                  return (total += deal.amount)
+                }, 0)
+                return (
+                  <StageColumn
+                    key={stage.id}
+                    stage={stage}
+                    deals={deals}
+                    amount={amount}
+                  />
+                )
+              })}
+            </div>
+          </DragDropContext>
+        </React.Fragment>
+      )
+    } else {
+      return <div>Loading...</div>
+    }
   }
 }
 
@@ -129,11 +139,12 @@ const mapStateToProps = state => {
 }
 
 const mapDispatchToProps = dispatch => {
-  return {
-    getAllDeals: () => dispatch(actionTypes.getAllDeals()),
-    getDealPosition: () => dispatch(actionTypes.getDealPosition()),
-    setDealPosition: newState => dispatch(actionTypes.setDealPosition(newState))
-  }
+  return bindActionCreators({ getAllDeals, getDealPosition, setDealPosition }, dispatch)
+  // return {
+  //   getAllDeals: () => dispatch(actionTypes.getAllDeals()),
+  //   getDealPosition: () => dispatch(actionTypes.getDealPosition()),
+  //   setDealPosition: newState => dispatch(actionTypes.setDealPosition(newState))
+  // }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(Deals);
