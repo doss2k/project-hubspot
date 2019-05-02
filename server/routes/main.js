@@ -140,7 +140,7 @@ router.put("/api/companies/:id", (req, res) => {
     logoUrl = '${req.body.logoUrl}',
     city = '${req.body.city}',
     state = '${req.body.state}',
-    updatedDate = 'UNIX_TIMESTAMP()'
+    updatedDate = UNIX_TIMESTAMP()
     WHERE companyId = ?`
   pool.query(sql, companyId, function(error, results, fields){
     if (error) throw error;
