@@ -38,7 +38,7 @@ export const createCompany = (formData) => {
 
 export const deleteCompanyById = (companyId) => {
   console.log(companyId)
-  const request = axios.delete(`http://localhost:8080/api/companies/${companyId}`, {
+  const request = axios.delete(`http://localhost:8000/api/companies/${companyId}`, {
     headers: CORS_HEADERS
   });
   return {
