@@ -15,3 +15,12 @@ export {
   getDealPosition,
   setDealPosition
 } from './dealsActions';
+
+export {
+  getSuccessRate,
+  getDealsInProgress,
+  getAveragePerDeal,
+  getTotalRevenueToDate,
+  getAverageTimeToClose,
+  getTopThreeClients
+} from './dashboardActions.js'
