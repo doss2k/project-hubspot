@@ -14,11 +14,18 @@ export const getAllDeals = () => {
 }
 
 export const getDealPosition = () => {
-  const request = axios.get('http://localhost:8000/api/dealposition', { headers: CORS_HEADERS })
+  const request = axios.get('http://localhost:8000/api/dealsposition', { headers: CORS_HEADERS })
 
   return {
     type: actionTypes.GET_DEAL_POSITION,
     payload: request
+  }
+}
+
+export const setDealPosition = newState => {
+  return {
+    type: actionTypes.SET_DEAL_POSITION,
+    payload: newState
   }
 }
 
