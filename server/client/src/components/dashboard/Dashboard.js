@@ -2,12 +2,18 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
+
 import TestInfoBlock from "./TestInfoBlock";
+
+import { connect } from 'react-redux';
+import * as actionTypes from '../../actions/index';
+
 
 function formatDate(d) {
   let newDate = d * 1000;
   return newDate;
 }
+
 
 class Dashboard extends Component {
   constructor(props) {
@@ -58,8 +64,8 @@ class Dashboard extends Component {
               // [Date.UTC(2019, 3, 6), 724],
               // [Date.UTC(2019, 4, 24), 926],
               // [Date.UTC(2019, 5, 2), 1130]
-              [formatDate(1538329069), 100000],
-              [formatDate(1548869869), 211000],
+              [formatDate(1551548269), 181000],
+              [formatDate(1556645869), 203000],
               [formatDate(1551548269), 281000],
               [formatDate(1556645869), 303000]
             ]
@@ -109,9 +115,18 @@ class Dashboard extends Component {
   }
   // ends here
 
+  componentDidMount() {
+    this.props.getSuccessRate()
+    this.props.getDealsInProgress()
+    this.props.getAveragePerDeal()
+    this.props.getTotalRevenueToDate()
+    this.props.getAverageTimeToClose()
+    this.props.getTopThreeClients()
+  }
+
   render() {
     const { chartOptions, hoverData } = this.state;
-
+    console.log("this i s", this.props)
     return (
       <React.Fragment>
         <div className="background-layer" />
@@ -173,4 +188,26 @@ class Dashboard extends Component {
   }
 }
 
-export default Dashboard;
+const mapStateToProps = (state) => {
+  return {
+    successRate: state.dashboardReducer.successRate,
+    dealsInProgress: state.dashboardReducer.dealsInProgress,
+    avgRevenuePerDeal: state.dashboardReducer.averageRevenuePerDeal,
+    totalRevenue: state.dashboardReducer.totalRevenue,
+    timeToCloseDeal: state.dashboardReducer.timeToCloseDeal,
+    topThreeClients: state.dashboardReducer.topThreeClients,
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return {
+    getSuccessRate: () => dispatch(actionTypes.getSuccessRate()),
+    getDealsInProgress: () => dispatch(actionTypes.getDealsInProgress()),
+    getAveragePerDeal: () => dispatch(actionTypes.getAveragePerDeal()),
+    getTotalRevenueToDate: () => dispatch(actionTypes.getTotalRevenueToDate()),
+    getAverageTimeToClose: () => dispatch(actionTypes.getAverageTimeToClose()),
+    getTopThreeClients: () => dispatch(actionTypes.getTopThreeClients())
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(Dashboard);
