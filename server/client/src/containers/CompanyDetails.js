@@ -55,7 +55,7 @@ class CompanyDetails extends Component {
     if (this.props.company === undefined) {
       //changed to undefined, seemed a bit better (maybe), can erase these comments and logs mariel
       console.log(this.props.company); //from rf, can erase these comments and logs mariel
-      return <div>Please select a company</div>;
+      return null;
     }
     console.log(this.props.company); //from rf, can erase these comments and logs mariel
     const {
@@ -85,11 +85,11 @@ class CompanyDetails extends Component {
                 src={logoUrl}
                 alt="company logo"
                 style={{
-                  width: "150px",
                   height: "150px",
-                  overflow: "hidden",
-                  borderRadius: "50%",
-                  margin: "auto"
+                  maxWidth: "300px",
+                  borderRadius: "10px",
+                  margin: "auto",
+                  boxShadow: "0px 0px 5px 0px black"
                 }}
               />
               <div className="company-detailed-divider" />
