@@ -10,6 +10,7 @@ export {
 
 export {
   getAllDeals,
+  getAllDealsDashboard,
   getDealById,
   createDeal,
   deleteDealById,

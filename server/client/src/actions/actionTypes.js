@@ -8,6 +8,7 @@ export const EDIT_COMPANY = 'EDIT_COMPANY';
 
 // Deals
 export const GET_ALL_DEALS = 'GET_ALL_DEALS';
+export const GET_ALL_DEALS_DASHBOARD = 'GET_ALL_DEALS_DASHBOARD';
 export const GET_DEAL_POSITION = 'GET_DEAL_POSITION';
 export const SET_DEAL_POSITION = 'SET_DEAL_POSITION';
 export const GET_DEAL_BY_ID = 'GET_DEAL_BY_ID';

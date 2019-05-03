@@ -28,8 +28,8 @@ export class Deals extends Component {
 
   componentDidMount() {
     this.props.getAllDeals()
-    this.props.getAllCompanies()
     this.props.getDealPosition()
+    this.props.getAllCompanies()
   }
 
   formClick = () => {
@@ -90,9 +90,6 @@ export class Deals extends Component {
       dealId: finishDealIds
     }
 
-    console.log('newStartingStage,', newStartingStage)
-    console.log('newEndingStage,', newEndingStage)
-
     const newState = {
       ...this.props,
       stages: {
@@ -105,6 +102,15 @@ export class Deals extends Component {
     this.props.setDealPosition(newState, newStartingStage, newEndingStage)
   }
 
+  componentDidUpdate(prevProps) {
+    if (prevProps.deals && this.props.dealCreated) {
+      if (!prevProps.deals.hasOwnProperty(this.props.dealCreated.dealId)) {
+        this.props.getAllDeals()
+        this.props.getDealPosition()
+      }
+    }
+  }
+
   render() {
     if (this.props.stages && this.props.deals) {
       return (
@@ -115,7 +121,7 @@ export class Deals extends Component {
             <h2>Deals</h2>
             <Button title={'Create Deal'} formClick={this.formClick} />
           </div>
-          {/* comment this out if you don't want to see it */}
+
           <DealsForm
             isActive={this.state.showForm}
             formClick={this.formClick}
@@ -153,6 +159,7 @@ export class Deals extends Component {
 const mapStateToProps = state => {
   return {
     deals: state.dealsReducer.deals,
+    dealCreated: state.dealsReducer.dealCreated,
     stages: state.dealsReducer.stages,
     companies: state.companiesReducer.companies
   }
@@ -163,11 +170,6 @@ const mapDispatchToProps = dispatch => {
     { getAllDeals, getAllCompanies, getDealPosition, setDealPosition },
     dispatch
   )
-  // return {
-  //   getAllDeals: () => dispatch(actionTypes.getAllDeals()),
-  //   getDealPosition: () => dispatch(actionTypes.getDealPosition()),
-  //   setDealPosition: newState => dispatch(actionTypes.setDealPosition(newState))
-  // }
 }
 
 export default connect(

@@ -16,12 +16,14 @@ class Companies extends Component {
     city: "asc",
     updatedDate: "asc",
     state: "asc",
-    createdDate: "asc"
+    createdDate: "asc",
+    companyDetail: []
   };
 
   // As soon as component mounts make call to redux to fetch all companies
   componentDidMount() {
     this.props.getAllCompanies();
+    this.props.getAllDeals();
   }
 
   // Update component when we create a new company
@@ -41,9 +43,24 @@ class Companies extends Component {
   };
 
   //when company details is clicked, toggle show details
-  detailClick = company => {
-    this.props.getCompanyById(company);
-    this.setState({ showDetails: !this.state.showDetails });
+  detailClick = id => {
+    const company1 = this.props.companies.find( (company) => {
+      return (company.companyId === id)
+    })
+
+    const {deals} = this.props;
+    const companyDeals = []
+
+    for (let deal in deals) {
+      if( deals[deal].companyId === id){
+        companyDeals.push(deals[deal]);
+      }
+    }
+
+    const companyDetail = [[company1], [...companyDeals]]
+    this.setState({ showDetails: !this.state.showDetails, companyDetail});
+    console.log(this.state.companyDetail)
+  
   };
 
   detailExit = () => {
@@ -118,7 +135,7 @@ class Companies extends Component {
           detailClick={this.detailClick}
           formClick={this.formClick}
           detailExit={this.detailExit}
-          company={this.props.company}
+          company={this.state.companyDetail}
         />
         <div className="background-layer" />
         <div className="background-highlight-layer" />
@@ -196,6 +213,7 @@ const mapStateToProps = state => {
     companies: state.companiesReducer.companies,
     company: state.companiesReducer.company,
     companyCreated: state.companiesReducer.companyCreated
+
   };
 };
 
@@ -203,7 +221,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllCompanies: () => dispatch(actionTypes.getAllCompanies()),
     createCompany: formData => dispatch(actionTypes.createCompany(formData)),
-    getCompanyById: company => dispatch(actionTypes.getCompanyById(company)),
+    getAllDeals: () => dispatch(actionTypes.getAllDeals()),
     sortCompanies: (field, sort) =>
       dispatch(actionTypes.sortCompanies(field, sort))
   };
