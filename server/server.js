@@ -19,7 +19,7 @@ module.exports = {
         user: "b3a680a1274e8c",
         password: "926ce534",
         database: "heroku_4d0bb8f5ad72994",
-        connectionLimit: 100
+        connectionLimit: 10
       });
     // } else {
     //   pool = mysql.createPool({
