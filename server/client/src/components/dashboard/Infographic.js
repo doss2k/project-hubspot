@@ -4,7 +4,6 @@ import { connect } from 'react-redux';
 import * as actionTypes from '../../actions/index';
 
 class Infographic extends Component {
-
   componentDidMount() {
     this.props.getSuccessRate();
     this.props.getDealsInProgress();
@@ -15,52 +14,55 @@ class Infographic extends Component {
   }
 
   render() {
-    const total = 30;
     return (
-      <div className="successRate info-card">
-        <p className="variable-info-p">
-          {this.props.successRate}
-          <span className="percentage">%</span>
-        </p>
-        <h4>Success rate </h4>
-      </div>
+      <div>
+        {/* CARD: Total annual revenue */}
+        <div className="totalRevToDate info-card">
+          <p className="variable-info-p">{this.props.totalRevToDate}</p>
+          <h4>Total revenue, year to date </h4>
+        </div>
 
-      <div className="dealsInProgress info-card">
-      <p className="variable-info-p">
-        {this.props.dealsInProgress}
-      </p>
-      <h4>Deals in progress </h4>
-    </div>
-    
-    <div className="totalRevToDate info-card">
-        <p className="variable-info-p">
-          {this.props.totalRevToDate}
-        </p>
-        <h4>Total revenue, year to date </h4>
-      </div>
-      
-      <div className="avgTimeToClose info-card">
-        <p className="variable-info-p">
-          {total}
-          <span className="days"> days</span>
-        </p>
-        <h4>Average time to close deal </h4>
-      </div>
+        {/* CARD: Avg revenue per deal */}
+        <div className="avgRevPerDeal info-card">
+          <p className="variable-info-p">{this.props.averageRevenuePerDeal}</p>
+          <h4>Average revenue per deal </h4>
+        </div>
 
-      <div className="topClient info-card">
-        <p className="variable-info-p">{this.props.topThreeClients}</p>
-        <h4>Top client</h4>
-      </div>
-      
-      <div className="avgRevPerDeal info-card">
-        <p className="variable-info-p">
-          {this.props.averageRevenuePerDeal}
-        </p>
-        <h4>Average revenue per deal </h4>
+        {/* CARD: Top client
+      REVISED to return just the top client, not top 3, but route currently preserved as named
+      Backend TODO: rename route? */}
+        <div className="topClient info-card">
+          <p className="variable-info-p">{this.props.topThreeClients}</p>
+          <h4>Top client</h4>
+        </div>
+
+        {/* CARD: Avg time to close deal */}
+        <div className="avgTimeToClose info-card">
+          <p className="variable-info-p">
+            {this.props.timeToCloseDeal}
+            <span className="days"> days</span>
+          </p>
+          <h4>Average time to close deal </h4>
+        </div>
+
+        {/* CARD: Success rate */}
+        <div className="successRate info-card">
+          <p className="variable-info-p">
+            {this.props.successRate}
+            <span className="percentage">%</span>
+          </p>
+          <h4>Success rate </h4>
+        </div>
+
+        {/* CARD: Deals in progress */}
+        <div className="dealsInProgress info-card">
+          <p className="variable-info-p">{this.props.dealsInProgress}</p>
+          <h4>Deals in progress </h4>
+        </div>
       </div>
     );
-  };
-};
+  }
+}
 
 const mapStateToProps = state => {
   return {
@@ -88,4 +90,3 @@ export default connect(
   mapStateToProps,
   mapDispatchToProps
 )(Infographic);
-
