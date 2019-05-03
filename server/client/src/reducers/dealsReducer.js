@@ -1,6 +1,5 @@
 import * as actionTypes from '../actions/actionTypes';
 import { normalize, schema } from 'normalizr';
-import { isDate } from 'moment';
 
 export const dealsReducer = (state = {}, action) => {
   switch (action.type) {
@@ -28,6 +27,13 @@ export const dealsReducer = (state = {}, action) => {
         stages: normalizedStages
       }
 
+    case actionTypes.SET_DEAL_POSITION:
+      return {
+        ...state,
+        deals: { ...action.payload.deals },
+        stages: { ...action.payload.stages }
+      }
+
     case actionTypes.GET_DEAL_BY_ID:
       return {
         ...state,
@@ -35,10 +41,7 @@ export const dealsReducer = (state = {}, action) => {
       }
 
     case actionTypes.CREATE_DEAL:
-      return {
-        ...state,
-        dealCreated: action.payload.data
-      }
+      return state;
 
     case actionTypes.DELETE_DEAL_BY_ID:
       return {

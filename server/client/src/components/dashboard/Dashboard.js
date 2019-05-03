@@ -4,6 +4,7 @@ import Chart from './Chart.js';
 import Infographic from './Infographic';
 
 
+
 class Dashboard extends Component {
 
   componentDidMount() {
