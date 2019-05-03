@@ -38,9 +38,7 @@ router.post("/api/deals", (req, res) => {
     res.status(400).send("Required parameter was not sent, please check your request");
     return;
   }
-  let sqlGetStageLength;
-  const sql1 = `select max(stageOrder) as maxstage from deals where stage ='${req.body.stage}'`
-  const sql2 = `INSERT into deals VALUES
+  const sql = `INSERT into deals VALUES
     (NULL,
     "${req.body.dealName}",
     "${req.body.stage}",
@@ -48,21 +46,6 @@ router.post("/api/deals", (req, res) => {
     "${req.body.createdDate}",
     "${req.body.closeDate}",
     "${req.body.companyId}",
-<<<<<<< HEAD
-     ?)` // push new dealId onto end of 
-  pool.query(sql1, function(error, results, fields){
-    if (error) throw error;
-    sqlGetStageLength = results[0].maxstage + 1;
-    pool.query(sql2, sqlGetStageLength, function(error, results, fields) {
-      if (error) throw error;
-        if (results) {
-          res.json(req.body);
-        } else {
-          res.status(404).send("Deal was not added");
-        }
-      })
-    })
-=======
     "${req.body.stageOrder}")`
   pool.query(sql, function(error, results, fields) {
     if (error) throw error;
@@ -78,7 +61,6 @@ router.post("/api/deals", (req, res) => {
       res.status(404).send("Deal was not added");
     }
   });
->>>>>>> master
 });
 
 /* PUT This endpoint allows you to edit the deal with the supplied dealId. If the supplied

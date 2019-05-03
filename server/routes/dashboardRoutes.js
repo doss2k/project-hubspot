@@ -52,12 +52,7 @@ router.get("/api/calc/avgtimetoclose", (req, res) => {
       res.json(results[0]);
   });
 });
-<<<<<<< HEAD
-
-// Top 3 companies by total revenue of all deals
-=======
 // now going to return just top client 
->>>>>>> master
 router.get("/api/calc/topthreeclients", (req, res) => {
   const sql = `select sum(deals.amount) AS Total, companies.logoUrl, companies.companyName
   from deals
