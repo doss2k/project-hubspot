@@ -28,42 +28,10 @@ function formatDate(d) {
   let newDate = d * 1000;
   return newDate;
 }
-
+let total = 0;
 
 
 class Chart extends Component {
-
-  sortClosedWonDeals() {
-    let closedWonDeals = []
-    this.props.dealsDashboard.forEach((deal) => {
-      if (deal.stage === 'Closed Won') {
-        closedWonDeals.push(deal)
-      } 
-    })
-    console.log('closedWonDeals: ', closedWonDeals)
-
-    const chartData = closedWonDeals.map((deal) => {
-      return [ deal.closeDate, deal.amount ]
-  })
-  console.log('chartData: ', chartData)
-
-  
-  let sortFunction = (a, b) => {
-    if (a[0] === b[0]) {
-      return 0;
-    }
-    else {
-      return (a[0] < b [0]) ? -1 : 1;
-    }
-  }
-  let sortedArray = chartData.sort(sortFunction);
-  console.log("sortedArray: ", sortedArray)
-  return sortedArray;
-}
-
-
-
-
 
   constructor(props) {
     super(props);
@@ -93,10 +61,10 @@ class Chart extends Component {
           min: 0
         },
         title: {
-          text: 'Revenue Forecast'
+          text: 'Total Revenue To Date'
         },
         subtitle: {
-          text: 'Sean really likes ponies'
+          text: 'Sean really really likes ponies'
         },
         series: [
           {
@@ -154,29 +122,76 @@ class Chart extends Component {
   }
   // ends here
 
+  sortClosedWonDeals() {
+    // debugger;
+    let closedWonDeals = []
+    this.props.dealsDashboard.forEach((deal) => {
+      if (deal.stage === 'Closed Won') {
+        closedWonDeals.push(deal)
+      } 
+    })
+    console.log('closedWonDeals: ', closedWonDeals)
+
+    const chartData = closedWonDeals.map((deal) => {
+      
+      function accumulateTotal(d) {
+        total = total + d;
+        return total;
+      }
+
+      return [ formatDate(deal.closeDate), accumulateTotal(deal.amount) ]
+    });
+    console.log('chartData: ', chartData)
+
+  
+    let sortFunction = (a, b) => {
+      if (a[0] === b[0]) {
+        return 0;
+      }
+      else {
+        return (a[0] < b [0]) ? -1 : 1;
+      }
+    }
+    let sortedArray = chartData.sort(sortFunction);
+      console.log("sortedArray: ", sortedArray)
+
+      var stateCopy = {...this.state};
+      stateCopy.chartOptions.series[0].data= sortedArray;
+      console.log('stateCopy before setState', stateCopy)
+      // had to comment this out because it was invoking an infinite loop
+      // this.setState(stateCopy); 
+  }
+
+
+
+
+
+  
+
   componentDidMount() {
     this.props.getAllDealsDashboard()
-  
   }
 
 
   render() {
     const { chartOptions, hoveSrData } = this.state;
     
-
     if (this.props.dealsDashboard) {
       this.sortClosedWonDeals()
+      return (
+        <React.Fragment>
+      
+          <div className="chart-card">
+            <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+          </div>
+      
+        </React.Fragment>
+      );
+    } else {
+      return <div>Loading...</div>
     }
     console.log("See all deals!!", this.props.dealsDashboard)
-    return (
-      <React.Fragment>
     
-        <div className="chart-card">
-          <HighchartsReact highcharts={Highcharts} options={chartOptions} />
-        </div>
-    
-      </React.Fragment>
-    );
   }
 }
 
