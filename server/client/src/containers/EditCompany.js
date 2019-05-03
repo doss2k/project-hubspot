@@ -15,8 +15,6 @@ export class EditForm extends Component {
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
-
-
   //as data is typed, capture in the state
   onInputChange(event) {
     this.setState({ [event.target.name]: event.target.value });
@@ -26,6 +24,7 @@ export class EditForm extends Component {
     e.preventDefault();
     this.props.editCompany(e.target.id, this.state)
     showEdit()
+    window.location.reload()
   }
 
   render() {
@@ -94,7 +93,8 @@ export class EditForm extends Component {
 const mapDispatchToProps = dispatch => {
   return {
     editCompany: (companyId, companyData) =>
-      dispatch(actionTypes.editCompany(companyId, companyData))
+      dispatch(actionTypes.editCompany(companyId, companyData)),
+    getAllCompanies: () => dispatch(actionTypes.getAllCompanies())
   };
 };
 
