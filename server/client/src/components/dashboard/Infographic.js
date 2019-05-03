@@ -15,7 +15,7 @@ class Infographic extends Component {
 
   render() {
     return (
-      <div>
+      <React.Fragment>
         {/* CARD: Total annual revenue */}
         <div className="totalRevToDate info-card">
           <p className="variable-info-p">{this.props.totalRevToDate}</p>
@@ -29,8 +29,8 @@ class Infographic extends Component {
         </div>
 
         {/* CARD: Top client
-      REVISED to return just the top client, not top 3, but route currently preserved as named
-      Backend TODO: rename route? */}
+      REVISED to return just the top client, not top 3, but route currently preserved as named (topThreeClients)
+      Backend TODO: rename route to topClient to be more accurate? */}
         <div className="topClient info-card">
           <p className="variable-info-p">{this.props.topThreeClients}</p>
           <h4>Top client</h4>
@@ -59,7 +59,7 @@ class Infographic extends Component {
           <p className="variable-info-p">{this.props.dealsInProgress}</p>
           <h4>Deals in progress </h4>
         </div>
-      </div>
+      </React.Fragment>
     );
   }
 }
