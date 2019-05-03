@@ -12,7 +12,7 @@ export class DealsForm extends Component {
     createdDate: '',
     closeDate: '',
     companyId: '',
-    stageOrder: 3
+    stageOrder: ''
   }
 
 
@@ -23,11 +23,14 @@ export class DealsForm extends Component {
 
   //on submit, send POST request to the server
   onFormSubmit = (e) => {
-    const { dealName, stage, amount, companyId, stageOrder } = this.state;
+    const { dealName, stage, amount, companyId } = this.state;
     let { createdDate, closeDate } = this.state;
     // In order to send the server unix timestamps
     createdDate = new Date(createdDate).getTime() / 1000;
     closeDate = new Date(closeDate).getTime() / 1000;
+    
+    // Send the stage order so the server can update the db w/ the proper location
+    const stageOrder = this.props.stages[this.state.stage].dealId.length + 1;
 
     const newDealData = {
       dealName,
@@ -38,8 +41,6 @@ export class DealsForm extends Component {
       companyId,
       stageOrder
     }
-    e.preventDefault()
-    console.log(newDealData);
 
     this.props.createDeal(newDealData);
     //reset form
@@ -50,7 +51,10 @@ export class DealsForm extends Component {
       createdDate: '',
       closeDate: '',
       companyId: ''
-    })
+    });
+
+    e.preventDefault();
+
   }
 
   render() {
@@ -131,13 +135,20 @@ export class DealsForm extends Component {
   }
 }
 
+const mapStateToProps = state => {
+  return {
+    stages: state.dealsReducer.stages
+  }
+}
+
 const mapDispatchToProps = dispatch => {
   return {
-    createDeal: dealData => dispatch(actionTypes.createDeal(dealData))
+    createDeal: dealData => dispatch(actionTypes.createDeal(dealData)),
+    getAllDeals: () => dispatch(actionTypes.getAllDeals())
   }
 }
 
 export default connect(
-  null,
+  mapStateToProps,
   mapDispatchToProps
 )(DealsForm)
