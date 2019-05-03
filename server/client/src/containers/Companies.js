@@ -12,11 +12,11 @@ class Companies extends Component {
   state = {
     showForm: false,
     showDetails: false,
-    companyName: 'asc',
-    city: 'asc',
-    updatedDate: 'asc',
-    state: 'asc',
-    createdDate: 'asc',
+    companyName: "asc",
+    city: "asc",
+    updatedDate: "asc",
+    state: "asc",
+    createdDate: "asc"
   };
 
   // As soon as component mounts make call to redux to fetch all companies
@@ -30,24 +30,24 @@ class Companies extends Component {
   };
 
   //when company details is clicked, toggle show details
-  detailClick = (company) => {
-    this.props.getCompanyById(company)
-    this.setState({ showDetails: !this.state.showDetails })
-  }
+  detailClick = company => {
+    this.props.getCompanyById(company);
+    this.setState({ showDetails: !this.state.showDetails });
+  };
 
   detailExit = () => {
-    this.setState({ showDetails: !this.state.showDetails })
-  }
+    this.setState({ showDetails: !this.state.showDetails });
+  };
 
   //when header is clicked, sort in ascending order
-  onSort = (e) => {
-    if (this.state[e] === 'asc') {
-      this.setState({ [e] : 'desc'})
+  onSort = e => {
+    if (this.state[e] === "asc") {
+      this.setState({ [e]: "desc" });
     } else {
-      this.setState({ [e] : 'asc'})
+      this.setState({ [e]: "asc" });
     }
-    this.props.sortCompanies(e, this.state[e])
-  }
+    this.props.sortCompanies(e, this.state[e]);
+  };
 
   renderCompanies() {
     if (this.props.companies) {
@@ -56,8 +56,9 @@ class Companies extends Component {
           <div
             className="company-grid-row company-grid-items"
             key={company.companyId}
+            onClick={() => this.detailClick(company.companyId)}
           >
-            <div className="grid-title-items" onClick={() => this.detailClick(company.companyId)}>
+            <div className="grid-title-items">
               <div className="grid-logo-and-name-container">
                 <img
                   src={company.logoUrl}
@@ -69,13 +70,21 @@ class Companies extends Component {
                 </div>
               </div>
             </div>
-            <div className="grid-title-items">{company.city}</div>
-            <div className="grid-title-items">{company.state}</div>
             <div className="grid-title-items">
-              {moment(company.createdDate * 1000).format("MM/DD/YYYY")}
+              <p style={{ paddingLeft: "10px" }}>{company.city}</p>
             </div>
             <div className="grid-title-items">
-              {moment(company.updatedDate * 1000).format("MM/DD/YYYY")}
+              <p style={{ paddingLeft: "10px" }}>{company.state}</p>
+            </div>
+            <div className="grid-title-items">
+              <p style={{ paddingLeft: "10px" }}>
+                {moment(company.createdDate * 1000).format("MM/DD/YYYY")}
+              </p>
+            </div>
+            <div className="grid-title-items">
+              <p style={{ paddingLeft: "10px" }}>
+                {moment(company.updatedDate * 1000).format("MM/DD/YYYY")}
+              </p>
             </div>
           </div>
         );
@@ -99,6 +108,8 @@ class Companies extends Component {
           detailExit={this.detailExit}
           company={this.props.company}
         />
+        <div className="background-layer" />
+        <div className="background-highlight-layer" />
         <div className="header-div">
           <h2 onClick={this.cComp}>Companies</h2>
           <Button title={"Create Company"} formClick={this.formClick} />
@@ -107,46 +118,54 @@ class Companies extends Component {
           <div className="company-grid-row company-grid-header">
             <div
               className="grid-title-items"
-              onClick={() => this.onSort('companyName')}
+              onClick={() => this.onSort("companyName")}
               id="companyName"
             >
-              company
+              <p style={{ marginLeft: "10px" }}>company</p>
               <div className="arrow-container">
                 <i className="fas fa-sort-up" />
                 <i className="fas fa-sort-down" />
               </div>
             </div>
-            <div className="grid-title-items"
-              onClick={() => this.onSort('city')}
-              id="city">
-              city
+            <div
+              className="grid-title-items"
+              onClick={() => this.onSort("city")}
+              id="city"
+            >
+              <p style={{ marginLeft: "10px" }}>city</p>
               <div className="arrow-container">
                 <i className="fas fa-sort-up" />
                 <i className="fas fa-sort-down" />
               </div>
             </div>
-            <div className="grid-title-items"
-              onClick={() => this.onSort('state')}
-              id="state">
-              state
+            <div
+              className="grid-title-items"
+              onClick={() => this.onSort("state")}
+              id="state"
+            >
+              <p style={{ marginLeft: "10px" }}>state</p>
               <div className="arrow-container">
                 <i className="fas fa-sort-up" />
                 <i className="fas fa-sort-down" />
               </div>
             </div>
-            <div className="grid-title-items"
-              onClick={() => this.onSort('createdDate')}
-              id="createdDate">
-              date created
+            <div
+              className="grid-title-items"
+              onClick={() => this.onSort("createdDate")}
+              id="createdDate"
+            >
+              <p style={{ marginLeft: "10px" }}>date created</p>
               <div className="arrow-container">
                 <i className="fas fa-sort-up" />
                 <i className="fas fa-sort-down" />
               </div>
             </div>
-            <div className="grid-title-items"
-              onClick={() => this.onSort('updatedDate')}
-              id="updatedDate">
-              last updated
+            <div
+              className="grid-title-items"
+              onClick={() => this.onSort("updatedDate")}
+              id="updatedDate"
+            >
+              <p style={{ marginLeft: "10px" }}>last updated</p>
               <div className="arrow-container">
                 <i className="fas fa-sort-up" />
                 <i className="fas fa-sort-down" />
@@ -172,7 +191,8 @@ const mapDispatchToProps = dispatch => {
     getAllCompanies: () => dispatch(actionTypes.getAllCompanies()),
     createCompany: formData => dispatch(actionTypes.createCompany(formData)),
     getCompanyById: company => dispatch(actionTypes.getCompanyById(company)),
-    sortCompanies: (field, sort) => dispatch(actionTypes.sortCompanies(field, sort))
+    sortCompanies: (field, sort) =>
+      dispatch(actionTypes.sortCompanies(field, sort))
   };
 };
 

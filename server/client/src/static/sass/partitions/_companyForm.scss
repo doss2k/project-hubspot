@@ -23,6 +23,7 @@
   display: inline;
   display: flex;
   flex-flow: row;
+  align-items: center;
   justify-content: center;
   overflow: hidden;
   visibility: hidden;
@@ -70,24 +71,62 @@
       }
     }
 
-    .form-name {
-      width: 441px;
-    }
-    .fa-times {
+    .company-details-header-container {
+      display: flex;
+      flex-flow: row;
+      align-items: left;
+      justify-content: center;
+      height: 50px;
       width: auto;
+      background-image: url("../images/branding/form-header-2.png");
+      color: #fff;
+      font-weight: 900;
+      text-transform: capitalize;
+      border-top-left-radius: 5px;
+      border-top-right-radius: 5px;
+      text-align: left;
+
+      .form-header {
+        display: flex;
+        flex-flow: row;
+        align-items: center;
+        justify-content: center;
+        height: auto;
+      }
+    }
+
+    .form-name {
+      width: 431px;
+    }
+    .fas {
       cursor: pointer;
+      margin-left: 10px;
+    }
+
+    .fa-times {
+      &:hover {
+        color: lightcoral;
+        @include fastEaseOut;
+      }
+    }
+
+    .fa-pencil-alt {
+      &:hover {
+        color: lightskyblue;
+        @include fastEaseOut;
+      }
     }
 
     .form-footer-container {
       position: absolute;
       bottom: 0;
+      left: 0;
       height: 60px;
       width: 100%;
       background: $primary-card-color;
       border-top: 1px solid $tertiary-card-color;
       border-bottom-left-radius: 5px;
       border-bottom-right-radius: 5px;
-      margin-left: -50px;
     }
   }
 }

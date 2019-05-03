@@ -2,7 +2,11 @@ const router = require("express").Router();
 const server = require("../server");
 const pool = server.getPool();
 
-//rich endpoint
+// Deals position endpoints
+
+
+// Returns array of stage objects with a nested array of dealIds in order
+// in which they appear on the page.
 
 router.get("/api/dealsposition/", (req, res) => {
   const sql = `select dealId, stage, stageOrder from deals
@@ -40,7 +44,9 @@ router.get("/api/dealsposition/", (req, res) => {
   });
 });
 
-
+// Route to update db in response to drag and drop of deals. Expects an
+// array of two objects containing stage name and array of dealIds in order
+// of their position on the stage.
 router.put("/api/dealsposition/", (req, res) => {
   let sql = "";
   let updatedJson = []

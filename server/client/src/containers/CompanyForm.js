@@ -22,6 +22,7 @@ export class CompanyForm extends Component {
   //on submit, send POST request to the server
   onFormSubmit(e) {
     e.preventDefault();
+    window.location.reload(); // this is janky yooooo, jarry transtion makingme makingme cry
     this.props.createCompany(this.state);
     //reset form
     this.setState({
@@ -46,7 +47,6 @@ export class CompanyForm extends Component {
               </div>
             </div>
             <form className="form-field-container" onSubmit={this.onFormSubmit}>
-              {" "}
               <p className="company-form-company-p">company name</p>
               <input
                 type="text"

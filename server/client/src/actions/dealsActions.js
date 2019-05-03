@@ -38,7 +38,7 @@ export const createDeal = (dealData) => {
   })
 
   return {
-    type: actionTypes.GET_ALL_COMPANIES,
+    type: actionTypes.CREATE_DEAL,
     payload: request
   }
 }
