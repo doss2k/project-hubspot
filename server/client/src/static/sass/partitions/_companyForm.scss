@@ -40,10 +40,10 @@
     margin-top: 100px;
     border-radius: 5px;
     transform: translateX(100vw);
-    @include slowEaseOut;
+    // @include slowEase
 
     &.show {
-      @include slowEaseOut;
+      // @include slowEaseOut;
       transform: translateX(0);
     }
 
