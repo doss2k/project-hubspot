@@ -22,9 +22,10 @@ export class EditForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
   //on submit, send POST request to the server
-  onFormSubmit(e) {
+  onFormSubmit(e, showEdit) {
     e.preventDefault();
     this.props.editCompany(e.target.id, this.state)
+    showEdit()
   }
 
   render() {
@@ -41,7 +42,7 @@ export class EditForm extends Component {
                 <div className="fas fa-times" onClick={showEdit} />
               </div>
             </div>
-            <form className="form-field-container" id={this.props.company[0][0].companyId} onSubmit={this.onFormSubmit}>
+            <form className="form-field-container" id={this.props.company[0][0].companyId} onSubmit={e => this.onFormSubmit(e, showEdit)}>
               {" "}
               <p className="company-form-company-p">company name</p>
               <input
@@ -80,7 +81,7 @@ export class EditForm extends Component {
                 onChange={this.onInputChange}
               />
               <div className="form-footer-container">
-                <SubmitButton  showEdit={showEdit}  />
+                <SubmitButton  />
               </div>
             </form>
           </div>
