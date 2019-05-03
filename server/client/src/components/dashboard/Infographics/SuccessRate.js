@@ -10,7 +10,7 @@ export class SuccessRate extends Component {
           {numeral(data).format('0,0')}
           <span className="percentage"> %</span>
         </p>
-        <h4>Success rate </h4>
+        <h4>Success rate</h4>
       </div>
     );
   }
