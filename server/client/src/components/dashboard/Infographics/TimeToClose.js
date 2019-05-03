@@ -9,9 +9,10 @@ export class TimeToClose extends Component {
         <p className="variable-info-p">
           {numeral(data).format('0,0')}
           {/* {numeral(data / 1000 / 60 / 60 / 24).format('0,0')} */}
-          <span className="percentage"> days</span>
+          {/* <span className="percentage"> days</span> */}
         </p>
-        <h4>Average time to close deal</h4>
+        <h4>Average days to close deal</h4>
+        {/* <h4>Average time to close deal</h4> */}
       </div>
     );
   }
