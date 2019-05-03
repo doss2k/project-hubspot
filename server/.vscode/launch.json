@@ -8,8 +8,8 @@
       "type": "node",
       "request": "launch",
       "name": "Launch Program",
-      "program": "/Users/ritchiefesperman/Code/project-hubspot/server/server.js",
-      "envFile": "/Users/ritchiefesperman/Code/project-hubspot/server/.env",
+      "program": "${workspaceFolder}\\server.js",
+      "envFile": "${workspaceFolder}\\.env",
       "skipFiles": [
         "node_modules/**/*.js",
         "lib/**/*.js",
