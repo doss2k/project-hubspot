@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionTypes from "../actions";
-import SubmitButtom from "./SubmitButton";
+import SubmitButton from "./SubmitButton";
 
 export class EditForm extends Component {
   constructor(props) {
@@ -23,14 +23,12 @@ export class EditForm extends Component {
   }
   //on submit, send POST request to the server
   onFormSubmit(e) {
-    console.log(e)
     e.preventDefault();
-    this.props.editCompany(this.state)
+    this.props.editCompany(e.target.id, this.state)
   }
 
   render() {
     const { isActive, showEdit } = this.props;
-    const { companyId, companyName, logoUrl, city, state } = this.props.company[0][0]
 
     return (
       <React.Fragment>
@@ -43,7 +41,7 @@ export class EditForm extends Component {
                 <div className="fas fa-times" onClick={showEdit} />
               </div>
             </div>
-            <form className="form-field-container" onSubmit={this.onFormSubmit}>
+            <form className="form-field-container" id={this.props.company[0][0].companyId} onSubmit={this.onFormSubmit}>
               {" "}
               <p className="company-form-company-p">company name</p>
               <input
@@ -82,7 +80,7 @@ export class EditForm extends Component {
                 onChange={this.onInputChange}
               />
               <div className="form-footer-container">
-                <SubmitButtom  />
+                <SubmitButton  showEdit={showEdit}  />
               </div>
             </form>
           </div>
@@ -94,8 +92,8 @@ export class EditForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    editCompany: companyData =>
-      dispatch(actionTypes.editCompany(companyData))
+    editCompany: (companyId, companyData) =>
+      dispatch(actionTypes.editCompany(companyId, companyData))
   };
 };
 
