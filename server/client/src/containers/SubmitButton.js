@@ -6,8 +6,6 @@ export class SubmitButton extends Component {
     return (
       <input
         className="submit-button"
-        title={"Create Company"}
-        route={"/companies"}
         type="submit"
         value="submit"
         onClick={formClick}

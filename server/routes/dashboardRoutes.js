@@ -13,7 +13,7 @@ router.get("/api/calc/successrate", (req, res) => {
 });
 
 router.get("/api/calc/dealsinprogress", (req, res) => {
-  const sql = "SELECT SUM(amount) AS 'Deals In Progress' FROM deals WHERE stage NOT IN ('Closed Lost','Closed Won')";
+  const sql = "SELECT COUNT(dealId) AS 'Deals In Progress' FROM deals WHERE stage NOT IN ('Closed Lost','Closed Won')";
   pool.query(sql, function(error, results, fields) {
     if (error) throw error;
       res.json(results);
@@ -44,7 +44,7 @@ router.get("/api/calc/avgtimetoclose", (req, res) => {
       res.json(results[0]);
   });
 });
-// now going to return just top client, will need change endpoint name 
+// now going to return just top client 
 router.get("/api/calc/topthreeclients", (req, res) => {
   const sql = `select sum(deals.amount) AS Total, companies.logoUrl, companies.companyName
   from deals
