@@ -7,7 +7,7 @@ import Button from './Button'
 import DealsForm from './DealsForm'
 import { bindActionCreators } from 'redux';
 
-import { getAllDeals, getDealPosition, setDealPosition } from '../actions/'
+import { getAllDeals, getDealPosition, setDealPosition, getAllCompanies } from '../actions/'
 
 export class Deals extends Component {
   state = {
@@ -17,6 +17,7 @@ export class Deals extends Component {
 
   componentDidMount() {
     this.props.getAllDeals();
+    this.props.getAllCompanies();
     this.props.getDealPosition();
   }
 
@@ -99,7 +100,7 @@ export class Deals extends Component {
             <Button title={'Create Deal'} formClick={this.formClick} />
           </div>
           {/* comment this out if you don't want to see it */}
-          <DealsForm isActive={this.state.showForm} formClick={this.formClick} />
+          <DealsForm isActive={this.state.showForm} formClick={this.formClick} companies={this.props.companies}/>
           <DragDropContext onDragEnd={this.onDragEnd}>
             <div className="deal-grid-container">
               {this.state.stageOrder.map(stageId => {
@@ -132,12 +133,13 @@ export class Deals extends Component {
 const mapStateToProps = state => {
   return {
     deals: state.dealsReducer.deals,
-    stages: state.dealsReducer.stages
+    stages: state.dealsReducer.stages,
+    companies: state.companiesReducer.companies
   }
 }
 
 const mapDispatchToProps = dispatch => {
-  return bindActionCreators({ getAllDeals, getDealPosition, setDealPosition }, dispatch)
+  return bindActionCreators({ getAllDeals, getAllCompanies, getDealPosition, setDealPosition }, dispatch)
   // return {
   //   getAllDeals: () => dispatch(actionTypes.getAllDeals()),
   //   getDealPosition: () => dispatch(actionTypes.getDealPosition()),
