@@ -1,15 +1,15 @@
-import React, { Component } from "react";
-import { Draggable } from "react-beautiful-dnd";
-import styled from "styled-components";
-import { Link } from "react-router-dom";
-import moment from 'moment';
+import React, { Component } from 'react'
+import { Draggable } from 'react-beautiful-dnd'
+import styled from 'styled-components'
+import { Link } from 'react-router-dom'
+import moment from 'moment'
 
 export class DealCard extends Component {
   render() {
     const formatter = new Intl.NumberFormat('en-us', {
       style: 'currency',
       currency: 'USD'
-    });
+    })
 
     return (
       <Draggable draggableId={this.props.deal.dealId} index={this.props.index}>
@@ -31,20 +31,20 @@ export class DealCard extends Component {
                 {formatter.format(this.props.deal.amount)}
               </p>
               <p>
-                <span className="bold">Close date: </span>
+                <span className="bold">Projected close date: </span>
                 {moment(this.props.deal.closeDate * 1000).format('MM/DD/YYYY')}
               </p>
             </div>
           </Container>
         )}
       </Draggable>
-    );
+    )
   }
 }
 
 const Container = styled.div`
-  background-color: ${props => (props.isDragging ? "white" : "white")};
-  box-shadow: ${props => (props.isDragging ? "5px 5px 10px -5px #b5bcc5" : "")};
-`;
+  background-color: ${props => (props.isDragging ? 'white' : 'white')};
+  box-shadow: ${props => (props.isDragging ? '5px 5px 10px -5px #b5bcc5' : '')};
+`
 
-export default DealCard;
+export default DealCard
