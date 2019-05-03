@@ -20,18 +20,10 @@ export class CompanyForm extends Component {
     this.setState({ [event.target.name]: event.target.value });
   }
   //on submit, send POST request to the server
-  onFormSubmit = e => {
-    console.log('event is', e)
+  onFormSubmit = (e, formClick) => {
     e.preventDefault();
-
     this.props.createCompany(this.state);
-    //reset form
-    this.setState({
-      companyName: "",
-      logoUrl: "",
-      city: "",
-      state: ""
-    });
+    formClick()
   }
 
   render() {
@@ -47,7 +39,7 @@ export class CompanyForm extends Component {
                 <div className="fas fa-times" onClick={formClick} />
               </div>
             </div>
-            <form className="form-field-container" onSubmit={e => this.onFormSubmit(e)}>
+            <form className="form-field-container" onSubmit={e => this.onFormSubmit(e, formClick)}>
               <p className="company-form-company-p">company name</p>
               <input
                 type="text"
