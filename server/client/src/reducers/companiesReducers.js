@@ -12,7 +12,7 @@ export const companiesReducer = (state = initialState, action) => {
     case actionTypes.CREATE_COMPANY:
       return {
         ...state,
-        companyCreated: action.payload.data
+        createCompany: action.payload.data
       }
 
     case actionTypes.GET_COMPANY_BY_ID:
