@@ -1,11 +1,12 @@
-import * as actionTypes from '../actions/actionTypes';
-import { normalize, schema } from 'normalizr';
+import * as actionTypes from '../actions/actionTypes'
+import { normalize, schema } from 'normalizr'
 
 export const dealsReducer = (state = {}, action) => {
   switch (action.type) {
     case actionTypes.GET_ALL_DEALS:
-      const deal = new schema.Entity('deals', {}, { idAttribute: 'dealId' });
-      const normalizedDeals = normalize(action.payload.data, [deal]).entities.deals;
+      const deal = new schema.Entity('deals', {}, { idAttribute: 'dealId' })
+      const normalizedDeals = normalize(action.payload.data, [deal]).entities
+        .deals
 
       return {
         ...state,
@@ -19,8 +20,9 @@ export const dealsReducer = (state = {}, action) => {
       }
 
     case actionTypes.GET_DEAL_POSITION:
-      const stage = new schema.Entity('stages');
-      const normalizedStages = normalize(action.payload.data, [stage]).entities.stages;
+      const stage = new schema.Entity('stages')
+      const normalizedStages = normalize(action.payload.data, [stage]).entities
+        .stages
 
       return {
         ...state,
@@ -41,7 +43,11 @@ export const dealsReducer = (state = {}, action) => {
       }
 
     case actionTypes.CREATE_DEAL:
-      return state;
+      const [dealCreated] = action.payload.data
+      return {
+        ...state,
+        dealCreated
+      }
 
     case actionTypes.DELETE_DEAL_BY_ID:
       return {
@@ -50,8 +56,8 @@ export const dealsReducer = (state = {}, action) => {
       }
 
     default:
-      return state;
+      return state
   }
 }
 
-export default dealsReducer;
+export default dealsReducer
