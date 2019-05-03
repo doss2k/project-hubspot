@@ -38,6 +38,7 @@ class Chart extends Component {
 
     this.state = {
       // To avoid unnecessary update keep all options in the state.
+
       chartOptions: {
         chart: {
           type: 'area',
@@ -63,12 +64,33 @@ class Chart extends Component {
         title: {
           text: 'Total Revenue To Date'
         },
-        subtitle: {
-          text: 'Sean really really likes ponies'
+        tooltip: {
+          Highcharts: {
+            setOptions:{
+              lang: {
+                thousandSep: ','
+              }
+            }
+          },
+          formatter: function () {
+            
+            // const formatter = new Intl.NumberFormat('en-us', {
+            //   style: 'currency',
+            //   currency: 'USD'
+            // })
+            // Highcharts.setOptions({
+            //   lang: {
+            //     thousandSep: ','
+            //   }
+            // });
+
+            return "<b>"  + "</b><br/>" + Highcharts.dateFormat('%B %e', this.x, true) + 
+            "<br/>" + '$' + Highcharts.numberFormat( this.y, 0);
+        }
         },
         series: [
           {
-            name: 'Closed',
+            name: 'Deals Won',
             color: '#2eb347',
             fillOpacity: 0.4,
 
@@ -109,6 +131,7 @@ class Chart extends Component {
           //   ]
           // }
         ],
+
         plotOptions: {
           series: {
             point: {
@@ -139,7 +162,7 @@ class Chart extends Component {
         return total;
       }
 
-      return [ formatDate(deal.closeDate), accumulateTotal(deal.amount) ]
+      return [ formatDate(deal.closeDate),  accumulateTotal(deal.amount) ]
     });
     console.log('chartData: ', chartData)
 
