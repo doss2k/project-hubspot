@@ -24,6 +24,17 @@ class Companies extends Component {
     this.props.getAllCompanies();
   }
 
+  // Update component when we create a new company
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    if (nextProps.companies) {
+      if (nextProps.companies.length === 1) {
+        // get all companies and update
+        this.props.getAllCompanies()
+      }
+      return true
+    }
+  }
+
   //when create company is clicked, toggle show form
   formClick = () => {
     this.setState({ showForm: !this.state.showForm });
@@ -50,6 +61,7 @@ class Companies extends Component {
   };
 
   renderCompanies() {
+    // console.log('companies i s', this.props.companies)
     if (this.props.companies) {
       return this.props.companies.map(company => {
         return (
@@ -182,7 +194,8 @@ class Companies extends Component {
 const mapStateToProps = state => {
   return {
     companies: state.companiesReducer.companies,
-    company: state.companiesReducer.company
+    company: state.companiesReducer.company,
+    companyCreated: state.companiesReducer.companyCreated
   };
 };
 

@@ -6,7 +6,7 @@ const pool = server.getPool();
    no deals in the database it will return a 404 error. */
 
 router.get("/api/deals", (req, res) => {
-  pool.query("SELECT * FROM deals", function(error, results, fields) {
+  pool.query("SELECT * FROM deals", function (error, results, fields) {
     if (error) throw error;
     res.json(results);
   });
@@ -18,7 +18,7 @@ router.get("/api/deals", (req, res) => {
 router.get("/api/deals/:id", (req, res) => {
   const dealId = req.params.id;
   const sql = "SELECT * FROM deals WHERE companyId = ?";
-  pool.query(sql, dealId, function(error, results, fields) {
+  pool.query(sql, dealId, function (error, results, fields) {
     if (error) throw error;
     // Check for no results.
     if (results.length > 0) {
@@ -34,7 +34,7 @@ router.get("/api/deals/:id", (req, res) => {
    request upon success.  If the deal is not added to the database returns a 404 error */
 
 router.post("/api/deals", (req, res) => {
-  if(!(req.body.dealName && req.body.stage && req.body.amount && req.body.createdDate && req.body.closeDate && req.body.companyId)) {
+  if (!(req.body.dealName && req.body.stage && req.body.amount && req.body.createdDate && req.body.closeDate && req.body.companyId)) {
     res.status(400).send("Required parameter was not sent, please check your request");
     return;
   }
@@ -47,16 +47,16 @@ router.post("/api/deals", (req, res) => {
     "${req.body.closeDate}",
     "${req.body.companyId}",
     "${req.body.stageOrder}")`
-  pool.query(sql, function(error, results, fields) {
+  pool.query(sql, function (error, results, fields) {
     if (error) throw error;
     if (results) {
       const returnInfo = `SELECT * FROM deals WHERE dealId = ${results.insertId}`
-      pool.query(returnInfo, function(error, results, fields) {
+      pool.query(returnInfo, function (error, results, fields) {
         if (error) throw error;
-        if(results){
-        res.json(results);
-      }
-    })
+        if (results) {
+          res.json(results);
+        }
+      })
     } else {
       res.status(404).send("Deal was not added");
     }
@@ -67,7 +67,7 @@ router.post("/api/deals", (req, res) => {
   dealId is not in the database it will return a 404 error */
 
 router.put("/api/deals/:id", (req, res) => {
-  if(!(req.body.dealName && req.body.stage && req.body.amount && req.body.closeDate && req.body.companyId)) {
+  if (!(req.body.dealName && req.body.stage && req.body.amount && req.body.closeDate && req.body.companyId)) {
     res.status(400).send("Required parameter was not sent, please check your request");
     return;
   }
@@ -79,16 +79,16 @@ router.put("/api/deals/:id", (req, res) => {
     closeDate = '${req.body.closeDate}',
     companyId = '${req.body.companyId}'
     WHERE dealId = ?`
-  pool.query(sql, dealId, function(error, results, fields){
+  pool.query(sql, dealId, function (error, results, fields) {
     if (error) throw error;
     if (results.affectedRows !== 0) {
       const returnInfo = `SELECT * FROM deals WHERE dealId = ${dealId}`
-      pool.query(returnInfo, function(error, results, fields) {
+      pool.query(returnInfo, function (error, results, fields) {
         if (error) throw error;
-        if(results){
-        res.json(results);
-      }
-    })
+        if (results) {
+          res.json(results);
+        }
+      })
     } else {
       res.status(404).send("That dealId is not in the database");
     }
@@ -101,7 +101,7 @@ router.put("/api/deals/:id", (req, res) => {
 router.delete("/api/deals/:id", (req, res) => {
   const dealId = req.params.id;
   const sql = "DELETE FROM deals WHERE dealId = ?";
-  pool.query(sql, dealId, function(error, results, fields) {
+  pool.query(sql, dealId, function (error, results, fields) {
     if (error) throw error;
     // Check for no results.
     if (results.affectedRows !== 0) {
