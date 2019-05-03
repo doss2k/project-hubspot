@@ -53,9 +53,6 @@ export class Deals extends Component {
     const startingStage = this.props.stages[source.droppableId]
     const endingStage = this.props.stages[destination.droppableId]
 
-    console.log('startingStage:', startingStage)
-    console.log('endingStage:', endingStage)
-
     if (startingStage === endingStage) {
       const newDealIds = [...startingStage.dealId]
 
@@ -93,6 +90,9 @@ export class Deals extends Component {
       dealId: finishDealIds
     }
 
+    console.log('newStartingStage,', newStartingStage)
+    console.log('newEndingStage,', newEndingStage)
+
     const newState = {
       ...this.props,
       stages: {
@@ -102,7 +102,7 @@ export class Deals extends Component {
       }
     }
 
-    this.props.setDealPosition(newState, startingStage, endingStage)
+    this.props.setDealPosition(newState, newStartingStage, newEndingStage)
   }
 
   render() {
