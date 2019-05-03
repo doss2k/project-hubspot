@@ -1,32 +1,47 @@
 import React, { Component } from 'react'
 import { connect } from 'react-redux'
 import * as actionTypes from '../actions'
-import SubmitButtom from './SubmitButton'
+import SubmitButtom from './SubmitButton';
 
 export class DealsForm extends Component {
-  constructor(props) {
-    super(props)
-    this.state = {
-      dealName: '',
-      stage: '',
-      amount: '',
-      createdDate: '',
-      closeDate: '',
-      company: '',
-      companyId: ''
-    }
-    this.onInputChange = this.onInputChange.bind(this)
-    this.onFormSubmit = this.onFormSubmit.bind(this)
+
+  state = {
+    dealName: '',
+    stage: '',
+    amount: '',
+    createdDate: '',
+    closeDate: '',
+    companyId: '',
+    stageOrder: 3
   }
+
+
   //as data is typed, caputer in the state
-  onInputChange(event) {
+  onInputChange = (event) => {
     this.setState({ [event.target.name]: event.target.value })
   }
+
   //on submit, send POST request to the server
-  onFormSubmit(e) {
-    console.log(this.state)
+  onFormSubmit = (e) => {
+    const { dealName, stage, amount, companyId, stageOrder } = this.state;
+    let { createdDate, closeDate } = this.state;
+    // In order to send the server unix timestamps
+    createdDate = new Date(createdDate).getTime() / 1000;
+    closeDate = new Date(closeDate).getTime() / 1000;
+
+    const newDealData = {
+      dealName,
+      stage,
+      amount,
+      createdDate,
+      closeDate,
+      companyId,
+      stageOrder
+    }
     e.preventDefault()
-    this.props.createCompany(this.state)
+    console.log(newDealData);
+
+    this.props.createDeal(newDealData);
     //reset form
     this.setState({
       dealName: '',
@@ -34,13 +49,13 @@ export class DealsForm extends Component {
       amount: '',
       createdDate: '',
       closeDate: '',
-      company: '',
       companyId: ''
     })
   }
 
   render() {
     const { isActive, formClick } = this.props
+
     return (
       <React.Fragment>
         <div className={isActive ? 'mask show' : 'mask'} />
@@ -67,12 +82,14 @@ export class DealsForm extends Component {
             className="form-control stageSelect"
             value={this.state.stage}
             onChange={this.onInputChange}
+            name="stage"
           >
-            <option>Initiated</option>
-            <option>Qualified</option>
-            <option>Contract Sent</option>
-            <option>Closed Won</option>
-            <option>Closed Lost</option>
+            <option value="default">Select stage</option>
+            <option value="Initiated">Initiated</option>
+            <option value="Qualified">Qualified</option>
+            <option value="Contract Sent">Contract Sent</option>
+            <option value="Closed Won">Closed Won</option>
+            <option value="Closed Lost">Closed Lost</option>
           </select>
           <p className="amount">Amount</p>
           <input
@@ -87,7 +104,7 @@ export class DealsForm extends Component {
           <input
             className="form-control closeDateSelect"
             type="date"
-            value="2019-05-20"
+            name="closeDate"
             value={this.state.closeDate}
             onChange={this.onInputChange}
           />
@@ -95,28 +112,20 @@ export class DealsForm extends Component {
           <input
             className="form-control createDateSelect"
             type="date"
-            value="2019-05-14"
             value={this.state.createdDate}
             onChange={this.onInputChange}
+            name="createdDate"
           />
           <p className="companySelect">Select Company</p>
-          <select
-            className="form-control companySelect"
-            value={this.state.company}
-            //search through the companies passed as props from deals to compare company name to company id?
-            onChange={this.onInputChange}
-          >
-            <option>This</option>
-            <option>Feature</option>
-            <option>Doesn't</option>
-            <option>Work</option>
-            <option>Yet</option>
+          <select className="form-control companySelect" value={this.state.companyId} onChange={this.onInputChange} name="companyId">
+            <option value="default">Select company</option>
+            {this.props.companies.map(company => <option key={company.companyId} value={company.companyId} name={company.companyId}>{company.companyName}</option>)}
+
           </select>
           <div className="form-footer-container">
             <SubmitButtom formClick={formClick} />
           </div>
         </form>
-        <div />
       </React.Fragment>
     )
   }
