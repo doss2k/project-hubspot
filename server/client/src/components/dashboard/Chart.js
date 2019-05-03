@@ -7,6 +7,8 @@ import * as actionTypes from '../../actions/index';
 
 
 // Get all deals
+
+
 //  declared allDeals = []
 //    Loop through all deals
 //      declare closedWonDeals = []
@@ -28,7 +30,40 @@ function formatDate(d) {
 }
 
 
+
 class Chart extends Component {
+
+  sortClosedWonDeals() {
+    let closedWonDeals = []
+    this.props.dealsDashboard.forEach((deal) => {
+      if (deal.stage === 'Closed Won') {
+        closedWonDeals.push(deal)
+      } 
+    })
+    console.log('closedWonDeals: ', closedWonDeals)
+
+    const chartData = closedWonDeals.map((deal) => {
+      return [ deal.closeDate, deal.amount ]
+  })
+  console.log('chartData: ', chartData)
+
+  
+  let sortFunction = (a, b) => {
+    if (a[0] === b[0]) {
+      return 0;
+    }
+    else {
+      return (a[0] < b [0]) ? -1 : 1;
+    }
+  }
+  let sortedArray = chartData.sort(sortFunction);
+  console.log("sortedArray: ", sortedArray)
+}
+
+
+
+
+/*
   constructor(props) {
     super(props);
 
@@ -127,20 +162,26 @@ class Chart extends Component {
     };
   }
   // ends here
-
+*/
   componentDidMount() {
     this.props.getAllDealsDashboard()
+  
   }
 
 
   render() {
-    const { chartOptions, hoverData } = this.state;
+    // const { chartOptions, hoverData } = this.state;
+    
+
+    if (this.props.dealsDashboard) {
+      this.sortClosedWonDeals()
+    }
     console.log("See all deals!!", this.props.dealsDashboard)
     return (
       <React.Fragment>
     
         <div className="chart-card">
-          <HighchartsReact highcharts={Highcharts} options={chartOptions} />
+          {/* <HighchartsReact highcharts={Highcharts} options={chartOptions} /> */}
         </div>
     
       </React.Fragment>
