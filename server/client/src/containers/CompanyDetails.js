@@ -14,12 +14,13 @@ class CompanyDetails extends Component {
     window.location.reload();
   }
 
-  editMode(e) {
-    console.log(e);
+  editMode(e, detailExit, showEdit) {
+    detailExit()
+    showEdit()
+
   }
 
   renderDeals() {
-    console.log('deals', this.props.company[1])
     if (this.props.company) {
       return this.props.company[1].map(deal => {
         return (
@@ -54,9 +55,8 @@ class CompanyDetails extends Component {
   }
 
   render() {
-    console.log(this.props.company)
-    const { isActive, detailClick, detailExit } = this.props;
-    if (this.props.company.length ===0 ) {
+    const { isActive, detailExit, showEdit } = this.props;
+    if (this.props.company.length === 0 ) {
       return(<div>loading... </div>)
     }
       const { companyName, logoUrl, city, state, companyId} = this.props.company[0][0];
@@ -70,7 +70,7 @@ class CompanyDetails extends Component {
                   <div className="form-name">{companyName}</div>
                   <div
                     className="fas fa-pencil-alt"
-                    onClick={() => this.editMode(this.props.company[0])}
+                    onClick={() => this.editMode(this.props.company[0], detailExit, showEdit)}
                   />
                   <div className="fas fa-times fa-lg" onClick={detailExit} />
                 </div>

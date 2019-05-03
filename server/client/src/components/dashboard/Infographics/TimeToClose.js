@@ -6,13 +6,8 @@ export class TimeToClose extends Component {
     const { data } = this.props;
     return (
       <div className="avgTimeToClose info-card">
-        <p className="variable-info-p">
-          {numeral(data).format('0,0')}
-          {/* {numeral(data / 1000 / 60 / 60 / 24).format('0,0')} */}
-          {/* <span className="percentage"> days</span> */}
-        </p>
+        <p className="variable-info-p">{numeral(data).format('0,0')}</p>
         <h4>Average days to close deal</h4>
-        {/* <h4>Average time to close deal</h4> */}
       </div>
     );
   }

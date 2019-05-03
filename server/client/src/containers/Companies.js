@@ -5,6 +5,7 @@ import CompanyForm from "./CompanyForm";
 
 import * as actionTypes from "../actions";
 import CompanyDetails from "./CompanyDetails";
+import EditCompany from "./EditCompany";
 
 let moment = require("moment");
 
@@ -12,6 +13,7 @@ class Companies extends Component {
   state = {
     showForm: false,
     showDetails: false,
+    showEdit: false,
     companyName: "asc",
     city: "asc",
     updatedDate: "asc",
@@ -42,8 +44,8 @@ class Companies extends Component {
     this.setState({ showForm: !this.state.showForm });
   };
 
-  //when company details is clicked, toggle show details
   detailClick = id => {
+    //select a company by id
     const company1 = this.props.companies.find( (company) => {
       return (company.companyId === id)
     })
@@ -57,15 +59,19 @@ class Companies extends Component {
       }
     }
 
+    //set the state to the selected company and toggle show detail view
     const companyDetail = [[company1], [...companyDeals]]
     this.setState({ showDetails: !this.state.showDetails, companyDetail});
-    console.log(this.state.companyDetail)
-  
   };
 
   detailExit = () => {
     this.setState({ showDetails: !this.state.showDetails });
   };
+
+  showEdit = () => {
+    this.setState({showEdit: !this.state.showEdit})
+  }
+
 
   //when header is clicked, sort in ascending order
   onSort = e => {
@@ -78,7 +84,6 @@ class Companies extends Component {
   };
 
   renderCompanies() {
-    // console.log('companies i s', this.props.companies)
     if (this.props.companies) {
       return this.props.companies.map(company => {
         return (
@@ -123,20 +128,38 @@ class Companies extends Component {
     }
   }
 
-  render() {
-    return (
-      <React.Fragment>
-        <CompanyForm
-          isActive={this.state.showForm}
-          formClick={this.formClick}
-        />
-        <CompanyDetails
+  showModule() {
+    if (this.state.showForm === true) {
+      return (<CompanyForm
+        isActive={this.state.showForm}
+        formClick={this.formClick}
+      />)
+    }
+    if (this.state.showDetails === true) {
+      return (<CompanyDetails
           isActive={this.state.showDetails}
           detailClick={this.detailClick}
-          formClick={this.formClick}
+          showEdit={this.showEdit}
           detailExit={this.detailExit}
           company={this.state.companyDetail}
+        />)
+    }
+    if (this.state.showEdit === true) {
+      return (
+        <EditCompany
+          isActive={this.state.showEdit}
+          showEdit={this.showEdit}
+          company={this.state.companyDetail}
         />
+      )
+    }
+  }
+
+  render() {
+    console.log(this.props.deals)
+    return (
+      <React.Fragment>
+        {this.showModule()}
         <div className="background-layer" />
         <div className="background-highlight-layer" />
         <div className="header-div">
@@ -212,7 +235,8 @@ const mapStateToProps = state => {
   return {
     companies: state.companiesReducer.companies,
     company: state.companiesReducer.company,
-    companyCreated: state.companiesReducer.companyCreated
+    createCompany: state.companiesReducer.createCompany,
+    deals: state.dealsReducer.deals
 
   };
 };

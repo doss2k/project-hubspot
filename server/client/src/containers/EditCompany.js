@@ -1,33 +1,36 @@
 import React, { Component } from "react";
 import { connect } from "react-redux";
 import * as actionTypes from "../actions";
-import SubmitButtom from "./SubmitButton";
+import SubmitButton from "./SubmitButton";
 
-export class CompanyForm extends Component {
+export class EditForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyName: "",
-      logoUrl: "",
-      city: "",
-      state: ""
+      companyName: this.props.company[0][0].companyName || "",
+      logoUrl: this.props.company[0][0].logoUrl || "",
+      city: this.props.company[0][0].city || "",
+      state: this.props.company[0][0].state || "",
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
-  //as data is typed, caputer in the state
+
+
+  //as data is typed, capture in the state
   onInputChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
   //on submit, send POST request to the server
-  onFormSubmit = (e, formClick) => {
+  onFormSubmit(e, showEdit) {
     e.preventDefault();
-    this.props.createCompany(this.state);
-    formClick()
+    this.props.editCompany(e.target.id, this.state)
+    showEdit()
   }
 
   render() {
-    const { isActive, formClick } = this.props;
+    const { isActive, showEdit } = this.props;
+
     return (
       <React.Fragment>
         <div className={isActive ? "mask show" : "mask"} />
@@ -35,11 +38,12 @@ export class CompanyForm extends Component {
           <div className={isActive ? "form-card show" : "form-card"}>
             <div className="form-header-container">
               <div className="form-header">
-                <div className="form-name">create company</div>
-                <div className="fas fa-times" onClick={formClick} />
+                <div className="form-name">edit company</div>
+                <div className="fas fa-times" onClick={showEdit} />
               </div>
             </div>
-            <form className="form-field-container" onSubmit={e => this.onFormSubmit(e, formClick)}>
+            <form className="form-field-container" id={this.props.company[0][0].companyId} onSubmit={e => this.onFormSubmit(e, showEdit)}>
+              {" "}
               <p className="company-form-company-p">company name</p>
               <input
                 type="text"
@@ -77,11 +81,7 @@ export class CompanyForm extends Component {
                 onChange={this.onInputChange}
               />
               <div className="form-footer-container">
-              <input
-                className="submit-button"
-                type="submit"
-                formClick={formClick}
-              />
+                <SubmitButton  />
               </div>
             </form>
           </div>
@@ -93,12 +93,12 @@ export class CompanyForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createCompany: companyData =>
-      dispatch(actionTypes.createCompany(companyData))
+    editCompany: (companyId, companyData) =>
+      dispatch(actionTypes.editCompany(companyId, companyData))
   };
 };
 
 export default connect(
   null,
   mapDispatchToProps
-)(CompanyForm);
+)(EditForm);
