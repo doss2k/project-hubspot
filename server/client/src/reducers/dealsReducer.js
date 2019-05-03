@@ -13,6 +13,12 @@ export const dealsReducer = (state = {}, action) => {
         deals: normalizedDeals
       }
 
+    case actionTypes.GET_ALL_DEALS_DASHBOARD:
+      return {
+        ...state,
+        dealsDashboard: action.payload.data
+      }
+
     case actionTypes.GET_DEAL_POSITION:
       const stage = new schema.Entity('stages')
       const normalizedStages = normalize(action.payload.data, [stage]).entities

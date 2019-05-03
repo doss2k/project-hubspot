@@ -23,7 +23,7 @@ export const getDealsInProgress = () => {
 }
 
 export const getAveragePerDeal = () => {
-  const request = axios.get('/api/calc/dealsinprogress', {
+  const request = axios.get('/api/calc/avgrevperdeal', {
     headers: CORS_HEADERS
   })
   return {
