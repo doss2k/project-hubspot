@@ -6,6 +6,7 @@
 @import "partitions/companyForm";
 @import "partitions/dealProgressLists";
 @import "partitions/formFields";
+@import "partitions/companyDetails";
 
 * {
   margin: 0;
@@ -15,7 +16,7 @@
 body {
   font-family: "Muli", sans-serif;
   box-sizing: border-box;
-  color: $primary-color;
+  color: white;
   margin: 0 55px 0 55px;
 }
 
@@ -59,6 +60,37 @@ a {
 
   &:hover {
     background: lighten($tertiary-color, 5%);
+    @include fastEaseOut;
+  }
+
+  &:active {
+    box-shadow: inset 0px 0px 5px darken($tertiary-color, 20%);
+    outline: none;
+  }
+
+  &:focus {
+    outline: none;
+  }
+}
+
+.delete-button {
+  position: absolute;
+  bottom: 10px;
+  left: 24px;
+  background: #b50717;
+  border: none;
+  color: #fff;
+  height: 40px;
+  width: 160px;
+  padding: 0 30px 0 30px;
+  text-transform: capitalize;
+  font-size: 0.8rem;
+  font-weight: 600;
+  border-radius: 3px;
+  cursor: pointer;
+
+  &:hover {
+    background: lighten(#b50717, 5%);
     @include fastEaseOut;
   }
 

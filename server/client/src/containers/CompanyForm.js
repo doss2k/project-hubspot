@@ -46,7 +46,6 @@ export class CompanyForm extends Component {
               </div>
             </div>
             <form className="form-field-container" onSubmit={this.onFormSubmit}>
-              {" "}
               <p className="company-form-company-p">company name</p>
               <input
                 type="text"

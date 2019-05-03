@@ -16,7 +16,7 @@ router.get("/api/calc/successrate", (req, res) => {
 
 // Sum of amount of all not closed deals.
 router.get("/api/calc/dealsinprogress", (req, res) => {
-  const sql = "SELECT SUM(amount) AS 'Deals In Progress' FROM deals WHERE stage NOT IN ('Closed Lost','Closed Won')";
+  const sql = "SELECT COUNT(dealId) AS 'Deals In Progress' FROM deals WHERE stage NOT IN ('Closed Lost','Closed Won')";
   pool.query(sql, function(error, results, fields) {
     if (error) throw error;
       res.json(results);
@@ -52,15 +52,19 @@ router.get("/api/calc/avgtimetoclose", (req, res) => {
       res.json(results[0]);
   });
 });
+<<<<<<< HEAD
 
 // Top 3 companies by total revenue of all deals
+=======
+// now going to return just top client 
+>>>>>>> master
 router.get("/api/calc/topthreeclients", (req, res) => {
   const sql = `select sum(deals.amount) AS Total, companies.logoUrl, companies.companyName
   from deals
   INNER JOIN companies ON companies.companyId = deals.companyId
   GROUP BY dealId
   ORDER BY Total DESC
-  LIMIT 3`;
+  LIMIT 1`;
   pool.query(sql, function(error, results, fields) {
     if (error) throw error;
       res.json(results);

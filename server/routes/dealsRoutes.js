@@ -48,6 +48,7 @@ router.post("/api/deals", (req, res) => {
     "${req.body.createdDate}",
     "${req.body.closeDate}",
     "${req.body.companyId}",
+<<<<<<< HEAD
      ?)` // push new dealId onto end of 
   pool.query(sql1, function(error, results, fields){
     if (error) throw error;
@@ -61,6 +62,23 @@ router.post("/api/deals", (req, res) => {
         }
       })
     })
+=======
+    "${req.body.stageOrder}")`
+  pool.query(sql, function(error, results, fields) {
+    if (error) throw error;
+    if (results) {
+      const returnInfo = `SELECT * FROM deals WHERE dealId = ${results.insertId}`
+      pool.query(returnInfo, function(error, results, fields) {
+        if (error) throw error;
+        if(results){
+        res.json(results);
+      }
+    })
+    } else {
+      res.status(404).send("Deal was not added");
+    }
+  });
+>>>>>>> master
 });
 
 /* PUT This endpoint allows you to edit the deal with the supplied dealId. If the supplied
@@ -82,7 +100,13 @@ router.put("/api/deals/:id", (req, res) => {
   pool.query(sql, dealId, function(error, results, fields){
     if (error) throw error;
     if (results.affectedRows !== 0) {
-      res.json(results);
+      const returnInfo = `SELECT * FROM deals WHERE dealId = ${dealId}`
+      pool.query(returnInfo, function(error, results, fields) {
+        if (error) throw error;
+        if(results){
+        res.json(results);
+      }
+    })
     } else {
       res.status(404).send("That dealId is not in the database");
     }
@@ -99,7 +123,7 @@ router.delete("/api/deals/:id", (req, res) => {
     if (error) throw error;
     // Check for no results.
     if (results.affectedRows !== 0) {
-      res.json(results);
+      res.json(`Deal with ID of ${dealId} has been deleted`);
     } else {
       res.status(404).send("That dealId is not in the database");
     }
