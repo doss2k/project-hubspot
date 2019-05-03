@@ -14,8 +14,10 @@ class CompanyDetails extends Component {
     window.location.reload();
   }
 
-  editMode(e) {
-    console.log(e);
+  editMode(e, detailExit, showEdit) {
+    detailExit()
+    showEdit()
+
   }
 
   renderDeals() {
@@ -47,88 +49,83 @@ class CompanyDetails extends Component {
           </div>
         );
       });
+    } else {
+      return (<div>loading...</div>)
     }
   }
 
   render() {
-    const { isActive, detailClick, detailExit } = this.props;
-    if (this.props.company === undefined) {
-      //changed to undefined, seemed a bit better (maybe), can erase these comments and logs mariel
-      console.log(this.props.company); //from rf, can erase these comments and logs mariel
-      return null;
+    const { isActive, detailExit, showEdit } = this.props;
+    if (this.props.company.length === 0 ) {
+      return(<div>loading... </div>)
     }
-    console.log(this.props.company); //from rf, can erase these comments and logs mariel
-    const {
-      companyName,
-      logoUrl,
-      city,
-      state,
-      companyId
-    } = this.props.company[0][0];
-    return (
-      <React.Fragment>
-        <div className={isActive ? "mask show" : "mask"} />
-        <div className={isActive ? "form-container show" : "form-container"}>
-          <div className={isActive ? "form-card show" : "form-card"}>
-            <div className="company-details-header-container">
-              <div className="form-header">
-                <div className="form-name">{companyName}</div>
-                <div
-                  className="fas fa-pencil-alt"
-                  onClick={() => this.editMode(this.props.company[0])}
-                />
-                <div className="fas fa-times fa-lg" onClick={detailExit} />
-              </div>
-            </div>
-            <div className="form-field-container">
-              <img
-                src={logoUrl}
-                alt="company logo"
-                style={{
-                  height: "150px",
-                  maxWidth: "300px",
-                  borderRadius: "10px",
-                  margin: "auto",
-                  boxShadow: "0px 0px 5px 0px black"
-                }}
-              />
-              <div className="company-detailed-divider" />
-              <p style={{ textAlign: "center", fontSize: "1rem" }}>
-                {city}, {state}{" "}
-              </p>
-
-              <div>
-                <div
-                  className="company-grid-container"
-                  style={{
-                    height: "auto",
-                    maxHeight: "200px",
-                    overflow: "scroll"
-                  }}
-                >
-                  <div className="company-grid-row company-grid-header">
-                    <div className="grid-title-items">deal</div>
-                    <div className="grid-title-items">stage</div>
-                    <div className="grid-title-items">amount</div>
-                  </div>
-                  {this.renderDeals()}
+      const { companyName, logoUrl, city, state, companyId} = this.props.company[0][0];
+      return (
+        <React.Fragment>
+          <div className={isActive ? "mask show" : "mask"} />
+          <div className={isActive ? "form-container show" : "form-container"}>
+            <div className={isActive ? "form-card show" : "form-card"}>
+              <div className="company-details-header-container">
+                <div className="form-header">
+                  <div className="form-name">{companyName}</div>
+                  <div
+                    className="fas fa-pencil-alt"
+                    onClick={() => this.editMode(this.props.company[0], detailExit, showEdit)}
+                  />
+                  <div className="fas fa-times fa-lg" onClick={detailExit} />
                 </div>
               </div>
-            </div>
-            <div className="form-footer-container">
-              <input
-                className="delete-button"
-                type="submit"
-                value="delete company"
-                onClick={() => this.onDelete(companyId)}
-              />
+              <div className="form-field-container">
+                <img
+                  src={logoUrl}
+                  alt="company logo"
+                  style={{
+                    height: "150px",
+                    maxWidth: "300px",
+                    borderRadius: "10px",
+                    margin: "auto",
+                    boxShadow: "0px 0px 5px 0px black"
+                  }}
+                />
+                <div className="company-detailed-divider" />
+                <p style={{ textAlign: "center", fontSize: "1rem" }}>
+                  {city}, {state}{" "}
+                </p>
+
+                <div>
+                  <div
+                    className="company-grid-container"
+                    style={{
+                      height: "auto",
+                      maxHeight: "200px",
+                      overflow: "scroll"
+                    }}
+                  >
+                    <div className="company-grid-row company-grid-header">
+                      <div className="grid-title-items">deal</div>
+                      <div className="grid-title-items">stage</div>
+                      <div className="grid-title-items">amount</div>
+                    </div>
+                    {this.renderDeals()}
+                  </div>
+                </div>
+              </div>
+              <div className="form-footer-container">
+                <input
+                  className="delete-button"
+                  type="submit"
+                  value="delete company"
+                  onClick={() => this.onDelete(companyId)}
+                />
+              </div>
             </div>
           </div>
-        </div>
-      </React.Fragment>
-    );
+        </React.Fragment>
+      );
+    }
   }
-}
+
+
 
 const mapDispatchToProps = dispatch => {
   return {

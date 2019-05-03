@@ -9,7 +9,7 @@ router.get("/api/companies", (req, res) => {
   const { field, sort } = req.query;
   const sql = `SELECT * FROM companies ORDER BY ${field} ${sort}`;
   if (field && sort) {
-    pool.query(sql, function(error, results, fields) {
+    pool.query(sql, function (error, results, fields) {
       if (error) throw error;
       if (results.length > 0) {
         res.json(results);
@@ -18,14 +18,14 @@ router.get("/api/companies", (req, res) => {
       }
     });
   } else { // If Query params not passed
-  pool.query("SELECT * FROM companies", function(error, results, fields) {
-    if (error) throw error;
-    if (results.length > 0) {
-      res.json(results);
-    } else {
-      res.status(404).send("No companies found.");
-    }
-  });
+    pool.query("SELECT * FROM companies", function (error, results, fields) {
+      if (error) throw error;
+      if (results.length > 0) {
+        res.json(results);
+      } else {
+        res.status(404).send("No companies found.");
+      }
+    });
   }
 });
 
@@ -42,7 +42,7 @@ router.get("/api/companies/:id", (req, res) => {
   const queries = [sql1, sql2]
   const finalResponse = [];
   queries.forEach(call => {
-    pool.query(call, companyId, function(error, results, fields) {
+    pool.query(call, companyId, function (error, results, fields) {
       if (error) throw error;
       finalResponse.push(results);
       // Check for no results.
@@ -62,7 +62,7 @@ router.get("/api/companies/:id", (req, res) => {
    request upon success.  If the company is not added to the database returns a 404 error */
 
 router.post("/api/companies", (req, res) => {
-  if(!(req.body.companyName && req.body.logoUrl && req.body.city && req.body.state)) {
+  if (!(req.body.companyName && req.body.logoUrl && req.body.city && req.body.state)) {
     res.status(400).send("Required parameter was not sent, please check your request");
     return;
   }
@@ -74,16 +74,16 @@ router.post("/api/companies", (req, res) => {
     "${req.body.state}",
     UNIX_TIMESTAMP(),
     UNIX_TIMESTAMP())`
-  pool.query(sql, function(error, results, fields) {
+  pool.query(sql, function (error, results, fields) {
     if (error) throw error;
     if (results) {
       const returnInfo = `SELECT * from companies where companyId = ${results.insertId}`
-      pool.query(returnInfo, function(error, results, fields) {
+      pool.query(returnInfo, function (error, results, fields) {
         if (error) throw error;
-        if(results){
-        res.json(results);
-      }
-    })
+        if (results) {
+          res.json(results);
+        }
+      })
     } else {
       res.status(404).send("Company was not added");
     }
@@ -94,7 +94,7 @@ router.post("/api/companies", (req, res) => {
   companyId is not in the database it will return a 404 error */
 
 router.put("/api/companies/:id", (req, res) => {
-  if(!(req.body.companyName && req.body.logoUrl && req.body.city && req.body.state)) {
+  if (!(req.body.companyName && req.body.logoUrl && req.body.city && req.body.state)) {
     res.status(400).send("Required parameter was not sent, please check your request");
     return;
   }
@@ -106,16 +106,16 @@ router.put("/api/companies/:id", (req, res) => {
     state = '${req.body.state}',
     updatedDate = UNIX_TIMESTAMP()
     WHERE companyId = ?`
-  pool.query(sql, companyId, function(error, results, fields){
+  pool.query(sql, companyId, function (error, results, fields) {
     if (error) throw error;
     if (results.affectedRows !== 0) {
       const returnInfo = `SELECT * from companies where companyId = ${companyId}`
-      pool.query(returnInfo, function(error, results, fields) {
+      pool.query(returnInfo, function (error, results, fields) {
         if (error) throw error;
-        if(results){
-        res.json(results);
-      }
-    })
+        if (results) {
+          res.json(results);
+        }
+      })
     } else {
       res.status(404).send("That companyId is not in the database");
     }
@@ -128,19 +128,19 @@ router.put("/api/companies/:id", (req, res) => {
 router.delete("/api/companies/:id", (req, res) => {
   const companyId = req.params.id;
   const sql = "DELETE FROM companies WHERE companyId = ?";
-  pool.query(sql, companyId, function(error, results, fields) {
+  pool.query(sql, companyId, function (error, results, fields) {
     if (error) throw error;
     // Check for no results.
     if (results.affectedRows !== 0) {
       const deleteRelatedDeals = `DELETE FROM deals WHERE companyId = ${companyId}`
-      pool.query(deleteRelatedDeals, function(error, results, fields) {
+      pool.query(deleteRelatedDeals, function (error, results, fields) {
         if (error) throw error;
-        if(results.affectedRows !== 0){
-        res.json(`Company with ID of ${companyId} and all associated deals have been deleted`);
-      } else {
-        res.json(`Company with ID of ${companyId} has been deleted`);
-      }
-    })
+        if (results.affectedRows !== 0) {
+          res.json(`Company with ID of ${companyId} and all associated deals have been deleted`);
+        } else {
+          res.json(`Company with ID of ${companyId} has been deleted`);
+        }
+      })
     } else {
       res.status(404).send("That companyId is not in the database");
     }

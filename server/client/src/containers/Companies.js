@@ -5,6 +5,7 @@ import CompanyForm from "./CompanyForm";
 
 import * as actionTypes from "../actions";
 import CompanyDetails from "./CompanyDetails";
+import EditCompany from "./EditCompany";
 
 let moment = require("moment");
 
@@ -12,16 +13,30 @@ class Companies extends Component {
   state = {
     showForm: false,
     showDetails: false,
+    showEdit: false,
     companyName: "asc",
     city: "asc",
     updatedDate: "asc",
     state: "asc",
-    createdDate: "asc"
+    createdDate: "asc",
+    companyDetail: []
   };
 
   // As soon as component mounts make call to redux to fetch all companies
   componentDidMount() {
     this.props.getAllCompanies();
+    this.props.getAllDeals();
+  }
+
+  // Update component when we create a new company
+  shouldComponentUpdate(nextProps, nextState, nextContext) {
+    if (nextProps.companies) {
+      if (nextProps.companies.length === 1) {
+        // get all companies and update
+        this.props.getAllCompanies()
+      }
+      return true
+    }
   }
 
   //when create company is clicked, toggle show form
@@ -29,15 +44,35 @@ class Companies extends Component {
     this.setState({ showForm: !this.state.showForm });
   };
 
-  //when company details is clicked, toggle show details
-  detailClick = company => {
-    this.props.getCompanyById(company);
-    this.setState({ showDetails: !this.state.showDetails });
+  detailClick = id => {
+    //select a company by id
+    const company1 = this.props.companies.find( (company) => {
+      return (company.companyId === id)
+    })
+
+    const {deals} = this.props;
+    const companyDeals = []
+
+    for (let deal in deals) {
+      if( deals[deal].companyId === id){
+        companyDeals.push(deals[deal]);
+      }
+    }
+
+    //set the state to the selected company and toggle show detail view
+    const companyDetail = [[company1], [...companyDeals]]
+    this.setState({ showDetails: !this.state.showDetails, companyDetail});
+    console.log(this.state)
   };
 
   detailExit = () => {
     this.setState({ showDetails: !this.state.showDetails });
   };
+
+  showEdit = () => {
+    this.setState({showEdit: !this.state.showEdit})
+  }
+
 
   //when header is clicked, sort in ascending order
   onSort = e => {
@@ -50,6 +85,7 @@ class Companies extends Component {
   };
 
   renderCompanies() {
+    // console.log('companies i s', this.props.companies)
     if (this.props.companies) {
       return this.props.companies.map(company => {
         return (
@@ -94,20 +130,39 @@ class Companies extends Component {
     }
   }
 
+  showModule() {
+    if (this.state.showForm === true) {
+      return (<CompanyForm
+        isActive={this.state.showForm}
+        formClick={this.formClick}
+      />)
+    }
+    if (this.state.showDetails === true) {
+      return (<CompanyDetails
+          isActive={this.state.showDetails}
+          detailClick={this.detailClick}
+          showEdit={this.showEdit}
+          detailExit={this.detailExit}
+          company={this.state.companyDetail}
+        />)
+    }
+    if (this.state.showEdit === true) {
+      return (
+        <EditCompany
+          isActive={this.state.showEdit}
+          showEdit={this.showEdit}
+          formClick={this.formClick}
+          // detailExit={this.detailExit}
+          company={this.state.companyDetail}
+        />
+      )
+    }
+  }
+
   render() {
     return (
       <React.Fragment>
-        <CompanyForm
-          isActive={this.state.showForm}
-          formClick={this.formClick}
-        />
-        <CompanyDetails
-          isActive={this.state.showDetails}
-          detailClick={this.detailClick}
-          formClick={this.formClick}
-          detailExit={this.detailExit}
-          company={this.props.company}
-        />
+        {this.showModule()}
         <div className="background-layer" />
         <div className="background-highlight-layer" />
         <div className="header-div">
@@ -182,7 +237,9 @@ class Companies extends Component {
 const mapStateToProps = state => {
   return {
     companies: state.companiesReducer.companies,
-    company: state.companiesReducer.company
+    company: state.companiesReducer.company,
+    companyCreated: state.companiesReducer.companyCreated
+
   };
 };
 
@@ -190,7 +247,7 @@ const mapDispatchToProps = dispatch => {
   return {
     getAllCompanies: () => dispatch(actionTypes.getAllCompanies()),
     createCompany: formData => dispatch(actionTypes.createCompany(formData)),
-    getCompanyById: company => dispatch(actionTypes.getCompanyById(company)),
+    getAllDeals: () => dispatch(actionTypes.getAllDeals()),
     sortCompanies: (field, sort) =>
       dispatch(actionTypes.sortCompanies(field, sort))
   };

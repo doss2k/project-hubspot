@@ -1,6 +1,10 @@
-import * as actionTypes from './actionTypes';
+import * as actionTypes from './actionTypes'
 import axios from 'axios'
-const CORS_HEADERS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, X-Authentication" };
+const CORS_HEADERS = {
+  'Access-Control-Allow-Origin': '*',
+  'Access-Control-Allow-Headers':
+    'Origin, X-Requested-With, Content-Type, Accept, X-Authentication'
+}
 
 export const getAllDeals = () => {
   // change the url back please and thank you
@@ -9,6 +13,17 @@ export const getAllDeals = () => {
   })
   return {
     type: actionTypes.GET_ALL_DEALS,
+    payload: request
+  }
+}
+
+export const getAllDealsDashboard = () => {
+  // change the url back please and thank you
+  const request = axios.get('/api/deals', {
+    headers: CORS_HEADERS
+  })
+  return {
+    type: actionTypes.GET_ALL_DEALS_DASHBOARD,
     payload: request
   }
 }
@@ -22,14 +37,23 @@ export const getDealPosition = () => {
   }
 }
 
-export const setDealPosition = newState => {
+export const setDealPosition = (newState, newStartingStage, newEndingStage) => {
+  const request = axios({
+    method: 'put',
+    url: '/api/dealsposition/',
+    headers: CORS_HEADERS,
+    data: [newStartingStage, newEndingStage]
+  })
+
+  console.log('request', request)
+
   return {
     type: actionTypes.SET_DEAL_POSITION,
     payload: newState
   }
 }
 
-export const createDeal = (dealData) => {
+export const createDeal = dealData => {
   const request = axios({
     method: 'post',
     url: '/api/deals',
@@ -43,7 +67,7 @@ export const createDeal = (dealData) => {
   }
 }
 
-export const getDealById = (dealId) => {
+export const getDealById = dealId => {
   const request = axios.get(`/api/deals/${dealId}`, {
     headers: CORS_HEADERS
   })
@@ -54,7 +78,7 @@ export const getDealById = (dealId) => {
   }
 }
 
-export const deleteDealById = (dealId) => {
+export const deleteDealById = dealId => {
   const request = axios.delete(`/api/deals/${dealId}`)
   return {
     type: actionTypes.DELETE_DEAL_BY_ID,

@@ -3,39 +3,35 @@ import { connect } from "react-redux";
 import * as actionTypes from "../actions";
 import SubmitButtom from "./SubmitButton";
 
-export class CompanyForm extends Component {
+export class EditForm extends Component {
   constructor(props) {
     super(props);
     this.state = {
-      companyName: "",
-      logoUrl: "",
-      city: "",
-      state: ""
+      companyName: this.props.company[0][0].companyName || "",
+      logoUrl: this.props.company[0][0].logoUrl || "",
+      city: this.props.company[0][0].city || "",
+      state: this.props.company[0][0].state || "",
     };
     this.onInputChange = this.onInputChange.bind(this);
     this.onFormSubmit = this.onFormSubmit.bind(this);
   }
-  //as data is typed, caputer in the state
+
+
+  //as data is typed, capture in the state
   onInputChange(event) {
     this.setState({ [event.target.name]: event.target.value });
   }
   //on submit, send POST request to the server
   onFormSubmit(e) {
+    console.log(e)
     e.preventDefault();
-    // window.location.reload();
-    // this is janky yooooo, jarry transtion makingme makingme cry
-    this.props.createCompany(this.state);
-    //reset form
-    this.setState({
-      companyName: "",
-      logoUrl: "",
-      city: "",
-      state: ""
-    });
+    this.props.editCompany(this.state)
   }
 
   render() {
-    const { isActive, formClick } = this.props;
+    const { isActive, showEdit } = this.props;
+    const { companyId, companyName, logoUrl, city, state } = this.props.company[0][0]
+
     return (
       <React.Fragment>
         <div className={isActive ? "mask show" : "mask"} />
@@ -43,11 +39,12 @@ export class CompanyForm extends Component {
           <div className={isActive ? "form-card show" : "form-card"}>
             <div className="form-header-container">
               <div className="form-header">
-                <div className="form-name">create company</div>
-                <div className="fas fa-times" onClick={formClick} />
+                <div className="form-name">edit company</div>
+                <div className="fas fa-times" onClick={showEdit} />
               </div>
             </div>
             <form className="form-field-container" onSubmit={this.onFormSubmit}>
+              {" "}
               <p className="company-form-company-p">company name</p>
               <input
                 type="text"
@@ -85,7 +82,7 @@ export class CompanyForm extends Component {
                 onChange={this.onInputChange}
               />
               <div className="form-footer-container">
-                <SubmitButtom formClick={formClick} />
+                <SubmitButtom  />
               </div>
             </form>
           </div>
@@ -97,12 +94,12 @@ export class CompanyForm extends Component {
 
 const mapDispatchToProps = dispatch => {
   return {
-    createCompany: companyData =>
-      dispatch(actionTypes.createCompany(companyData))
+    editCompany: companyData =>
+      dispatch(actionTypes.editCompany(companyData))
   };
 };
 
 export default connect(
   null,
   mapDispatchToProps
-)(CompanyForm);
+)(EditForm);
