@@ -58,12 +58,13 @@ class Chart extends Component {
   }
   let sortedArray = chartData.sort(sortFunction);
   console.log("sortedArray: ", sortedArray)
+  return sortedArray;
 }
 
 
 
 
-/*
+
   constructor(props) {
     super(props);
 
@@ -103,20 +104,10 @@ class Chart extends Component {
             color: '#2eb347',
             fillOpacity: 0.4,
 
-            data: [
-              // [Date.UTC(2018, 10, 25), 100],
-              // [Date.UTC(2018, 11, 20), 141],
-              // [Date.UTC(2018, 12, 17), 520],
-              // [Date.UTC(2019, 1, 2), 430],
-              // [Date.UTC(2019, 2, 14), 682],
-              // [Date.UTC(2019, 3, 6), 724],
-              // [Date.UTC(2019, 4, 24), 926],
-              // [Date.UTC(2019, 5, 2), 1130]
-              [formatDate(1556548269), 181000],
-              [formatDate(1556645869), 203000],
-              [formatDate(1556854826), 281000],
-              [formatDate(1556945869), 303000]
-            ]
+            data: [ [Date.UTC(2018, 10, 25), 100],
+                [Date.UTC(2018, 11, 20), 141],
+                [Date.UTC(2018, 12, 17), 520]]
+      
           },
           // {
           //   name: 'Forecast',
@@ -162,7 +153,7 @@ class Chart extends Component {
     };
   }
   // ends here
-*/
+
   componentDidMount() {
     this.props.getAllDealsDashboard()
   
@@ -170,7 +161,7 @@ class Chart extends Component {
 
 
   render() {
-    // const { chartOptions, hoverData } = this.state;
+    const { chartOptions, hoveSrData } = this.state;
     
 
     if (this.props.dealsDashboard) {
@@ -181,7 +172,7 @@ class Chart extends Component {
       <React.Fragment>
     
         <div className="chart-card">
-          {/* <HighchartsReact highcharts={Highcharts} options={chartOptions} /> */}
+          <HighchartsReact highcharts={Highcharts} options={chartOptions} />
         </div>
     
       </React.Fragment>
