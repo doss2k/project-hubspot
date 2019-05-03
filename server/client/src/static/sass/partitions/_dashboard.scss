@@ -1,6 +1,17 @@
-body {
-  background: lighten($primary-color, 70%);
-}
+// body {
+//   background: lighten($primary-color, 70%);
+// }
+
+// .background-highlight-layer {
+//   position: absolute;
+//   top: 510px;
+//   left: 0;
+//   width: 100%;
+//   height: 3px;
+//   background: $secondary-color;
+//   z-index: -5;
+// }
+//------ABOVE IS FOR A BETTER BACKGROUND, MESSES UP OTHER PAGES THOUGH, MAY COME BACK---RF--
 
 .background-layer {
   position: absolute;
@@ -10,16 +21,6 @@ body {
   height: 510px;
   background: #fff;
   z-index: -10;
-}
-
-.background-highlight-layer {
-  position: absolute;
-  top: 510px;
-  left: 0;
-  width: 100%;
-  height: 3px;
-  background: $secondary-color;
-  z-index: -5;
 }
 
 .chart-container {
@@ -34,7 +35,8 @@ body {
   flex-flow: row;
   justify-content: center;
   flex-wrap: wrap;
-  margin: 50px 30px 50px 30px;
+  margin: 50px auto 50px auto;
+  max-width: 1225px;
 
   .info-card {
     display: flex;
