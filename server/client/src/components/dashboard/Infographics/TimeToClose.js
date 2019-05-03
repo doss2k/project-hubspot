@@ -7,7 +7,8 @@ export class TimeToClose extends Component {
     return (
       <div className="avgTimeToClose info-card">
         <p className="variable-info-p">
-          {numeral(data / 1000 / 60 / 60 / 24).format('0,0')}
+          {numeral(data).format('0,0')}
+          {/* {numeral(data / 1000 / 60 / 60 / 24).format('0,0')} */}
           <span className="percentage"> days</span>
         </p>
         <h4>Average time to close deal</h4>
