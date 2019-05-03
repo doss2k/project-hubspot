@@ -13,6 +13,17 @@ export const getAllDeals = () => {
   }
 }
 
+export const getAllDealsDashboard = () => {
+  // change the url back please and thank you
+  const request = axios.get('/api/deals', {
+    headers: CORS_HEADERS
+  })
+  return {
+    type: actionTypes.GET_ALL_DEALS_DASHBOARD,
+    payload: request
+  }
+}
+
 export const getDealPosition = () => {
   const request = axios.get('/api/dealsposition', { headers: CORS_HEADERS })
 

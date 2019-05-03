@@ -130,7 +130,9 @@ class Dashboard extends Component {
         <div className="header-div">
           <h2>Dashboard</h2>
         </div>
+        
        <Chart />
+
         <div className="info-container">
           <div className="info-card">
             <div className="avgTimeToClose">

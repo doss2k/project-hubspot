@@ -6,6 +6,22 @@ import { connect } from 'react-redux';
 import * as actionTypes from '../../actions/index';
 
 
+// Get all deals
+//  declared allDeals = []
+//    Loop through all deals
+//      declare closedWonDeals = []
+//        if stage == 'Closed Won'
+//        push into new array => [ {closedWonDeal}, {closedWonDeal}, {closedWonDeal} ]
+
+// Loop through closedWonDeals array
+//  declared chartData = []
+//    get closedWonDeal.closeDate & closedWonDeal.amount 
+//    push into chartData array => [ [closedDate, amount], [closedDate, amount], [closedDate, amount] ]
+
+// Sort chartData.closedDate by ascending order
+// Aggregate chartData.amount
+
+
 function formatDate(d) {
   let newDate = d * 1000;
   return newDate;
@@ -61,43 +77,43 @@ class Chart extends Component {
               // [Date.UTC(2019, 3, 6), 724],
               // [Date.UTC(2019, 4, 24), 926],
               // [Date.UTC(2019, 5, 2), 1130]
-              [formatDate(1551548269), 181000],
+              [formatDate(1556548269), 181000],
               [formatDate(1556645869), 203000],
-              [formatDate(1551548269), 281000],
-              [formatDate(1556645869), 303000]
+              [formatDate(1556854826), 281000],
+              [formatDate(1556945869), 303000]
             ]
           },
-          {
-            name: 'Forecast',
-            color: '#2c2c2c',
+          // {
+          //   name: 'Forecast',
+          //   color: '#2c2c2c',
 
-            fillOpacity: 0.4,
-            data: [
-              // [Date.UTC(2018, 10, 25), 100],
-              // [Date.UTC(2018, 11, 20), 141],
-              // [Date.UTC(2018, 12, 17), 520],
-              // [Date.UTC(2019, 1, 2), 430],
-              // [Date.UTC(2019, 2, 14), 682],
-              // [Date.UTC(2019, 3,  6), 724],
-              //  [Date.UTC(2019, 4, 24), 926],
-              // [Date.UTC(2019, 5, 2), 1130],
-              // [Date.UTC(2019, 6, 14), 1282],
-              // [Date.UTC(2019, 7, 6), 1324],
-              // [Date.UTC(2019, 8, 24), 1329],
-              // [Date.UTC(2019, 9, 2), 1430],
-              // [Date.UTC(2019, 10, 14), 1682]
-              //   [Date.UTC(2019, 11,  6), 1724],
-              //   [Date.UTC(2019, 12, 24), 1926],
-              //   [Date.UTC(2019, 5, 4), 0],
-              //   [Date.UTC(2019, 6, 14), 0],
-              //   [Date.UTC(2019, 7,  6), 0],
-              //   [Date.UTC(2019, 8, 14), 0],
-              //   [Date.UTC(2019, 9, 24), 0],
-              //   [Date.UTC(2019, 10, 4), 0],
-              //   [Date.UTC(2019, 11, 14), 0],
-              //   [Date.UTC(2019, 12,  6), 0]
-            ]
-          }
+          //   fillOpacity: 0.4,
+          //   data: [
+          //     // [Date.UTC(2018, 10, 25), 100],
+          //     // [Date.UTC(2018, 11, 20), 141],
+          //     // [Date.UTC(2018, 12, 17), 520],
+          //     // [Date.UTC(2019, 1, 2), 430],
+          //     // [Date.UTC(2019, 2, 14), 682],
+          //     // [Date.UTC(2019, 3,  6), 724],
+          //     //  [Date.UTC(2019, 4, 24), 926],
+          //     // [Date.UTC(2019, 5, 2), 1130],
+          //     // [Date.UTC(2019, 6, 14), 1282],
+          //     // [Date.UTC(2019, 7, 6), 1324],
+          //     // [Date.UTC(2019, 8, 24), 1329],
+          //     // [Date.UTC(2019, 9, 2), 1430],
+          //     // [Date.UTC(2019, 10, 14), 1682]
+          //     //   [Date.UTC(2019, 11,  6), 1724],
+          //     //   [Date.UTC(2019, 12, 24), 1926],
+          //     //   [Date.UTC(2019, 5, 4), 0],
+          //     //   [Date.UTC(2019, 6, 14), 0],
+          //     //   [Date.UTC(2019, 7,  6), 0],
+          //     //   [Date.UTC(2019, 8, 14), 0],
+          //     //   [Date.UTC(2019, 9, 24), 0],
+          //     //   [Date.UTC(2019, 10, 4), 0],
+          //     //   [Date.UTC(2019, 11, 14), 0],
+          //     //   [Date.UTC(2019, 12,  6), 0]
+          //   ]
+          // }
         ],
         plotOptions: {
           series: {
@@ -113,18 +129,13 @@ class Chart extends Component {
   // ends here
 
   componentDidMount() {
-    this.props.getSuccessRate()
-    this.props.getDealsInProgress()
-    this.props.getAveragePerDeal()
-    this.props.getTotalRevenueToDate()
-    this.props.getAverageTimeToClose()
-    this.props.getTopThreeClients()
+    this.props.getAllDealsDashboard()
   }
 
 
   render() {
     const { chartOptions, hoverData } = this.state;
-    console.log("this i s", this.props)
+    console.log("See all deals!!", this.props.dealsDashboard)
     return (
       <React.Fragment>
     
@@ -139,23 +150,13 @@ class Chart extends Component {
 
 const mapStateToProps = (state) => {
   return {
-    successRate: state.dashboardReducer.successRate,
-    dealsInProgress: state.dashboardReducer.dealsInProgress,
-    avgRevenuePerDeal: state.dashboardReducer.averageRevenuePerDeal,
-    totalRevenue: state.dashboardReducer.totalRevenue,
-    timeToCloseDeal: state.dashboardReducer.timeToCloseDeal,
-    topThreeClients: state.dashboardReducer.topThreeClients,
+    dealsDashboard: state.dealsReducer.dealsDashboard, //need to pass state to props?
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return {
-    getSuccessRate: () => dispatch(actionTypes.getSuccessRate()),
-    getDealsInProgress: () => dispatch(actionTypes.getDealsInProgress()),
-    getAveragePerDeal: () => dispatch(actionTypes.getAveragePerDeal()),
-    getTotalRevenueToDate: () => dispatch(actionTypes.getTotalRevenueToDate()),
-    getAverageTimeToClose: () => dispatch(actionTypes.getAverageTimeToClose()),
-    getTopThreeClients: () => dispatch(actionTypes.getTopThreeClients())
+    getAllDealsDashboard: () => dispatch(actionTypes.getAllDealsDashboard()),
   }
 }
 
