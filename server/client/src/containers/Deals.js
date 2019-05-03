@@ -72,7 +72,7 @@ export class Deals extends Component {
         }
       }
 
-      this.props.setDealPosition(newState)
+      this.props.setDealPosition(newState, newStage)
       return
     }
 

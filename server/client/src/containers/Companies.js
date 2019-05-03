@@ -62,7 +62,6 @@ class Companies extends Component {
     //set the state to the selected company and toggle show detail view
     const companyDetail = [[company1], [...companyDeals]]
     this.setState({ showDetails: !this.state.showDetails, companyDetail});
-    console.log(this.state)
   };
 
   detailExit = () => {
@@ -85,7 +84,6 @@ class Companies extends Component {
   };
 
   renderCompanies() {
-    // console.log('companies i s', this.props.companies)
     if (this.props.companies) {
       return this.props.companies.map(company => {
         return (
@@ -151,8 +149,6 @@ class Companies extends Component {
         <EditCompany
           isActive={this.state.showEdit}
           showEdit={this.showEdit}
-          formClick={this.formClick}
-          // detailExit={this.detailExit}
           company={this.state.companyDetail}
         />
       )
@@ -160,6 +156,7 @@ class Companies extends Component {
   }
 
   render() {
+    console.log(this.props.deals)
     return (
       <React.Fragment>
         {this.showModule()}
@@ -238,7 +235,8 @@ const mapStateToProps = state => {
   return {
     companies: state.companiesReducer.companies,
     company: state.companiesReducer.company,
-    companyCreated: state.companiesReducer.companyCreated
+    createCompany: state.companiesReducer.createCompany,
+    deals: state.dealsReducer.deals
 
   };
 };
