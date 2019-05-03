@@ -38,8 +38,20 @@ $text-link-color: #02a4bd;
     @content;
   }
 }
-@mixin mediaXSm {
-  @media screen and (max-width: 500px) {
+@mixin mediaXS {
+  @media screen and (max-width: 320px) {
+    @content;
+  }
+}
+
+@mixin mediaM {
+  @media screen and (max-width: 1132px) {
+    @content;
+  }
+}
+
+@mixin mediaL {
+  @media screen and (min-width: 1132px) {
     @content;
   }
 }
