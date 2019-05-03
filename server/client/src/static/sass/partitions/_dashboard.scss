@@ -65,21 +65,21 @@ body {
     }
 
     &:nth-child(1) {
-      border-right: 1px solid #ababab;
-      border-bottom: 1px solid #ababab;
+      border-right: 1px solid $tertiary-color;
+      border-bottom: 1px solid $tertiary-color;
     }
     &:nth-child(2) {
-      border-right: 1px solid #ababab;
-      border-bottom: 1px solid #ababab;
+      border-right: 1px solid $tertiary-color;
+      border-bottom: 1px solid $tertiary-color;
     }
     &:nth-child(3) {
-      border-bottom: 1px solid #ababab;
+      border-bottom: 1px solid $tertiary-color;
     }
     &:nth-child(4) {
-      border-right: 1px solid #ababab;
+      border-right: 1px solid $tertiary-color;
     }
     &:nth-child(6) {
-      border-left: 1px solid #ababab;
+      border-left: 1px solid $tertiary-color;
     }
 
     h4 {
