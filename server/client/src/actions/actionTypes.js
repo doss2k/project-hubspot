@@ -4,6 +4,7 @@ export const CREATE_COMPANY = 'CREATE_COMPANY';
 export const GET_COMPANY_BY_ID = 'GET_A_COMPANY';
 export const DELETE_COMPANY_BY_ID = 'DELETE_COMPANY_BY_ID';
 export const SORT_COMPANIES = 'SORT_COMPANIES';
+export const EDIT_COMPANY = 'EDIT_COMPANY';
 
 // Deals
 export const GET_ALL_DEALS = 'GET_ALL_DEALS';

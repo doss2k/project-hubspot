@@ -3,7 +3,7 @@ import axios from 'axios'
 const CORS_HEADERS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, X-Authentication" };
 
 export const getSuccessRate = () => {
-  const request = axios.get('http://localhost:8000/api/calc/successrate', {
+  const request = axios.get('/api/calc/successrate', {
     headers: CORS_HEADERS
   })
   return {
@@ -13,7 +13,7 @@ export const getSuccessRate = () => {
 }
 
 export const getDealsInProgress = () => {
-  const request = axios.get('http://localhost:8000/api/calc/dealsinprogress', {
+  const request = axios.get('/api/calc/dealsinprogress', {
     headers: CORS_HEADERS
   })
   return {
@@ -23,7 +23,7 @@ export const getDealsInProgress = () => {
 }
 
 export const getAveragePerDeal = () => {
-  const request = axios.get('http://localhost:8000/api/calc/dealsinprogress', {
+  const request = axios.get('/api/calc/dealsinprogress', {
     headers: CORS_HEADERS
   })
   return {
@@ -33,7 +33,7 @@ export const getAveragePerDeal = () => {
 }
 
 export const getTotalRevenueToDate = () => {
-  const request = axios.get('http://localhost:8000/api/calc/totalrevytd', {
+  const request = axios.get('/api/calc/totalrevytd', {
     headers: CORS_HEADERS
   })
   return {
@@ -43,7 +43,7 @@ export const getTotalRevenueToDate = () => {
 }
 
 export const getAverageTimeToClose = () => {
-  const request = axios.get('http://localhost/api/calc/avgtimetoclose', {
+  const request = axios.get('/api/calc/avgtimetoclose', {
     headers: CORS_HEADERS
   })
   return {
@@ -53,7 +53,7 @@ export const getAverageTimeToClose = () => {
 }
 
 export const getTopThreeClients = () => {
-  const request = axios.get('http://localhost/api/calc/topthreeclients', {
+  const request = axios.get('/api/calc/topthreeclients', {
     headers: CORS_HEADERS
   })
   return {
