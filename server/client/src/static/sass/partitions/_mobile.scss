@@ -1,0 +1,38 @@
+@include mediaSm {
+  .nav-list {
+    :nth-child(1) {
+      padding-left: 15px;
+      margin-left: 0px;
+
+      &:hover {
+        background: $primary-color;
+      }
+    }
+    :nth-child(2) {
+      font-size: 0.7rem;
+    }
+    :nth-child(3) {
+      font-size: 0.7rem;
+    }
+    :nth-child(4) {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+@include mediaXSm {
+  .nav-list {
+    :nth-child(1) {
+      display: none;
+    }
+    :nth-child(2) {
+      font-size: 0.7rem;
+    }
+    :nth-child(3) {
+      font-size: 0.7rem;
+    }
+    :nth-child(4) {
+      font-size: 0.7rem;
+    }
+  }
+}
