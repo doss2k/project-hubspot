@@ -8,7 +8,6 @@ export class DealsInProgress extends Component {
       <div className="avgTimeToClose info-card">
         <p className="variable-info-p">
           {data}
-          {/* <span className="days"> days</span> */}
         </p>
         <h4>Deals in progress</h4>
       </div>

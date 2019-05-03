@@ -10,8 +10,6 @@ import TopClient from './Infographics/TopClient';
 import YTDRevenue from './Infographics/YTDRevenue';
 import Chart from './Chart.js';
 
-// import Infographic from './Infographic';
-
 class Dashboard extends Component {
   componentDidMount() {
     this.props.getSuccessRate();
@@ -72,7 +70,8 @@ class Dashboard extends Component {
     if (this.props.topThreeClients) {
       console.log(this.props);
       let data = this.props.topThreeClients[0].logoUrl;
-      return <TopClient data={data} />;
+      let altText = this.props.topThreeClients[0].companyName;
+      return <TopClient data={data} altText={altText} />;
     } else return <div />;
   }
 
