@@ -108,6 +108,8 @@ class Companies extends Component {
           detailExit={this.detailExit}
           company={this.props.company}
         />
+        <div className="background-layer" />
+        <div className="background-highlight-layer" />
         <div className="header-div">
           <h2 onClick={this.cComp}>Companies</h2>
           <Button title={"Create Company"} formClick={this.formClick} />

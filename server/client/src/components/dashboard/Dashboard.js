@@ -183,7 +183,7 @@ class Dashboard extends Component {
 
   passTopClientProps() {
     if (this.props.topThreeClients) {
-      console.log(this.props.topThreeClients[0].logoUrl);
+      console.log(this.props);
       let data = this.props.topThreeClients[0].logoUrl;
       return <TopClient data={data} />;
     } else return <div />;
