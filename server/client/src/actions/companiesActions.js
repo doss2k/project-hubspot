@@ -3,7 +3,7 @@ import axios from 'axios'
 const CORS_HEADERS = { "Access-Control-Allow-Origin": "*", "Access-Control-Allow-Headers": "Origin, X-Requested-With, Content-Type, Accept, X-Authentication" };
 
 export const getAllCompanies = () => {
-  const request = axios.get('http://localhost:8000/api/companies', {
+  const request = axios.get('/api/companies', {
     headers: CORS_HEADERS
   })
   return {
@@ -26,7 +26,7 @@ export const getCompanyById = (companyId) => {
 export const createCompany = (formData) => {
   const request = axios({
     method: 'post',
-    url: 'http://localhost:8000/api/companies',
+    url: '/api/companies',
     headers: CORS_HEADERS,
     data: formData
   })
@@ -68,4 +68,3 @@ export const editCompany = (companyId, companyData) => {
     payload: request
   }
 }
-
