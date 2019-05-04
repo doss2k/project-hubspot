@@ -13,7 +13,7 @@ var pool;
 module.exports = {
   getPool: function() {
     if (pool) return pool;
-    // if (process.env.NODE_ENV === 'production') {
+    if (process.env.NODE_ENV === 'production') {
       pool = mysql.createPool({
         host: "us-cdbr-iron-east-02.cleardb.net",
         user: "b3a680a1274e8c",
@@ -21,14 +21,14 @@ module.exports = {
         database: "heroku_4d0bb8f5ad72994",
         connectionLimit: 10
       });
-    // } else {
-    //   pool = mysql.createPool({
-    //     host: "localhost",
-    //     user: process.env.user, // MySQL username
-    //     password: process.env.password, // MySQL password
-    //     database: "projecthubspot" // MySQL database name
-    //   });
-    // }
+    } else {
+      pool = mysql.createPool({
+        host: "localhost",
+        user: process.env.user, // MySQL username
+        password: process.env.password, // MySQL password
+        database: "projecthubspot" // MySQL database name
+      });
+     }
     return pool;
   }
 };

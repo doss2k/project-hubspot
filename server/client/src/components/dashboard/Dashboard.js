@@ -1,14 +1,14 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import { connect } from 'react-redux';
-import * as actionTypes from '../../actions/index';
-import AverageRevenue from './Infographics/AverageRevenue';
-import DealsInProgress from './Infographics/DealsInProgress';
-import SuccessRate from './Infographics/SuccessRate';
-import TimeToClose from './Infographics/TimeToClose';
-import TopClient from './Infographics/TopClient';
-import YTDRevenue from './Infographics/YTDRevenue';
-import Chart from './Chart.js';
+import React, { Component } from "react";
+import { render } from "react-dom";
+import { connect } from "react-redux";
+import * as actionTypes from "../../actions/index";
+import AverageRevenue from "./Infographics/AverageRevenue";
+import DealsInProgress from "./Infographics/DealsInProgress";
+import SuccessRate from "./Infographics/SuccessRate";
+import TimeToClose from "./Infographics/TimeToClose";
+import TopClient from "./Infographics/TopClient";
+import YTDRevenue from "./Infographics/YTDRevenue";
+import Chart from "./Chart.js";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -78,6 +78,8 @@ class Dashboard extends Component {
   render() {
     return (
       <React.Fragment>
+        <div className="background-layer" />
+        <div className="background-highlight-layer" />
         <div className="header-div">
           <h2>Dashboard</h2>
         </div>
