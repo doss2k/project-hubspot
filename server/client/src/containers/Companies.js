@@ -1,4 +1,4 @@
-mport React, { Component } from "react";
+import React, { Component } from "react";
 import { connect } from "react-redux";
 import Button from "./Button";
 import CompanyForm from "./CompanyForm";
