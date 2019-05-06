@@ -1,0 +1,82 @@
+@include mediaM {
+  .info-card {
+    &:nth-child(1) {
+      border-bottom: 1px solid $tertiary-color;
+      border-right: 1px solid $tertiary-color;
+    }
+    &:nth-child(2) {
+      border-bottom: 1px solid $tertiary-color;
+    }
+    &:nth-child(3) {
+      border-right: 1px solid $tertiary-color;
+      border-bottom: 1px solid $tertiary-color;
+    }
+    &:nth-child(4) {
+      border-bottom: 1px solid $tertiary-color;
+    }
+    &:nth-child(6) {
+      border-left: 1px solid $tertiary-color;
+    }
+  }
+}
+
+@include mediaL {
+  .info-card {
+    &:nth-child(1) {
+      border-right: 1px solid $tertiary-color;
+      border-bottom: 1px solid $tertiary-color;
+    }
+    &:nth-child(2) {
+      border-right: 1px solid $tertiary-color;
+      border-bottom: 1px solid $tertiary-color;
+    }
+    &:nth-child(3) {
+      border-bottom: 1px solid $tertiary-color;
+    }
+    &:nth-child(4) {
+      border-right: 1px solid $tertiary-color;
+    }
+    &:nth-child(6) {
+      border-left: 1px solid $tertiary-color;
+    }
+  }
+}
+
+@include mediaSm {
+  .nav-list {
+    :nth-child(1) {
+      padding-left: 15px;
+      margin-left: 0px;
+
+      &:hover {
+        background: $primary-color;
+      }
+    }
+    :nth-child(2) {
+      font-size: 0.7rem;
+    }
+    :nth-child(3) {
+      font-size: 0.7rem;
+    }
+    :nth-child(4) {
+      font-size: 0.7rem;
+    }
+  }
+}
+
+@include mediaXS {
+  .nav-list {
+    :nth-child(1) {
+      display: none;
+    }
+    :nth-child(2) {
+      font-size: 0.7rem;
+    }
+    :nth-child(3) {
+      font-size: 0.7rem;
+    }
+    :nth-child(4) {
+      font-size: 0.7rem;
+    }
+  }
+}

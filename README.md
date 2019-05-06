@@ -1,99 +1,25 @@
-# project-hubspot
+# Axon
 
-<bold>Be sure to npm install in the server and client folders.</bold>
+Axon is an online Customer-Relationship-Management (CRM) tool for tracking company revenue, current and past clients, and deals in all of their various stages. The frontend was designed with React, Redux, and Sass. The backend is written in Node and utilizes the Express framework and a MySQL database. This application was developed by Cohort Five of the Project Shift Software Engineering Fellowship in May 2019.
 
-4/30 4pm update - Changed user/password in server.js to env variables. Create a .env file and add them there then reference the .env file in your launch.json. Remember to git ignore your env file. You will need to launch your server from VS Code instead of the command line for this to work.
+### Homescreen - Dashboard
 
-Example:
-<bold>launch.json</bold>
-```js
-{
-  // Use IntelliSense to learn about possible attributes.
-  // Hover to view descriptions of existing attributes.
-  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
-  "version": "0.2.0",
-  "configurations": [
-    {
-      "type": "node",
-      "request": "launch",
-      "name": "Launch Program",
-      "program": "${workspaceFolder}\\server\\server.js",
-      "envFile": "${workspaceFolder}\\server\\.env",
-      "skipFiles": [
-        "node_modules/**/*.js",
-        "lib/**/*.js",
-        "<node_internals>/**/*.js"
-      ]
-    }
-  ]
-}
-```
+The homescreen displays a dashboard consisting of a graph of total annual revenue (developed with the Highcharts library), and a 2x3 grid of infographics depicting useful business metrics, formatted with the Numeral library.
 
-<bold>.env file:</bold>
-```js
-user="username"
-password="password"
-```
+### Companies
 
-# Server Setup
-The instructions below assume that you successfully completed the MySQL lesson and already have the necessary software installed. If you have any issues reach out to the backend team.
+From the homescreen a user can click the Companies link in the navbar and view a list of companies that are in the CRM. This custom-designed list has various ascending and descending sort options, via a toggle in the list header.
 
-1) Open MySQL Shell.
-2) Open MySQL Workbench and connect to your local instance under "MySQL Connections."
-3) Press CTRL+T to create a new query. Paste in the code snippet below and execute. (lighting bolt icon)
+The "CREATE COMPANY" button opens a form in which a user can enter a new company that will be added to the companies list and will persist in the database. Company information can be edited, updated, and/or deleted by the user.
 
-<details>
-<summary>Click to reveal code </summary>
+### Deals
 
-```sql
-CREATE DATABASE IF NOT EXISTS projecthubspot;
+From the homescreen a user can click the Deals link in the navbar and view a list of deals that are in the CRM. There are five stages of deals: "initiated", "qualified", "contract sent", "closed won" and "closed lost". A deal is a sale and is associated with a name, a company, a stage, a create date (when the deal was created), a close date (when the deal is expected to be won or lost), and the monetary value of the contract. A company may be associated with more than one deal.
 
-USE projecthubspot;
+On this page, a user is able to drag and drop a deal to move it between different stages, which will change the deal's "stage" attribute. (Developed with the react-beautiful-dnd library.) All changes made to deals are updated and stored in the database.
 
-CREATE TABLE IF NOT EXISTS companies (
-  `companyId` INT auto_increment primary key unique not null,
-  `companyName` VARCHAR(150) CHARACTER SET utf8,
-  `logoUrl` VARCHAR(250) CHARACTER SET utf8,
-  `city` VARCHAR(50) CHARACTER SET utf8,
-  `state` VARCHAR(50) CHARACTER SET utf8,
-  `createdDate` INT,
-  `updatedDate` INT
-);
-INSERT INTO companies VALUES
-    (NULL,'IBM','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/ibm.png','Armonk','New York',1546562110,1556580910),
-    (NULL,'Cisco','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/cisco.png','San Francisco','California',1486168510,1526945710),
-    (NULL,'United Health','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/unitedhealth.png','Minnetonka','Minnesota',1426376110,1503704110),
-    (NULL,'Verizon','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/verizon.png','New York City','New York',1541464510,1551832510),
-    (NULL,'Costco','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/costco.png','Seattle ','Washington',1285544110,1350776110),
-    (NULL,'Exxon Mobil','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/exxonmobil.png','Irving ','Texas',1478216110,1512434110),
-    (NULL,'Lowes','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/lowes.png','Charlotte','North Carolina',1437176110,1524008110),
-    (NULL,'Boeing','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/boeing.png','Chicago','Illinois',1528846510,1545784510),
-    (NULL,'Home Depot','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/homedepot.png','Atlanta','Georgia',1404776110,1471476910),
-    (NULL,'State Farm Insurance','https://raw.githubusercontent.com/doss2k/project-hubspot/master/server/client/src/static/images/statefarm.png','Bloomington','Indiana',1494891310,1525563310);
-    
-    CREATE TABLE IF NOT EXISTS deals (
-    `dealId` INT auto_increment primary key unique not null,
-    `dealName` VARCHAR(150) CHARACTER SET utf8,
-    `stage` VARCHAR(150) CHARACTER SET utf8,
-    `amount` NUMERIC(12, 2),
-    `createdDate` INT,
-    `closeDate` INT,
-    `companyId` INT,
-    `stageOrder` INT
-);
-INSERT INTO deals VALUES
-    (NULL,'State Farm Insurance','Initiated',100000.00,1524432669,1532298909,10,1),
-    (NULL,'Home Depot POS Machine Sales','Contract Sent',500000.00,1540503069,1544744109,9,1),
-    (NULL,'Boeing PC Sales','Closed Lost',780650.00,1532295069,1552570269,8,1),
-    (NULL,'Lowes POS Machine Sales','Qualified',1200450.00,1541698269,1548016269,7,1),
-    (NULL,'Exxon Mobil Automated Gas Pump Sales','Closed Won',34789000.00,1520984109,1542929709,6,1),
-    (NULL,'Costco CC Machine Sales','Closed Lost',12300.00,1517229309,1540816509,5,2),
-    (NULL,'Verizon Tablet Sales','Contract Sent',1560000.00,1576330269,1549215069,4,2),
-    (NULL,'United Health PC Sales','Closed Won',490450.00,1513773309,1533422109,3,2),
-    (NULL,'Cisco Router Sales','Initiated',3800650.00,1523140509,1536881709,2,2),
-    (NULL,'IBM Computer Sales','Qualified',1678450.00,1555097469,1556393469,1,2);
-```
-</details>
+The "CREATE DEAL" button opens a form in which a user can enter a new deal that, upon completion and validation, will persist in the database. Deal information can be edited, updated, and/or deleted by the user.
 
-4. Refresh all data under the navigator pane (left side of screen.)
-5. Start the server and navigate to http://localhost:8000/api/companies to verify that the setup was sucessful.
+### Deployment
+
+This application is deployed and accessible at https://project-hubspot.herokuapp.com/.

@@ -31,3 +31,27 @@ $text-link-color: #02a4bd;
 @mixin waySlowEaseOut {
   transition: all 1.5s ease-out;
 }
+
+//media queries
+@mixin mediaSm {
+  @media screen and (max-width: 500px) {
+    @content;
+  }
+}
+@mixin mediaXS {
+  @media screen and (max-width: 320px) {
+    @content;
+  }
+}
+
+@mixin mediaM {
+  @media screen and (max-width: 1132px) {
+    @content;
+  }
+}
+
+@mixin mediaL {
+  @media screen and (min-width: 1132px) {
+    @content;
+  }
+}

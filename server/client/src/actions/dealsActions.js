@@ -37,15 +37,24 @@ export const getDealPosition = () => {
   }
 }
 
-export const setDealPosition = (newState, newStartingStage, newEndingStage) => {
+export const setDealPosition = (newState, oldColumn, newColumn) => {
+
+  let data = [];
+
+  if (oldColumn && newColumn) {
+
+    data = [oldColumn, newColumn]
+  } else {
+    // Change order in same column
+    data = [oldColumn];
+  }
+
   const request = axios({
     method: 'put',
     url: '/api/dealsposition/',
     headers: CORS_HEADERS,
-    data: [newStartingStage, newEndingStage]
+    data
   })
-
-  console.log('request', request)
 
   return {
     type: actionTypes.SET_DEAL_POSITION,

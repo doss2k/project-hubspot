@@ -1,16 +1,14 @@
-import React, { Component } from 'react';
-import { render } from 'react-dom';
-import { connect } from 'react-redux';
-import * as actionTypes from '../../actions/index';
-import AverageRevenue from './Infographics/AverageRevenue';
-import DealsInProgress from './Infographics/DealsInProgress';
-import SuccessRate from './Infographics/SuccessRate';
-import TimeToClose from './Infographics/TimeToClose';
-import TopClient from './Infographics/TopClient';
-import YTDRevenue from './Infographics/YTDRevenue';
-import Chart from './Chart.js';
-
-// import Infographic from './Infographic';
+import React, { Component } from "react";
+import { render } from "react-dom";
+import { connect } from "react-redux";
+import * as actionTypes from "../../actions/index";
+import AverageRevenue from "./Infographics/AverageRevenue";
+import DealsInProgress from "./Infographics/DealsInProgress";
+import SuccessRate from "./Infographics/SuccessRate";
+import TimeToClose from "./Infographics/TimeToClose";
+import TopClient from "./Infographics/TopClient";
+import YTDRevenue from "./Infographics/YTDRevenue";
+import Chart from "./Chart.js";
 
 class Dashboard extends Component {
   componentDidMount() {
@@ -72,13 +70,16 @@ class Dashboard extends Component {
     if (this.props.topThreeClients) {
       console.log(this.props);
       let data = this.props.topThreeClients[0].logoUrl;
-      return <TopClient data={data} />;
+      let altText = this.props.topThreeClients[0].companyName;
+      return <TopClient data={data} altText={altText} />;
     } else return <div />;
   }
 
   render() {
     return (
       <React.Fragment>
+        <div className="background-layer" />
+        <div className="background-highlight-layer" />
         <div className="header-div">
           <h2>Dashboard</h2>
         </div>
