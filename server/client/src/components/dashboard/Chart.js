@@ -42,7 +42,7 @@ class Chart extends Component {
       chartOptions: {
         chart: {
           type: 'area',
-          backgroundColor: '#f4f8fa'
+          backgroundColor: '#fff'
         },
         xAxis: {
           type: 'datetime',
@@ -66,7 +66,7 @@ class Chart extends Component {
         },
         series: [
           {
-            name: 'Closed',
+            name: 'Deals Won',
             color: '#2eb347',
             fillOpacity: 0.4,
 
