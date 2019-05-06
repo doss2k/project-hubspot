@@ -64,9 +64,6 @@ class Chart extends Component {
         title: {
           text: 'Total Revenue To Date'
         },
-        subtitle: {
-          text: 'Sean really really likes ponies'
-        },
         series: [
           {
             name: 'Closed',
