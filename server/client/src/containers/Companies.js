@@ -44,23 +44,23 @@ class Companies extends Component {
 
   //when company details is clicked, toggle show details
   detailClick = id => {
-    const company1 = this.props.companies.find( (company) => {
+    const company1 = this.props.companies.find((company) => {
       return (company.companyId === id)
     })
 
-    const {deals} = this.props;
+    const { deals } = this.props;
     const companyDeals = []
 
     for (let deal in deals) {
-      if( deals[deal].companyId === id){
+      if (deals[deal].companyId === id) {
         companyDeals.push(deals[deal]);
       }
     }
 
     const companyDetail = [[company1], [...companyDeals]]
-    this.setState({ showDetails: !this.state.showDetails, companyDetail});
+    this.setState({ showDetails: !this.state.showDetails, companyDetail });
     console.log(this.state.companyDetail)
-  
+
   };
 
   detailExit = () => {
@@ -68,13 +68,15 @@ class Companies extends Component {
   };
 
   //when header is clicked, sort in ascending order
-  onSort = e => {
-    if (this.state[e] === "asc") {
-      this.setState({ [e]: "desc" });
+  onSort = (e, i) => {
+    console.log("event is ", e.target);
+    e.target.classList.add('company-header-active')
+    if (this.state[i] === "asc") {
+      this.setState({ [i]: "desc" });
     } else {
-      this.setState({ [e]: "asc" });
+      this.setState({ [i]: "asc" });
     }
-    this.props.sortCompanies(e, this.state[e]);
+    this.props.sortCompanies(i, this.state[i]);
   };
 
   renderCompanies() {
@@ -147,7 +149,7 @@ class Companies extends Component {
           <div className="company-grid-row company-grid-header">
             <div
               className="grid-title-items"
-              onClick={() => this.onSort("companyName")}
+              onClick={(e) => this.onSort(e, "companyName")}
               id="companyName"
             >
               <p style={{ marginLeft: "10px" }}>company</p>

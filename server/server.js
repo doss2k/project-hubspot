@@ -14,20 +14,20 @@ module.exports = {
   getPool: function () {
     if (pool) return pool;
     // if (process.env.NODE_ENV === 'production') {
-      pool = mysql.createPool({
-        host: "us-cdbr-iron-east-02.cleardb.net",
-        user: "b3a680a1274e8c",
-        password: "926ce534",
-        database: "heroku_4d0bb8f5ad72994",
-        connectionLimit: 10
-      });
+    pool = mysql.createPool({
+      host: "us-cdbr-iron-east-02.cleardb.net",
+      user: "b3a680a1274e8c",
+      password: "926ce534",
+      database: "heroku_4d0bb8f5ad72994",
+      connectionLimit: 10
+    });
     // } else {
-    //   pool = mysql.createPool({
-    //     host: "localhost",
-    //     user: process.env.user, // MySQL username
-    //     password: process.env.password, // MySQL password
-    //     database: "projecthubspot" // MySQL database name
-    //   });
+    // pool = mysql.createPool({
+    //   host: "localhost",
+    //   user: "root", // MySQL username
+    //   password: "barcelona10", // MySQL password
+    //   database: "projecthubspot" // MySQL database name
+    // });
     // }
     return pool;
   }
@@ -44,7 +44,7 @@ app.use(bodyParser.urlencoded({ extended: true }));
 app.use(companiesRoutes);
 app.use(dealsRoutes);
 app.use(dealsBoardRoutes);
-app.use(dashboardRoutes);
+// app.use(dashboardRoutes);
 
 if (process.env.NODE_ENV === 'production') {
   // Express will serve up production assets
