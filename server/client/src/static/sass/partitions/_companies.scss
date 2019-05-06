@@ -33,6 +33,11 @@
   }
 }
 
+.company-header-active {
+  background-color: red !important;
+  color: red;
+}
+
 .company-grid-header {
   font-weight: 600;
   background: $primary-card-color;
@@ -56,12 +61,15 @@
   &:nth-child(1) {
     width: 340px;
   }
+
   &:nth-child(3) {
     width: 180px;
   }
+
   &:nth-child(4) {
     width: 250px;
   }
+
   &:nth-child(5) {
     width: 250px;
   }
@@ -100,6 +108,7 @@
 
 #companyName {
   cursor: pointer;
+
   &:hover {
     background: $secondary-card-color;
   }
@@ -107,6 +116,7 @@
 
 #city {
   cursor: pointer;
+
   &:hover {
     background: $secondary-card-color;
   }
@@ -114,6 +124,7 @@
 
 #state {
   cursor: pointer;
+
   &:hover {
     background: $secondary-card-color;
   }
@@ -121,6 +132,7 @@
 
 #createdDate {
   cursor: pointer;
+
   &:hover {
     background: $secondary-card-color;
   }
@@ -128,6 +140,7 @@
 
 #updatedDate {
   cursor: pointer;
+
   &:hover {
     background: $secondary-card-color;
   }
