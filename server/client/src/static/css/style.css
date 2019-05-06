@@ -274,10 +274,8 @@
     background: #fff;
     margin-top: 100px;
     border-radius: 5px;
-    transform: translateX(100vw);
-    transition: all 0.3s ease-out; }
+    transform: translateX(100vw); }
     .form-container .form-card.show {
-      transition: all 0.3s ease-out;
       transform: translateX(0); }
     .form-container .form-card .form-header-container {
       display: flex;

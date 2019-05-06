@@ -2,10 +2,12 @@ import React, { Component } from "react";
 import { render } from "react-dom";
 import HighchartsReact from "highcharts-react-official";
 import Highcharts from "highcharts";
-import { connect } from "react-redux";
-import * as actionTypes from "../../actions/index";
+import { connect } from 'react-redux';
+import * as actionTypes from '../../actions/index';
+
 
 // Get all deals
+
 
 //  declared allDeals = []
 //    Loop through all deals
@@ -15,86 +17,67 @@ import * as actionTypes from "../../actions/index";
 
 // Loop through closedWonDeals array
 //  declared chartData = []
-//    get closedWonDeal.closeDate & closedWonDeal.amount
+//    get closedWonDeal.closeDate & closedWonDeal.amount 
 //    push into chartData array => [ [closedDate, amount], [closedDate, amount], [closedDate, amount] ]
 
 // Sort chartData.closedDate by ascending order
 // Aggregate chartData.amount
 
+
 function formatDate(d) {
   let newDate = d * 1000;
   return newDate;
 }
-let total = 0;
+
+
+
 
 class Chart extends Component {
+
   constructor(props) {
     super(props);
 
     this.state = {
       // To avoid unnecessary update keep all options in the state.
-
       chartOptions: {
         chart: {
-          type: "area",
-          backgroundColor: "#fff"
+          type: 'area',
+          backgroundColor: '#f4f8fa'
         },
         xAxis: {
-          type: "datetime",
+          type: 'datetime',
           dateTimeLabelFormats: {
             // don't display the dummy year
             month: "%b '%y",
-            year: "%b"
+            year: '%b'
           },
           title: {
-            text: "Date"
+            text: 'Date'
           }
         },
         yAxis: {
           title: {
-            text: "Revenue"
+            text: 'Revenue'
           },
           min: 0
         },
         title: {
-          text: "Total Revenue To Date"
+          text: 'Total Revenue To Date'
         },
-        tooltip: {
-          Highcharts: {
-            setOptions:{
-              lang: {
-                thousandSep: ','
-              }
-            }
-          },
-          formatter: function () {
-            
-            // const formatter = new Intl.NumberFormat('en-us', {
-            //   style: 'currency',
-            //   currency: 'USD'
-            // })
-            // Highcharts.setOptions({
-            //   lang: {
-            //     thousandSep: ','
-            //   }
-            // });
-
-            return "<b>"  + "</b><br/>" + Highcharts.dateFormat('%B %e', this.x, true) + 
-            "<br/>" + '$' + Highcharts.numberFormat( this.y, 0);
-        }
+        subtitle: {
+          text: 'Sean really really likes ponies'
         },
         series: [
           {
-            name: 'Deals Won',
+            name: 'Closed',
             color: '#2eb347',
             fillOpacity: 0.4,
 
-            data: [
-              [Date.UTC(2018, 10, 25), 100],
-              [Date.UTC(2018, 11, 20), 141],
-              [Date.UTC(2018, 12, 17), 520]
-            ]
-          }
+            data: [[Date.UTC(2018, 10, 25), 100],
+            [Date.UTC(2018, 11, 20), 141],
+            [Date.UTC(2018, 12, 17), 520]]
+
+          },
           // {
           //   name: 'Forecast',
           //   color: '#2c2c2c',
@@ -127,7 +110,6 @@ class Chart extends Component {
           //   ]
           // }
         ],
-
         plotOptions: {
           series: {
             point: {
@@ -143,79 +125,83 @@ class Chart extends Component {
 
   sortClosedWonDeals() {
     // debugger;
-    let closedWonDeals = [];
-    this.props.dealsDashboard.forEach(deal => {
-      if (deal.stage === "Closed Won") {
-        closedWonDeals.push(deal);
+    let closedWonDeals = []
+    let total = 0;
+    this.props.dealsDashboard.forEach((deal) => {
+      if (deal.stage === 'Closed Won') {
+        closedWonDeals.push(deal)
       }
-    });
-    console.log("closedWonDeals: ", closedWonDeals);
+    })
+    console.log('closedWonDeals: ', closedWonDeals)
 
-    const chartData = closedWonDeals.map(deal => {
+    const chartData = closedWonDeals.map((deal) => {
+
       function accumulateTotal(d) {
         total = total + d;
         return total;
       }
 
-
-      return [ formatDate(deal.closeDate),  accumulateTotal(deal.amount) ]
-
+      return [formatDate(deal.closeDate), accumulateTotal(deal.amount)]
     });
-    console.log("chartData: ", chartData);
+    console.log('chartData: ', chartData)
+
 
     let sortFunction = (a, b) => {
       if (a[0] === b[0]) {
         return 0;
-      } else {
-        return a[0] < b[0] ? -1 : 1;
       }
-    };
+      else {
+        return (a[0] < b[0]) ? -1 : 1;
+      }
+    }
     let sortedArray = chartData.sort(sortFunction);
-    console.log("sortedArray: ", sortedArray);
+    console.log("sortedArray: ", sortedArray)
 
     var stateCopy = { ...this.state };
     stateCopy.chartOptions.series[0].data = sortedArray;
-    console.log("stateCopy before setState", stateCopy);
+    console.log('stateCopy before setState', stateCopy)
     // had to comment this out because it was invoking an infinite loop
-    // this.setState(stateCopy);
+    // this.setState(stateCopy); 
   }
 
+
   componentDidMount() {
-    this.props.getAllDealsDashboard();
+    this.props.getAllDealsDashboard()
   }
+
 
   render() {
     const { chartOptions, hoveSrData } = this.state;
 
     if (this.props.dealsDashboard) {
-      this.sortClosedWonDeals();
+      this.sortClosedWonDeals()
       return (
         <React.Fragment>
+
           <div className="chart-card">
             <HighchartsReact highcharts={Highcharts} options={chartOptions} />
           </div>
+
         </React.Fragment>
       );
     } else {
-      return <div>Loading...</div>;
+      return <div>Loading...</div>
     }
-    console.log("See all deals!!", this.props.dealsDashboard);
+    console.log("See all deals!!", this.props.dealsDashboard)
+
   }
 }
 
-const mapStateToProps = state => {
+const mapStateToProps = (state) => {
   return {
-    dealsDashboard: state.dealsReducer.dealsDashboard //need to pass state to props?
-  };
-};
+    dealsDashboard: state.dealsReducer.dealsDashboard, //need to pass state to props?
+  }
+}
 
-const mapDispatchToProps = dispatch => {
+const mapDispatchToProps = (dispatch) => {
   return {
-    getAllDealsDashboard: () => dispatch(actionTypes.getAllDealsDashboard())
-  };
-};
+    getAllDealsDashboard: () => dispatch(actionTypes.getAllDealsDashboard()),
+  }
+}
 
-export default connect(
-  mapStateToProps,
-  mapDispatchToProps
-)(Chart);
+export default connect(mapStateToProps, mapDispatchToProps)(Chart);
